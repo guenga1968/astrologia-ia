@@ -40,6 +40,25 @@ const ELEMENT_DESCRIPTIONS = {
     'Agua': 'La emoción, la empatía y la conexión con lo invisible.'
 };
 
+const SIGN_TRANSLATIONS: Record<string, string> = {
+    'Aries': 'Aries',
+    'Taurus': 'Tauro',
+    'Gemini': 'Géminis',
+    'Cancer': 'Cáncer',
+    'Leo': 'Leo',
+    'Virgo': 'Virgo',
+    'Libra': 'Libra',
+    'Scorpio': 'Escorpio',
+    'Sagittarius': 'Sagitario',
+    'Capricorn': 'Capricornio',
+    'Aquarius': 'Acuario',
+    'Pisces': 'Piscis'
+};
+
+function translateSign(sign: string): string {
+    return SIGN_TRANSLATIONS[sign] || sign;
+}
+
 export const MODALITY_DESCRIPTIONS = {
     'Cardinal': 'La energía de inicio y acción. Representa el impulso de comenzar nuevos proyectos y liderar.',
     'Fijo': 'La energía de sostenimiento y perseverancia. Representa la estabilidad y la determinación.',
@@ -3061,7 +3080,10 @@ function getDetailedPlanetHouseDescription(planetName: string, house: string, si
 }
 
 export function generateInterpretation(chartData: any, userInfo: any) {
-    const planets = chartData.planets || [];
+    const planets = (chartData.planets || []).map((p: any) => ({
+        ...p,
+        sign: translateSign(p.sign)
+    }));
     const houses = chartData.houses || [];
     const aspects = chartData.aspects || [];
     const metadata = userInfo?.metadata || {};
@@ -3449,16 +3471,16 @@ export function generateInterpretation(chartData: any, userInfo: any) {
     const modalities: Record<string, number> = { 'Cardinal': 0, 'Fijo': 0, 'Mutable': 0 }
     
     const elementMap: Record<string, string> = {
-        'Aries': 'Fuego', 'Leo': 'Fuego', 'Sagitario': 'Fuego',
-        'Tauro': 'Tierra', 'Virgo': 'Tierra', 'Capricorn': 'Tierra', 'Capricornio': 'Tierra',
-        'Geminis': 'Aire', 'Gémini': 'Aire', 'Géminis': 'Aire', 'Libra': 'Aire', 'Acuario': 'Aire',
-        'Cancer': 'Agua', 'Cádiz': 'Agua', 'Cancé': 'Agua', 'Escorpio': 'Agua', 'Piscis': 'Agua'
+        'Aries': 'Fuego', 'Leo': 'Fuego', 'Sagitario': 'Fuego', 'Sagittarius': 'Fuego',
+        'Tauro': 'Tierra', 'Taurus': 'Tierra', 'Virgo': 'Tierra', 'Capricorn': 'Tierra', 'Capricornio': 'Tierra', 'Capricórnio': 'Tierra',
+        'Geminis': 'Aire', 'Gémini': 'Aire', 'Gemini': 'Aire', 'Libra': 'Aire', 'Acuario': 'Aire', 'Aquarius': 'Aire',
+        'Cancer': 'Agua', 'Cádiz': 'Agua', 'Cancé': 'Agua', 'Escorpio': 'Agua', 'Scorpio': 'Agua', 'Piscis': 'Agua', 'Pisces': 'Agua'
     }
     
     const modalityMap: Record<string, string> = {
-        'Aries': 'Cardinal', 'Cancer': 'Cardinal', 'Cádiz': 'Cardinal', 'Cancé': 'Cardinal', 'Libra': 'Cardinal', 'Capricornio': 'Cardinal', 'Capricorn': 'Cardinal',
-        'Tauro': 'Fijo', 'Leo': 'Fijo', 'Escorpio': 'Fijo', 'Acuario': 'Fijo',
-        'Geminis': 'Mutable', 'Gémini': 'Mutable', 'Géminis': 'Mutable', 'Virgo': 'Mutable', 'Sagitario': 'Mutable', 'Piscis': 'Mutable'
+        'Aries': 'Cardinal', 'Cancer': 'Cardinal', 'Libra': 'Cardinal', 'Capricornio': 'Cardinal', 'Capricorn': 'Cardinal', 'Capricórnio': 'Cardinal',
+        'Tauro': 'Fijo', 'Taurus': 'Fijo', 'Leo': 'Fijo', 'Escorpio': 'Fijo', 'Scorpio': 'Fijo', 'Acuario': 'Fijo', 'Aquarius': 'Fijo',
+        'Geminis': 'Mutable', 'Gémini': 'Mutable', 'Gemini': 'Mutable', 'Virgo': 'Mutable', 'Sagitario': 'Mutable', 'Sagittarius': 'Mutable', 'Piscis': 'Mutable', 'Pisces': 'Mutable'
     }
     
     // Contar TODOS los planetas devueltos por la API (no solo los tradicionales)
