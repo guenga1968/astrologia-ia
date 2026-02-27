@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "npx fix-react2shell-next --yes && npm run build",
+  "buildCommand": "npx fix-react2shell-next --fix --yes && npm run build",
   "outputDirectory": ".next",
   "installCommand": "npm install",
   "framework": null
