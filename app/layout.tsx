@@ -22,21 +22,6 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Astro-IA | Tu Destino Estelar",
   description: "Interpretación astrológica moderna y elegante con inteligencia artificial.",
-  manifest: "/manifest.json",
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "default",
-    title: "Astro-IA",
-  },
-  icons: {
-    icon: [
-      { url: "/icon-192x192.png", sizes: "192x192", type: "image/png" },
-      { url: "/icon-512x512.png", sizes: "512x512", type: "image/png" },
-    ],
-    apple: [
-      { url: "/icon-192x192.png" },
-    ],
-  },
 };
 
 export default function RootLayout({
@@ -50,18 +35,6 @@ export default function RootLayout({
         className={`${playfair.variable} ${inter.variable} antialiased`}
       >
         {children}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              if ('serviceWorker' in navigator) {
-                window.addEventListener('load', function() {
-                  navigator.serviceWorker.register('/sw.js')
-                    .catch(function(err) { console.error('SW registration failed:', err); });
-                });
-              }
-            `,
-          }}
-        />
       </body>
     </html>
   );
