@@ -44,3 +44,6 @@ next-env.d.ts
 *.json
 test_*
 opencode.json
+
+# vercel config (se necesita en repo)
+!vercel.json
