@@ -1,0 +1,4 @@
+1. Starting calculation...
+2. Chart Success! Planets count: 17
+3. Starting interpretation... data exists: true
+4. Interpretation Success! Length: 17182
