@@ -1,32 +1,11 @@
 /**
- * Utilidad para calcular cartas natales con sweph
+ * Utilidad para calcular cartas natales con celestine
  * Uso: node scripts/calculate-chart.js "1974-10-15" "15:20" -32.9442 -60.6505
- * 
- * O desde código:
- * const chart = require('./scripts/calculate-chart.js');
- * chart.calculate('1974-10-15', '15:20', -32.9442, -60.6505).then(console.log);
  */
 
-const sweph = require('sweph')
+const { calculateChart } = require('celestine')
 
-const { utc_to_jd, calc, houses_ex2, constants } = sweph
-
-const PLANET_IDS = {
-    'Sun': constants.SE_SUN,
-    'Moon': constants.SE_MOON,
-    'Mercury': constants.SE_MERCURY,
-    'Venus': constants.SE_VENUS,
-    'Mars': constants.SE_MARS,
-    'Jupiter': constants.SE_JUPITER,
-    'Saturn': constants.SE_SATURN,
-    'Uranus': constants.SE_URANUS,
-    'Neptune': constants.SE_NEPTUNE,
-    'Pluto': constants.SE_PLUTO,
-    'Chiron': constants.SE_CHIRON,
-    'North Node': constants.SE_TRUE_NODE,
-}
-
-const PLANET_NAMES = {
+const PLANET_NAME_MAP = {
     'Sun': 'Sol',
     'Moon': 'Luna',
     'Mercury': 'Mercurio',
@@ -38,81 +17,18 @@ const PLANET_NAMES = {
     'Neptune': 'Neptuno',
     'Pluto': 'Plutón',
     'Chiron': 'Quirón',
-    'North Node': 'Nodo Norte',
 }
 
 const HOUSE_NAMES = ['Primera', 'Segunda', 'Tercera', 'Cuarta', 'Quinta', 'Sexta', 'Séptima', 'Octava', 'Novena', 'Décima', 'Undécima', 'Duodécima']
 
-const SIGN_NAMES = ['Aries', 'Tauro', 'Géminis', 'Cáncer', 'Leo', 'Virgo', 'Libra', 'Escorpio', 'Sagitario', 'Capricornio', 'Acuario', 'Piscis']
-
-const ASPECT_DEFINITIONS = [
-    { name: 'Conjunción', angle: 0, orb: 8 },
-    { name: 'Sextil', angle: 60, orb: 6 },
-    { name: 'Cuadratura', angle: 90, orb: 8 },
-    { name: 'Trígono', angle: 120, orb: 8 },
-    { name: 'Oposición', angle: 180, orb: 8 }
-]
-
-function longitudeToSign(longitude) {
-    const normalized = ((longitude % 360) + 360) % 360
-    const signIndex = Math.floor(normalized / 30)
-    const degreeInSign = normalized % 30
-    const degree = Math.floor(degreeInSign)
-    const minute = Math.floor((degreeInSign - degree) * 60)
-    
-    return {
-        sign: SIGN_NAMES[signIndex],
-        degree,
-        minute
-    }
-}
-
-function getHouseFromLongitude(longitude, cusps) {
-    const normalized = ((longitude % 360) + 360) % 360
-    
-    for (let i = 0; i < 12; i++) {
-        const current = ((cusps[i] % 360) + 360) % 360
-        const next = ((cusps[(i + 1) % 12] % 360) + 360) % 360
-        
-        let inHouse = false
-        if (next > current) {
-            inHouse = normalized >= current && normalized < next
-        } else {
-            inHouse = normalized >= current || normalized < next
-        }
-        
-        if (inHouse) {
-            return HOUSE_NAMES[i]
-        }
-    }
-    
-    return HOUSE_NAMES[0]
-}
-
-function detectAspect(long1, long2) {
-    let diff = Math.abs(long1 - long2) % 360
-    if (diff > 180) diff = 360 - diff
-    
-    for (const asp of ASPECT_DEFINITIONS) {
-        const orb = Math.abs(diff - asp.angle)
-        if (orb <= asp.orb) {
-            return { name: asp.name, orb }
-        }
-    }
-    return null
-}
-
-function calculateChart(dateStr, timeStr, latitude, longitude) {
+function calculateChartCelestine(dateStr, timeStr, latitude, longitude) {
     // Parsear fecha
     let dateParts
     if (dateStr.includes('/')) {
         const parts = dateStr.split('/')
-        // Puede ser dd/mm/yyyy o mm/dd/yyyy
         if (parseInt(parts[2]) > 1000) {
-            // formato dd/mm/yyyy
             dateParts = [parseInt(parts[2]), parseInt(parts[1]), parseInt(parts[0])]
         } else {
-            // formato mm/dd/yyyy
             dateParts = [parseInt(parts[2]), parseInt(parts[0]), parseInt(parts[1])]
         }
     } else {
@@ -121,133 +37,114 @@ function calculateChart(dateStr, timeStr, latitude, longitude) {
     const [year, month, day] = dateParts
     const [hour, minute] = timeStr.split(':').map(Number)
     
-    // Calcular JD
-    const jdResult = utc_to_jd(year, month, day, hour, minute, 0, constants.SE_GREG_CAL)
-    if (jdResult.flag !== constants.OK) {
-        throw new Error('Error calculating Julian Day')
-    }
+    // Usar celestine para calcular la carta
+    const chart = calculateChart({
+        year,
+        month,
+        day,
+        hour,
+        minute,
+        latitude,
+        longitude,
+        houseSystem: 'placidus',
+        timezone: -3 // Argentina
+    })
     
-    const jd_et = jdResult.data[0]
-    
-    const flags = constants.SEFLG_SWIEPH | constants.SEFLG_SPEED
-    
-    // Calcular planetas
-    const planets = []
-    const planetKeys = Object.keys(PLANET_IDS)
-    
-    for (const planetKey of planetKeys) {
-        const planetId = PLANET_IDS[planetKey]
-        // Usar Moshier si no hay archivos ephemeris (flag 4 = OK)
-        const result = calc(jd_et, planetId, constants.SEFLG_MOSEPH)
-        
-        if (result.flag !== constants.OK && result.flag !== 4 && result.flag !== 2) {
-            console.error(`Warning: Error calculating ${planetKey}: flag=${result.flag}`)
-            continue
+    // Convertir planetas al formato esperado
+    const planets = chart.planets.map(p => {
+        const signName = p.signName || 'Unknown'
+        return {
+            name: PLANET_NAME_MAP[p.name] || p.name,
+            longitude: p.longitude,
+            degree: p.degree + p.minute / 60,
+            sign: signName,
+            isRetrograde: p.isRetrograde,
+            house: HOUSE_NAMES[(p.house || 1) - 1] || 'Primera'
         }
-        
-        if (!result.data) {
-            continue
-        }
-        
-        const data = result.data
-        const longitude = data[0]
-        const speed = data[2]
-        const signInfo = longitudeToSign(longitude)
-        
-        planets.push({
-            name: PLANET_NAMES[planetKey],
-            longitude,
-            degree: signInfo.degree + signInfo.minute / 60,
-            sign: signInfo.sign,
-            isRetrograde: speed < 0
+    })
+    
+    // Agregar nodos
+    if (chart.nodes) {
+        chart.nodes.forEach(node => {
+            const signName = node.signName || 'Unknown'
+            planets.push({
+                name: node.name,
+                longitude: node.longitude,
+                degree: node.degree + (node.minute || 0) / 60,
+                sign: signName,
+                isRetrograde: false,
+                house: HOUSE_NAMES[(node.house || 1) - 1] || 'Primera'
+            })
         })
     }
     
-    // Calcular casas
-    const jd_ut = jdResult.data[1]
-    const housesResult = houses_ex2(jd_ut, 0, latitude, longitude, 'P')
+    // Ángulos de la carta
+    const angles = chart.angles
+    const houses = chart.houses
     
-    if (housesResult.flag !== constants.OK) {
-        throw new Error('Error calculating houses')
-    }
-    
-    const cusps = housesResult.data.houses
-    
-    // Añadir casas a planetas
-    for (const planet of planets) {
-        planet.house = getHouseFromLongitude(planet.longitude, cusps)
-    }
-    
-    // Ángulos
-    const ascCusp = cusps[0]
-    const ascSignInfo = longitudeToSign(ascCusp)
     const ascendant = {
         name: 'Ascendente',
-        longitude: ascCusp,
-        degree: ascSignInfo.degree + ascSignInfo.minute / 60,
-        sign: ascSignInfo.sign,
+        longitude: angles.ascendant.longitude,
+        degree: angles.ascendant.degree + angles.ascendant.minute / 60,
+        sign: angles.ascendant.signName,
         house: 'Primera',
         isRetrograde: false
     }
     
-    const mcCusp = housesResult.data.points[1]
-    const mcSignInfo = longitudeToSign(mcCusp)
     const midheaven = {
         name: 'Medio Cielo',
-        longitude: mcCusp,
-        degree: mcSignInfo.degree + mcSignInfo.minute / 60,
-        sign: mcSignInfo.sign,
+        longitude: angles.midheaven.longitude,
+        degree: angles.midheaven.degree + angles.midheaven.minute / 60,
+        sign: angles.midheaven.signName,
         house: 'Décima',
         isRetrograde: false
     }
     
-    const descCusp = cusps[6]
-    const descSignInfo = longitudeToSign(descCusp)
     const descendant = {
         name: 'Descendente',
-        longitude: descCusp,
-        degree: descSignInfo.degree + descSignInfo.minute / 60,
-        sign: descSignInfo.sign,
+        longitude: angles.descendant.longitude,
+        degree: angles.descendant.degree + angles.descendant.minute / 60,
+        sign: angles.descendant.signName,
         house: 'Séptima',
         isRetrograde: false
     }
     
-    const icCusp = housesResult.data.points[2]
-    const icSignInfo = longitudeToSign(icCusp)
     const imumCoeli = {
         name: 'Fondo del Cielo',
-        longitude: icCusp,
-        degree: icSignInfo.degree + icSignInfo.minute / 60,
-        sign: icSignInfo.sign,
+        longitude: angles.imumCoeli.longitude,
+        degree: angles.imumCoeli.degree + angles.imumCoeli.minute / 60,
+        sign: angles.imumCoeli.signName,
         house: 'Cuarta',
         isRetrograde: false
     }
     
-    const angles = [ascendant, midheaven, descendant, imumCoeli]
-    const allPlanets = [...planets, ...angles]
+    const allPlanets = [...planets, ascendant, midheaven, descendant, imumCoeli]
     
-    // Calcular aspectos
+    // Convertir aspectos
     const aspects = []
-    const bodiesToAspect = allPlanets.filter(p => 
-        ['Sol', 'Luna', 'Mercurio', 'Venus', 'Marte', 'Júpiter', 'Saturno', 'Urano', 'Neptuno', 'Plutón', 'Ascendente', 'Medio Cielo'].includes(p.name)
-    )
-    
-    for (let i = 0; i < bodiesToAspect.length; i++) {
-        for (let j = i + 1; j < bodiesToAspect.length; j++) {
-            const p1 = bodiesToAspect[i]
-            const p2 = bodiesToAspect[j]
+    if (chart.aspects && chart.aspects.all) {
+        chart.aspects.all.forEach(asp => {
+            const aspectNames = {
+                'conjunction': 'Conjunción',
+                'sextile': 'Sextil',
+                'square': 'Cuadratura',
+                'trine': 'Trígono',
+                'opposition': 'Oposición'
+            }
             
-            const aspectResult = detectAspect(p1.longitude, p2.longitude)
+            const name1 = PLANET_NAME_MAP[asp.body1] || asp.body1
+            const name2 = PLANET_NAME_MAP[asp.body2] || asp.body2
             
-            if (aspectResult) {
+            if (['Sol', 'Luna', 'Mercurio', 'Venus', 'Marte', 'Júpiter', 'Saturno', 'Urano', 'Neptuno', 'Plutón', 'Ascendente', 'Medio Cielo'].includes(name1) &&
+                ['Sol', 'Luna', 'Mercurio', 'Venus', 'Marte', 'Júpiter', 'Saturno', 'Urano', 'Neptuno', 'Plutón', 'Ascendente', 'Medio Cielo'].includes(name2)) {
                 aspects.push({
-                    point1: p1.name,
-                    point2: p2.name,
-                    aspect: aspectResult.name,
-                    orb: aspectResult.orb
+                    point1: name1,
+                    point2: name2,
+                    aspect: aspectNames[asp.type] || asp.type,
+                    orb: Math.round(asp.deviation || 0)
                 })
             }
-        }
+        })
     }
     
     return {
@@ -277,16 +174,16 @@ if (require.main === module) {
     const jsonMode = args.includes('--json')
     
     try {
-        const result = calculateChart(date, time, parseFloat(lat), parseFloat(lng))
+        const result = calculateChartCelestine(date, time, parseFloat(lat), parseFloat(lng))
         
         if (jsonMode) {
             console.log(JSON.stringify(result))
         } else {
             console.log('\n=== RESUMEN ===')
-            console.log(`Sol: ${result.summary.sun.sign} ${result.summary.sun.degree}°`)
-            console.log(`Luna: ${result.summary.moon.sign} ${result.summary.moon.degree}°`)
-            console.log(`Ascendente: ${result.summary.ascendant.sign} ${result.summary.ascendant.degree}°`)
-            console.log(`Medio Cielo: ${result.summary.midheaven.sign} ${result.summary.midheaven.degree}°`)
+            console.log(`Sol: ${result.summary.sun.sign} ${result.summary.sun.degree.toFixed(1)}°`)
+            console.log(`Luna: ${result.summary.moon.sign} ${result.summary.moon.degree.toFixed(1)}°`)
+            console.log(`Ascendente: ${result.summary.ascendant.sign} ${result.summary.ascendant.degree.toFixed(1)}°`)
+            console.log(`Medio Cielo: ${result.summary.midheaven.sign} ${result.summary.midheaven.degree.toFixed(1)}°`)
             
             console.log('\n=== PLANETAS ===')
             for (const p of result.planets) {
@@ -295,11 +192,10 @@ if (require.main === module) {
                 }
             }
         }
-        
     } catch (e) {
         console.error('Error:', e.message)
         process.exit(1)
     }
 }
 
-module.exports = { calculateChart }
+module.exports = { calculateChart: calculateChartCelestine }
