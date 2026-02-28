@@ -3483,9 +3483,10 @@ export function generateInterpretation(chartData: any, userInfo: any) {
         'Geminis': 'Mutable', 'Gémini': 'Mutable', 'Gemini': 'Mutable', 'Virgo': 'Mutable', 'Sagitario': 'Mutable', 'Sagittarius': 'Mutable', 'Piscis': 'Mutable', 'Pisces': 'Mutable'
     }
     
-    // Contar TODOS los planetas devueltos por la API (no solo los tradicionales)
-    const angleNames = ['Ascendente', 'Medio Cielo', 'Descendente', 'Fondo del Cielo', 'Nodo Norte', 'Nodo Sur']
-    const planetsToCount = planets.filter((p: any) => !angleNames.includes(p.name))
+    // Contar SOLO planetas tradicionales (no asteroides)
+    const traditionalPlanets = ['Sol', 'Luna', 'Mercurio', 'Venus', 'Marte', 'Júpiter', 'Saturno', 'Urano', 'Neptuno', 'Plutón', 'Quirón']
+    const angleNames = ['Ascendente', 'Medio Cielo', 'Descendente', 'Fondo del Cielo']
+    const planetsToCount = planets.filter((p: any) => traditionalPlanets.includes(p.name) && !angleNames.includes(p.name))
     
     planetsToCount.forEach((p: any) => {
         const signKey = p.sign
