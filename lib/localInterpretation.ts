@@ -3160,6 +3160,55 @@ export function generateInterpretation(chartData: any, userInfo: any) {
     md += `${metadata.birthDate || ''} – ${metadata.birthTime || ''} – ${metadata.birthLocation || ''}\n`;
     md += `Sistema ${metadata.houseSystem || 'Placidus'} – Zodíaco ${metadata.zodiacType || 'Tropical'}\n\n`;
     md += `---\n\n`;
+    
+    // ===============================
+    // TRÍADA DESCRIPTIVA
+    // ===============================
+    if (sun && moon && asc) {
+        const elementSun = SIGN_ELEMENTS[sun.sign] || ''
+        const elementMoon = SIGN_ELEMENTS[moon.sign] || ''
+        const elementAsc = SIGN_ELEMENTS[asc.sign] || ''
+        
+        // Crear descripción de la tríada
+        const elementDescriptions: Record<string, string> = {
+            'Fuego': 'dinámica y apasionada',
+            'Tierra': 'práctica y estable',
+            'Aire': 'visionaria e independiente',
+            'Agua': 'emocional e intuitiva'
+        }
+        
+        const triadDesc = [elementSun, elementMoon, elementAsc]
+            .filter((v, i, a) => a.indexOf(v) === i)
+            .map(el => elementDescriptions[el] || el.toLowerCase())
+            .join(' – ')
+        
+        md += `Tu arquitectura natal está dominada por tres pilares:\n\n`;
+        md += `☀ **Sol en ${sun.sign}**\n`;
+        md += `🌙 **Luna en ${moon.sign}**\n`;
+        md += `⬆ **Ascendente en ${asc.sign}**\n\n`;
+        
+        md += `Esta tríada ${elementSun}–${elementMoon}–${elementAsc} genera una personalidad ${triadDesc}.\n\n`;
+        
+        // Descripción según la combinación
+        const combinations: Record<string, string> = {
+            'Fuego-Fuego-Aire': 'Sos alguien que no vino a repetir moldes. Viniste a abrir caminos.',
+            'Fuego-Fuego-Tierra': 'Tenés fuego para actuar y tierra para sostener. Una combinación de líder constructor.',
+            'Fuego-Aire-Fuego': 'Tu mente es tan rápida como tu corazón. Innovation y pasión van de la mano.',
+            'Aire-Fuego-Fuego': 'Visón, pasión y acción. Tres fuegos que queman pero también iluminan.',
+            'Aire-Aire-Fuego': 'Mentalmente libre y emocionalmente ardiente. Buscás la verdad con fuego.',
+            'Aire-Fuego-Aire': 'Sos un visionario que actúa. Piensas diferente y te animás a actuar.',
+            'Agua-Fuego-Fuego': 'Emociones profundas con energía ardiente. Sentís intensamente y actuás con pasión.',
+            'Fuego-Agua-Fuego': 'Pasión emocional que se transforma. Intensidad y profundidad.',
+            'Tierra-Fuego-Fuego': ' pies en la tierra pero corazón de fuego. Acción concreta con emoción.',
+            'Fuego-Tierra-Fuego': 'Construís con pasión.Querés ver resultados tangibles de tu esfuerzo.'
+        }
+        
+        const key = [elementSun, elementMoon, elementAsc].sort().join('-')
+        const defaultDesc = 'Sos una combinación única de energías que define tu manera de estar en el mundo.'
+        
+        md += `${combinations[key] || defaultDesc}\n\n`;
+        md += `---\n\n`;
+    }
 
     // ===============================
     // PANORAMA GENERAL
@@ -3738,6 +3787,44 @@ export function generateInterpretation(chartData: any, userInfo: any) {
     md += `### Tu Misión Personal\n\n`;
     const mission = getPremiumMission(sun?.sign, moon?.sign, asc?.sign, dominantSign?.[0], Object.entries(signCounts));
     md += `${mission}\n\n`;
+    
+    // ===============================
+    // SÍNTESIS EVOLUTIVA PREMIUM
+    // ===============================
+    md += `## 🌟 Síntesis Evolutiva Premium\n\n`;
+    
+    if (sun && moon && asc) {
+        const elementSun = SIGN_ELEMENTS[sun.sign] || ''
+        
+        // Síntesis según el signo solar
+        const synthesisMessages: Record<string, string> = {
+            'Acuario': `Tu carta revela un espíritu pionero con conciencia social. ${sun.sign} te da una visión diferente donde otros solo ven tradición.\n\nExternamente podés proyectar determinación, pero internamente necesitás libertad mental y expansión emocional.\n\nTu misión no es adaptarte al sistema. Es innovar dentro de él.\n\n**Tu clave evolutiva:** Integrarte sin diluirte. Comprometerte sin perder tu individualidad.`,
+            
+            'Capricornio': `Tu carta revela una personalidad orientada a la construcción de legado. Naciste para construir algo que trascienda.\n\n**Tu clave evolutiva:** Disfrutá el proceso, no solo el resultado. Tu éxito está en construir con paciencia y persistencia.`,
+            
+            'Leo': `Tu carta revela un espíritu brillante que busca inspirar. Tu luz está diseñada para que otros la vean.\n\n**Tu clave evolutiva:** Brillá sin eclipsar a otros. Compartí tu luz generosamente.`,
+            
+            'Escorpio': `Tu carta revela una intensidad transformadora. Vas al fondo de todo.\n\n**Tu clave evolutiva:** Soltá el control. Confiá en el proceso de transformación. Tu poder está en la profundidad.`,
+            
+            'Sagitario': `Tu carta revela un espíritu libre y expansivo. Buscás verdad y aventura.\n\n**Tu clave evolutiva:** Encontrá propósito en cada paso. Tu entusiasmo es contagioso cuando está alineado.`,
+            
+            'Aries': `Tu carta revela un pionero natural. Llegaste para actuar y liderar.\n\n**Tu clave evolutiva:** Aprendé a sostener la acción. Tu coraje inspira, pero tu persistencia transforma.`,
+            
+            'Libra': `Tu carta revela un buscador de equilibrio y armonía. Las relaciones son tuomotor de crecimiento.\n\n**Tu clave evolutiva:** Encontrá tu centro dentro de la relación. No te perdás en el otro.`,
+            
+            'Tauro': `Tu carta revela una naturaleza estable y pragmática. Construís con paciencia.\n\n**Tu clave evolutiva:** Valorá lo que ya tenés. Tu seguridad está en vos mismo.`,
+            
+            'Géminis': `Tu carta revela una mente ágil y comunicativa. Tu curiosidad no tiene límites.\n\n**Tu clave evolutiva:** Profundá en lugar de dispersarte. Tu mente es tu mayor herramienta.`,
+            
+            'Cáncer': `Tu carta revela una naturaleza emocional y protectora. Tu hogar y familia son tu centro.\n\n**Tu clave evolutiva:** Abrí tu corazón sin perder tus límites. Tu sensibilidad es fortaleza.`,
+            
+            'Virgo': `Tu carta revela un espíritu analítico y de servicio. Buscás la perfección en todo.\n\n**Tu clave evolutiva:** Aceptá la imperfección. Tu servicio comienza por vos mismo.`,
+            
+            'Piscis': `Tu carta revela una naturaleza sensible y espiritual. Tu conexión con lo invisible es profunda.\n\n**Tu clave evolutiva:** Establecé límites saludables. Tu compasión es tu don más grande.`
+        }
+        
+        md += `${synthesisMessages[sun.sign] || 'Tu carta revela una combinación única de energías que define tu camino de evolución.'}\n\n`;
+    }
     
     // Resumen de fortalezas
     md += `---\n\n`;
