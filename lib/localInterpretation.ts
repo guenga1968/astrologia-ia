@@ -951,7 +951,7 @@ const PLANET_PAIR_INTERPRETATIONS: Record<string, Record<string, string>> = {
         'Oposición': 'La oposición Saturno-Neptuno indica conflicto entre estructura y espiritualidad.'
     },
     'Saturno-Plutón': {
-        'Conjunción': 'La conjunción Saturno-Plutón es de poder estructuras. Tu capacidad de influencia está deep y persistente.',
+        'Conjunción': 'La conjunción Saturno-Plutón es de poder estructurales. Tu capacidad de influencia está muy arraigada y es persistente.',
         'Trígono': 'El trígono Saturno-Plutón proporciona facilidad para el poder estructuras. Tu influencia perdura.',
         'Sextil': 'El sextil Saturno-Plutón indica talentos para la transformación estructural.',
         'Cuadratura': 'La cuadratura Saturno-Plutón genera tensión entre estructura y transformación. El desafío es mudar sin destruir.',
@@ -994,7 +994,7 @@ Impaciencia: La espera no va con vos. Querés resultados inmediatos y podés fru
 
 Necesidad de Independencia: Tu libertad es sagrada. No tolerás que alguien te diga qué hacer o cómo vivir tu vida.
 
-En resumen, ser Sol en Aries es ser un guerrero del zodiaco, alguien que enfrenta la vida con valentía y autenticidad.`,
+En resumen, ser Sol en Aries es ser un guerrero del zodíaco, alguien que enfrenta la vida con valentía y autenticidad.`,
 
     'Tauro': `Tener el Sol en Tauro en tu carta astral significa que tu identidad central, tu esencia y tu propósito de vida están teñidos por la energía de la estabilidad, la perseverancia y el aprecio por lo bello. Eres una persona confiable, paciente y con un fuerte sentido de valor personal.
 
@@ -1024,7 +1024,7 @@ Dualidad: Tenés dos caras que mostrás al mundo. A veces parecés sociable y ot
 
 Inconstancia: Tu versatilidad puede convertirse en falta de enfoque. Empezás muchos proyectos pero no siempre los terminás.
 
-En resumen, ser Sol en Géminis es ser un polymata del zodiaco, alguien que conecta ideas y personas con facilidad y curiosidad.`,
+En resumen, ser Sol en Géminis es ser un polymata del zodíaco, alguien que conecta ideas y personas con facilidad y curiosidad.`,
 
     'Cáncer': `Tener el Sol en Cáncer en tu carta astral significa que tu identidad central, tu esencia y tu propósito de vida están teñidos por la energía emocional, la protección y la conexión con el hogar. Eres una persona sensible, intuitiva y con un fuerte sentido de pertenencia.
 
@@ -1039,7 +1039,7 @@ Sensibilidad: Tus emociones son intensas y podés ser muy reactivo a la energía
 
 Memoria Emotiva: Recordás todo lo que te afecta emocionalmente. Esto puede ser un regalo o un peso, dependiendo de cómo lo manejes.
 
-En resumen, ser Sol en cáncer es ser el corazón del zodiaco, alguien que ama profundamente y protege lo que le importa con devoción absoluta.`,
+En resumen, ser Sol en Cancer es ser el corazón del zodíaco, alguien que ama profundamente y protege lo que le importa con devoción absoluta.`,
 
     'Leo': `Tener el Sol en Leo en tu carta astral significa que tu identidad central, tu esencia y tu propósito de vida están teñidos por la energía del liderazgo, la creatividad y la generosidad. Eres una persona carismática, segura de sí misma y con un magnetismo natural.
 
@@ -1054,7 +1054,7 @@ Orgullo y Dignidad: Tu autoestim es importante. No toleras que te falten al resp
 
 Egocentrismo: Tu necesidad de atención puede convertirse en arrogancia. Aprendé a equilibrar tu luz con humildad.
 
-En resumen, ser Sol en Leo es ser el sol del zodiaco, alguien que brilla con luz propia e inspira a otros a encontrar su propia grandeza.`,
+En resumen, ser Sol en Leo es ser el sol del zodíaco, alguien que brilla con luz propia e inspira a otros a encontrar su propia grandeza.`,
 
     'Virgo': `Tener el Sol en Virgo en tu carta astral significa que tu identidad central, tu esencia y tu propósito de vida están teñidos por la energía del análisis, el servicio y la búsqueda de la perfección. Eres una persona detallista, práctica y con un fuerte sentido de responsabilidad.
 
@@ -1069,7 +1069,7 @@ Organización: Tenés un talento natural para estructurar y orden. Tu entorno re
 
 Perfeccionismo: Tu búsqueda de lo perfecto puede paralizarte. Aprendé a aceptar que "suficientemente bueno" a veces está bien.
 
-En resumen, ser Sol en Virgo es ser el auxiliar del zodiaco, alguien que perfecciona el mundo a través del detalle, el análisis y el servicio desinteresado.`,
+En resumen, ser Sol en Virgo es ser el auxiliar del zodíaco, alguien que perfecciona el mundo a través del detalle, el análisis y el servicio desinteresado.`,
 
     'Libra': `Tener el Sol en Libra en tu carta astral significa que tu identidad central, tu esencia y tu propósito de vida están teñidos por la energía del equilibrio, la armonía y las relaciones. Eres una persona sociable, justa y con un fuerte sentido de la belleza.
 
@@ -1084,7 +1084,7 @@ Indecisión: Tu necesidad de ver todos los lados de una situación puede paraliz
 
 Superficialidad: Podés preferir evitar la profundidad emocional para mantener la paz. Aprendé a enfrentar los conflictos directamente.
 
-En resumen, ser Sol en Libra es ser el diplomático del zodiaco, alguien que busca la belleza y la armonía en todas las relaciones y situaciones.`,
+En resumen, ser Sol en Libra es ser el diplomático del zodíaco, alguien que busca la belleza y la armonía en todas las relaciones y situaciones.`,
 
     'Escorpio': `Tener el Sol en Escorpio en tu carta astral significa que tu identidad central, tu esencia y tu propósito de vida están teñidos por la intensidad, la transformación y la profundidad emocional. Eres una persona misteriosa, apasionada y con un poder de transformación único.
 
@@ -1099,7 +1099,7 @@ Misterio: Guardás tus secretos profundamente. Muy pocas personas realmente te c
 
 Controversial: No te importa lo que digan los demás. Persigues lo que quieres con una determinación que puede intimidar.
 
-En resumen, ser Sol en Escorpio es ser el guerrero del alma del zodiaco, alguien que transforma todo lo que toca a través de su intensidad y poder personal.`,
+En resumen, ser Sol en Escorpio es ser el guerrero del alma del zodíaco, alguien que transforma todo lo que toca a través de su intensidad y poder personal.`,
 
     'Sagitario': `Tener el Sol en Sagitario en tu carta astral significa que tu identidad central, tu esencia y tu propósito de vida están teñidos por la energía del optimismo, la aventura y la búsqueda de la verdad. Eres una persona expansiva, optimista y con un espíritu libre.
 
@@ -1114,7 +1114,7 @@ Honestidad Brutal: Decís las cosas como son, a veces sin filtro. Esto puede las
 
 Impaciencia: El rutinario te aburre. Necesitás cambio constante y podés perder interés fácilmente.
 
-En resumen, ser Sol en Sagitario es ser el explorador del zodiaco, alguien que busca la verdad y la aventura mientras expande sus horizontes y los de otros.`,
+En resumen, ser Sol en Sagitario es ser el explorador del zodíaco, alguien que busca la verdad y la aventura mientras expande sus horizontes y los de otros.`,
 
     'Capricornio': `Tener el Sol en Capricornio en tu carta astral significa que tu identidad central, tu esencia y tu propósito de vida están teñidos por la energía de la ambición, la disciplina y la construcción. Eres una persona responsable, paciente y con un fuerte sentido del deber.
 
@@ -1125,11 +1125,11 @@ Disciplina Rígida: Tenés una fuerte ética de trabajo. Puedés sacrificar el p
 
 Responsabilidad: Cumplís con tus obligaciones sin importar qué. Otros pueden depender de vos para hacer lo que decís.
 
-Estructura: Necesitás orden y estructura en tu vida. El caos te anxiety y hacés todo lo posible por evitarlo.
+Estructura: Necesitás orden y estructura en tu vida. El caos te genera ansiedad y hacés todo lo posible por evitarlo.
 
 Frío Emocional: Tu enfoque en el logro puede hacer que parezcas distante o insensible. Aprendé a mostrar vulnerabilidad.
 
-En resumen, ser Sol en Capricornio es ser el arquitecto del zodiaco, alguien que construye estructuras sólidas y alcanza sus metas a través de la disciplina y la perseverancia.`,
+En resumen, ser Sol en Capricornio es ser el arquitecto del zodíaco, alguien que construye estructuras sólidas y alcanza sus metas a través de la disciplina y la perseverancia.`,
 
     'Acuario': `Tener el Sol en Acuario en tu carta astral significa que tu identidad central, tu esencia y tu propósito de vida están teñidos por la energía de la innovación, la libertad, la rebeldía y el pensamiento colectivo. Eres una persona original, orientada al futuro, independiente y con un fuerte sentido humanitario.
 
@@ -1161,7 +1161,7 @@ Sensibilidad Extrema: El mundo te afecta profundamente. Podés absorber las emoc
 
 Escape de la Realidad: Cuando la realidad se vuelve demasiado dura, tu mente escapa hacia los sueños. Cuidá de no usar esto como mecanismo de defensa constante.
 
-En resumen, ser Sol en Piscis es el místico del zodiaco, alguien que navega entre el mundo material y el espiritual, trayendo luz y compasión a donde sea que vaya.`
+En resumen, ser Sol en Piscis es el místico del zodíaco, alguien que navega entre el mundo material y el espiritual, trayendo luz y compasión a donde sea que vaya.`
 };
 
 export const MOON_SIGN_EXPLANATIONS: Record<string, string> = {
@@ -1683,7 +1683,7 @@ const ELEMENT_DETAILED: Record<string, Record<string, { title: string, descripti
             title: 'Moderado bajo',
             description: 'Un 20-30% de aire indica un nivel moderado pero inferior al promedio. La persona tiene capacidad intelectual pero puede carecer de la amplitud de perspectiva o las habilidades sociales del aire dominante.',
             characteristics: [
-                { title: 'Pensamiento selectivo', text: 'Analizás solo ciertoscasos. No es tu naturaleza cuestionar todo.' },
+                { title: 'Pensamiento selectivo', text: 'Analizás solo ciertos casos. No es tu naturaleza cuestionar todo.' },
                 { title: 'Comunicación práctica', text: 'Comunicás lo necesario pero no te dilatás en conversaciones abstractas.' },
                 { title: 'Perspectiva variable', text: 'A veces ves el panorama, a veces te perdés en los detalles.' },
                 { title: 'Socialización moderada', text: 'Tenés amigos pero no necesitás interacción social constante.' }
@@ -2865,7 +2865,7 @@ const PLANET_HOUSE_DESCRIPTIONS: Record<string, Record<string, { intro: string, 
             intro: 'Tu Venus en la Segunda Casa indica amor por lo material y los lujos.',
             identity: 'Tu sentido de valor viene de las posesiones. Amás el confort y el lujo.',
             focus: 'Buscás seguridad financiera para disfrutar. Tu enfoque está en los recursos.',
-            action: 'Tenés talento para generar ingresos. Tu charme te盖 gets you what you want.',
+            action: 'Tenés talento para generar ingresos. Tu carisma te ayuda a conseguir lo que querés.',
             challenge: 'Podés ser materialista o posesivo. El desafío es valorar a las personas sobre las cosas.'
         },
         'Tercera': {
@@ -3958,7 +3958,7 @@ function getModalityDescription(modality: string, count: number, total: number):
     const descriptions: Record<string, string> = {
         'Fijo': `**Tu modalidad: FIJO (${pct}%)**\n\nEsto define gran parte de tu personalidad. Las personas con tanta energía Fija funcionan así:\n\n• **Intensidad sostenida**: No necesitás estimulación externa. Tu energía viene de adentro.\n• **Lealtad inquebrantable**: Una vez que te comprometés, es para siempre. No medias palabras.\n• **Difícil de mudar**: Tus opiniones, emociones y hábitos tienen raíces profundas. Cambiás, pero lento y cuando vos querés.\n• **Emociones profundas**: Sentís mucho, pero no mostrás todo. Tu mundo interior es rico y privado.\n\n**Tu desafío:** Soltar cuando ya no sirve. Tu naturaleza es sostener, no abandonar.\n\n**Tu fortaleza:** Persistencia. Otros flaquean, vos seguís.`,
         
-        'Cardinal': `**Tu modalidad: CARDINAL (${pct}%)**\n\nEsto define gran parte de tu personalidad. Las personas con energía Cardinal funcionan así:\n\n• **Iniciativa natural**: No esperás que las cosas pasen, las hacés pasar.\n• **Liderazgo instintivo**: Asumís el control cuando nadie más lo hace.\n• **Impaciencia**: Querés resultados ya. La espera te frustra.\n• **Orientación a la acción**: Pensás haciendo. Aprendés actuando.\n\n**Tu desafío:** Detenerte a planificar antes de actuar. No todo necesita respuesta inmediata.\n\n**Tu fortaleza:** Capacidad de start things. Others观望, vos initiate.`,
+        'Cardinal': `**Tu modalidad: CARDINAL (${pct}%)**\n\nEsto define gran parte de tu personalidad. Las personas con energía Cardinal funcionan así:\n\n• **Iniciativa natural**: No esperás que las cosas pasen, las hacés pasar.\n• **Liderazgo instintivo**: Asumís el control cuando nadie más lo hace.\n• **Impaciencia**: Querés resultados ya. La espera te frustra.\n• **Orientación a la acción**: Pensás haciendo. Aprendés actuando.\n\n**Tu desafío:** Detenerte a planificar antes de actuar. No todo necesita respuesta inmediata.\n\n**Tu fortaleza:** Capacidad de iniciar. Otros observan, vos actúas.`,
         
         'Mutable': `**Tu modalidad: MUTABLE (${pct}%)**\n\nEsto define gran parte de tu personalidad. Las personas con energía Mutable funcionan así:\n\n• **Adaptación natural**: Podés fluir con cualquier situación. Sos un camaleón.\n• **Mente abierta**: Estas siempre abierto a nuevas perspectivas.\n• **Versatilidad**: Podés hacer muchas cosas a la vez.\n• **Dificultad con compromisos**: Todo puede cambiar, incluyendo vos.\n\n**Tu desafío:** Mantenerte firme en algo. Elegir un camino y seguirlo.\n\n**Tu fortaleza:** Flexibilidad. Cuando todo cambia, vos seguís funcionando.`
     }
