@@ -3400,9 +3400,6 @@ export function generateInterpretation(chartData: any, userInfo: any) {
         md += `${asc.sign} da una imagen:\n`;
         md += `${ascDesc.meaning}\n\n`;
 
-        md += `Aunque por ${moon?.sign || 'dentro'}, no lo mostrás fácilmente.\n`;
-        md += `Primero observás. Después confiás.\n\n`;
-
         md += `---\n\n`;
     }
 
