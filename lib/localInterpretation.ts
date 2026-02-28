@@ -2376,6 +2376,25 @@ export function getLocalInterpretation(chartData: any, userInfo: any) {
             if (house !== stelliums[0]?.[0]) {
                 md += `### Stellium en Casa ${house} (${count} planetas)\n`;
                 md += `Planetas: ${planetsInHouse.join(', ')}\n\n`;
+                
+                // Agregar interpretación del stellium en casa
+                const houseThemes: Record<string, string> = {
+                    'Primera': 'Esta concentración en la Primera Casa indica que tu identidad y expresión personal son el foco principal de tu vida. Tu manera de presentarte al mundo define gran parte de tu experiencia.',
+                    'Segunda': 'Con varios planetas en la Segunda Casa, tus valores materiales y tu relación con el dinero son centrales. Hay una fuerte necesidad de seguridad económica.',
+                    'Tercera': 'Tu comunicación y entorno inmediato son muy importantes. Tenés mucho para decir y aprendés rápido.',
+                    'Cuarta': 'El hogar y la familia son tu prioridad. Tus raíces y tu pasado influyen enormemente en tu presente.',
+                    'Quinta': 'La creatividad, el romance y los hijos son temas dominante. Tu necesidad de expresarte y ser reconocido es fuerte.',
+                    'Sexta': 'El trabajo y la salud son fokus. Hay una necesidad de estructura y servicio.',
+                    'Séptima': 'Las relaciones son el área central de tu vida. Tu desarrollo personal ocurre a través de los demás.',
+                    'Octava': 'La transformación, la intimidad y los recursos compartidos son temas profundos. Buscás profundidad.',
+                    'Novena': 'La filosofía, los viajes y los estudios superiores son importantes. Tenés una mente expandida.',
+                    'Décima': 'La carrera y el estatus público son muy relevantes. Buscás reconocimiento y logro.',
+                    'Undécima': 'Los grupos y las causas sociales son significativos. Buscás pertenecer a algo más grande.',
+                    'Duodécima': 'La espiritualidad y el aislamiento son temas importantes. Hay una vida interior rica.'
+                };
+                if (houseThemes[house]) {
+                    md += `${houseThemes[house]}\n\n`;
+                }
             }
         });
     }
