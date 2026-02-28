@@ -44,7 +44,8 @@ const SIGN_TRANSLATIONS: Record<string, string> = {
     'Aries': 'Aries',
     'Taurus': 'Tauro',
     'Gemini': 'Géminis',
-    'Cancer': 'Cancer',
+    'Cancer': 'Cáncer',
+    'Cáncer': 'Cáncer',
     'Leo': 'Leo',
     'Virgo': 'Virgo',
     'Libra': 'Libra',
@@ -66,13 +67,13 @@ export const MODALITY_DESCRIPTIONS = {
 };
 
 const SOL_CONCISE: Record<string, string> = {
-    'Aries': 'Pionero, action directa, iniciativa. Impaciente, independiente.',
+    'Aries': 'Pionero, acción directa, iniciativa. Impaciente, independiente.',
     'Tauro': 'Estable, persistente, aprecia belleza. Terco, leal.',
     'Géminis': 'Comunicativo, mente ágil, curioso. Versátil, disperso.',
     'Cáp': 'Emocional, intuitivo, protector. Sensible, memoria emotiva.',
     'Leo': 'Expresivo, creativo, líder natural. Orgulloso, busca reconocimiento.',
     'Virgo': 'Analítico, detallista, servicio. Perfeccionista, crítico.',
-    'Libra': 'Armónico, diplomático, busca equilibrio. IndECISIVO, sociable.',
+    'Libra': 'Armónico, diplomático, busca equilibrio. Indeciso, sociable.',
     'Escorpio': 'Intenso, transformador, penetrante. Pasional, secreto.',
     'Sagitario': 'Aventurero, filósofo, optimista. Libre, busca verdad.',
     'Capricornio': 'Ambicioso, disciplinado, estructura. Responsable, paciente.',
@@ -84,10 +85,10 @@ const LUNA_CONCISE: Record<string, string> = {
     'Aries': 'Emociones directas, necesidad de acción. Impaciente emocionalmente.',
     'Tauro': 'Emociones estables, necesita seguridad. Leal, memoria emotiva fuerte.',
     'Géminis': 'Emociones cambiantes, mente emocional. Comunicativo, adaptable.',
-    'Cáp': 'Emociones intensas, instinto protector. Hogar es sanctuary.',
+    'Cáp': 'Emociones intensas, instinto protector. Hogar es santuario.',
     'Leo': 'Emociones dramáticas, necesita reconocimiento. Orgullo emotivo.',
     'Virgo': 'Emociones analizadas, autocrítica. Necesita orden emocional.',
-    'Libra': 'Emociones buscar armonía, dependencia relacional. IndECISIVO.',
+    'Libra': 'Emociones buscar armonía, dependencia relacional. Indeciso.',
     'Escorpio': 'Emociones profundas, intensidad. Celoso, leal.',
     'Sagitario': 'Emociones optimistas, necesita libertad. Expansivo.',
     'Capricornio': 'Emociones contenidas, necesita control. Resistente.',
@@ -98,7 +99,7 @@ const LUNA_CONCISE: Record<string, string> = {
 const ASCENDANT_CONCISE: Record<string, string> = {
     'Aries': 'Energético, directo, pionero. Presencia dinámica.',
     'Tauro': 'Estable, confiable, práctico. Presencia tranquila.',
-    'Géminis': 'Comunicativo, curiouso, versátil. Presencia vibrante.',
+    'Géminis': 'Comunicativo, curioso, versátil. Presencia vibrante.',
     'Cáp': 'Protector, emocional, hogareño. Presencia cuidadora.',
     'Leo': 'Carismático, dramático, líder. Presencia brillante.',
     'Virgo': 'Práctico, detallista, servicial. Presencia eficiente.',
@@ -245,7 +246,7 @@ const VENUS_SIGN_INTERPRETATIONS: Record<string, string> = {
     'Escorpio': 'Venus en Escorpio te hace intenso y profundo en el amor. Buscás transformación y intimidad. Valuás la verdad y la conexión emocional.',
     'Sagitario': 'Venus en Sagitario te hace aventurero y optimista en el amor. Te atraen personas de otras culturas. Valuás la libertad y la honestidad.',
     'Capricornio': 'Venus en Capricornio te hace ambicioso y responsable en el amor. Buscás relaciones serias y duraderas. Valuás el éxito y la estabilidad.',
-    'Acuario': 'Venus en Acuario te hace independiente y único en el amor. Buscás libertad y originales. Valuás la amistad y los ideales humanitarios.',
+    'Acuario': 'Venus en Acuario te hace independiente y único en el amor. Buscás libertad y originalidad. Valuás la amistad y los ideales humanitarios.',
     'Piscis': 'Venus en Piscis te hace romántico y idealista en el amor. Buscás conexión espiritual y entrega. Valuás la compasión y la fantasía.'
 };
 
@@ -253,7 +254,7 @@ const MARS_SIGN_INTERPRETATIONS: Record<string, string> = {
     'Aries': 'Marte en Aries es su posición favorita. Tu energía es pionera, directa y valiente. Actúas con iniciativa y no temés tomar la delantera.',
     'Tauro': 'Marte en Tauro indica energía persistente y práctica. Actúas con determinación y paciencia. Tu fuerza está en la perseverancia, aunque podés ser terco.',
     'Géminis': 'Marte en Géminis te da energía mental y versátil. Tu acción es rápida pero dispersa. Comunicás con agilidad pero podés ser inconsistente.',
-    'Cáp': 'Marte en Cancer indica energía emocional y reactiva. Actúas según tus Feelings. Tu fuerza está en la protección, aunque podés ser susceptible.',
+    'Cáp': 'Marte en Cáncer indica energía emocional y reactiva. Actúas según tus sentimientos. Tu fuerza está en la protección, aunque podés ser susceptible.',
     'Leo': 'Marte en Leo te da energía dramática y autoritativa. Actúas con grandeza y generosidad. Tu fuerza está en el liderazgo, aunque podés ser vanidoso.',
     'Virgo': 'Marte en Virgo te da energía analítica y detallista. Actúas con precisión y eficiencia. Tu fuerza está en el trabajo, aunque podés ser crítico.',
     'Libra': 'Marte en Libra indica energía diplomática y equilibrada. Actúas con justicia y gracia. Tu fuerza está en las relaciones, aunque podés ser indeciso.',
@@ -359,7 +360,7 @@ const NORTH_NODE_INTERPRETATIONS: Record<string, string> = {
     'Tauro': 'Tu propósito es encontrar seguridad y valor propio. Venís de un lugar de inseguridad material. Tu desafío es confiar en tu valor intrínseco.',
     'Géminis': 'Tu propósito es desarrollar comunicación y pensamiento propio. Venís de un lugar de creencias absorbidas. Tu desafío es formar tus propias opiniones.',
     'Cancer': 'Tu propósito es desarrollar emocionalidad y crear un hogar. Venís de un lugar de desconexión emocional. Tu desafío es abrirte a sentir y criar.',
-    'Leo': 'Tu propósito es expresar tu creatividad y shine. Venís de un lugar donde tu luz fue apagada. Tu desafío es brillar sin culpa.',
+    'Leo': 'Tu propósito es expresar tu creatividad y brillar. Venís de un lugar donde tu luz fue apagada. Tu desafío es brillar sin culpa.',
     'Virgo': 'Tu propósito es desarrollar el servicio y la salud. Venís de un lugar de perfeccionismo excesivo. Tu desafío es servir sin criticismo.',
     'Libra': 'Tu propósito es crear relaciones equilibradas. Venís de un lugar de dependencia o soledad. Tu desafío es ser tú mismo en relación.',
     'Escorpio': 'Tu propósito es la transformación y el poder personal. Venís de un lugar de miedo al poder. Tu desafío es abrazar tu poder sin manipular.',
@@ -541,7 +542,7 @@ const MODALITY_DETAILED: Record<string, Record<string, { title: string, descript
                 { title: 'Multi-talento', text: 'Tenés habilidades en varias áreas. Podés hacer de todo un poco.' }
             ],
             challenges: 'El desafío es no adaptarse tanto que pierda su dirección o disperse sus talentos.',
-            summary: 'Con un 45% demutable, tu carta sugiere una personalidad versátil, adaptable y con gran capacidad de ajuste.'
+            summary: 'Con un 45% de mutable, tu carta sugiere una personalidad versátil, adaptable y con gran capacidad de ajuste.'
         },
         'very_high': {
             title: 'Muy alto',
@@ -597,13 +598,13 @@ export const ASPECT_DESCRIPTIONS: Record<string, string> = {
     'Conjunción': `La conjunción es uno de los aspectos más poderosos y personales. Cuando dos planetas están juntos en tu carta, sus energías se fusionan y trabajan como una sola fuerza. Este aspecto aporta una fuerte energía característica que influye significativamente en tu personalidad. Las personas con muchas conjunciones en su carta suelen tener talentos naturales marcados y una fuerte presencia. La energía de los planetas envolvidos se expresa de manera directa y automática, sin esfuerzo.`,
     'Sextil': `El sextil es un aspecto armónico que representa oportunidades y talentos naturales. Indica facilidad para expresar las energías de los planetas involucrados, aunque esta facilidad a menudo no se aprecia plenamente hasta que uno hace un esfuerzo consciente por desarrollar estos talentos. Los sextiles son puntos débiles que invitan al crecimiento personal. Son regalos que debemos elegir abrir y desarrollar.`,
     'Trígono': `El trígono es el aspecto más armónico y fluido. Representa facilidad natural, talento innato y recursos internos disponibles sin esfuerzo. Las energías de los planetas involucrados fluyen armoniosamente, creando habilidades que parecen venir naturalmente. Sin embargo, esta misma facilidad puede llevar a la complacencia. Los trígonos son bendiciones que debemos usar sabiamente, ya que pueden generar inercia si no se aprovechan activamente.`,
-    
+
     'Oposición': `La oposición es un aspecto de polaridad que representa dos fuerzas opuestas en tensión. Este aspecto indica una lección de vida sobre equilibrio entre dos áreas o energías. Las oposiciones pueden manifest como relaciones interpersonales importantes (especialmente con la tensión de "yo vs. otro"), o como luchas internas entre dos aspectos de tu personalidad. La clave está en aprender a integrar estas fuerzas opuestas en lugar de dejarlas en conflicto constante.`,
-    
+
     'Semisextil': `El semisextil es un aspecto sutil que representa oportunidades menores o ajustes finos. Indica una necesidad de adaptación menor entre las energías de los planetas involucrados. Este aspecto puede revelar talentos escondidos o pequeño dones que requieren atención para desarrollarse. Aunque menos dramático que otros aspectos, los semisextiles ofrecen matices importantes en la personalidad.`,
-    
+
     'Semicuadratura': `La semicuadratura es un aspecto de tensión menor que genera fricción sutil. A diferencia de la cuadratura principal, esta tensión es más fácil de ignorar pero aún así crea una necesidad de ajuste. Puede manifest como irritaciones menores o frustraciones que acumulan con el tiempo. Reconocer esta energía ayuda a evitar que pequeño problemas se conviertan en fuente de estrés crónico.`,
-    
+
     'Sesquicuadratura': `La sesquicuadratura (también llamada cuadratura y media) es un aspecto de tensión persistente. Combina la energía de la cuadratura con la del sextil, creando una dinámica compleja. Este aspecto sugiere que hay una estructura (cuadratura) que necesita ser ajustada o desafiada continuamente. Las lecciones vienen de manera recurrente hasta que se aborda la tensión correctamente.`
 };
 
@@ -1824,7 +1825,7 @@ export function getLocalInterpretation(chartData: any, userInfo: any) {
     const tenthHouse = houses[9];
 
     // Calcular balance de aspectos al inicio para usar en toda la función
-    const majorAspectsForBalance = aspects.filter((a: any) => 
+    const majorAspectsForBalance = aspects.filter((a: any) =>
         ['Conjunción', 'Sextil', 'Cuadratura', 'Trígono', 'Oposición'].includes(a.aspect) && Math.abs(a.orb) < 8
     );
     const aspectTypesForBalance: Record<string, number> = {};
@@ -1859,16 +1860,16 @@ export function getLocalInterpretation(chartData: any, userInfo: any) {
     // ASCENDENTE Y SU REGENTE
     const ascSignBasic = asc?.sign || firstHouse?.sign || 'Desconocido';
     const ascRulerBasic = SIGN_RULERS[ascSignBasic] || 'Desconocido';
-    
+
     md += `### ⬆️ Ascendente\n`;
     md += `**Ascendente en ${ascSignBasic}:** ${ASCENDANT_CONCISE[ascSignBasic] || '_SIGN_ no determinado'}\n\n`;
-    
+
     md += `**Regente:** ${ascRulerBasic}\n`;
     const rulerPlanetBasic = planets.find((p: any) => p.name === ascRulerBasic || (ascRulerBasic.includes('/') && ascRulerBasic.split('/').includes(p.name)));
     if (rulerPlanetBasic) {
         md += `- Ubicación: ${rulerPlanetBasic.sign} casa ${rulerPlanetBasic.house}\n`;
-        
-        const rulerAspectsBasic = aspects.filter((a: any) => 
+
+        const rulerAspectsBasic = aspects.filter((a: any) =>
             (a.point1 === rulerPlanetBasic.name || a.point2 === rulerPlanetBasic.name) && Math.abs(a.orb) < 6
         );
         if (rulerAspectsBasic.length > 0) {
@@ -1883,10 +1884,10 @@ export function getLocalInterpretation(chartData: any, userInfo: any) {
     // MEDIO CIELO
     const mcSignBasic = mc?.sign || 'Desconocido';
     const mcRulerBasic = SIGN_RULERS[mcSignBasic] || 'Desconocido';
-    
+
     md += `### 🏆 Medio Cielo\n`;
     md += `**MC en ${mcSignBasic}** (regido por ${mcRulerBasic})\n\n`;
-    
+
     const mcRulerPlanetBasic = planets.find((p: any) => p.name === mcRulerBasic || (mcRulerBasic.includes('/') && mcRulerBasic.split('/').includes(p.name)));
     if (mcRulerPlanetBasic) {
         md += `- Regente en: ${mcRulerPlanetBasic.sign} casa ${mcRulerPlanetBasic.house}\n\n`;
@@ -1898,7 +1899,7 @@ export function getLocalInterpretation(chartData: any, userInfo: any) {
         const sunRulerBasic = SIGN_RULERS[sun.sign] || 'Desconocido';
         md += `**Sol en ${sun.sign}** (${sun.house}): ${SOL_CONCISE[sun.sign] || ''}\n`;
         md += `Regido por ${sunRulerBasic}\n`;
-        
+
         const sunRulerPlanetBasic = planets.find((p: any) => p.name === sunRulerBasic || (sunRulerBasic.includes('/') && sunRulerBasic.split('/').includes(p.name)));
         if (sunRulerPlanetBasic) {
             md += `- Regente en: ${sunRulerPlanetBasic.sign} casa ${sunRulerPlanetBasic.house}\n`;
@@ -2009,10 +2010,10 @@ export function getLocalInterpretation(chartData: any, userInfo: any) {
         const pLong = p.longitude || 0;
         const diffAsc = Math.abs(pLong - ascLong);
         const diffMc = Math.abs(pLong - mcLong);
-        
+
         if (diffAsc < 180) easternCount++;
         else westernCount++;
-        
+
         if (diffMc < 180) southernCount++;
         else northernCount++;
     });
@@ -2026,7 +2027,7 @@ export function getLocalInterpretation(chartData: any, userInfo: any) {
     const emptyHemispheres = [];
     if (westernCount === 0 || easternCount === 0) emptyHemispheres.push('Este-Oeste');
     if (northernCount === 0 || southernCount === 0) emptyHemispheres.push('Norte-Sur');
-    
+
     let chartShape = 'Rectángulo';
     if (emptyHemispheres.length === 2) {
         if (elementArr.filter(e => e === 0).length >= 2) chartShape = 'Bundle (Paquete)';
@@ -2062,8 +2063,8 @@ export function getLocalInterpretation(chartData: any, userInfo: any) {
         const sunSignDesc = SIGN_EXPLANATIONS[sun.sign] || '';
         md += `**Posición:** ${sun.sign} en la ${sun.house || 'casa desconocida'}\n\n`;
         md += `${sunSignDesc}\n\n`;
-        
-        const sunAspects = aspects.filter((a: any) => 
+
+        const sunAspects = aspects.filter((a: any) =>
             (a.point1 === 'Sol' || a.point2 === 'Sol') && Math.abs(a.orb) < 8
         );
         if (sunAspects.length > 0) {
@@ -2085,7 +2086,7 @@ export function getLocalInterpretation(chartData: any, userInfo: any) {
         md += `**Posición:** ${moon.sign} en la ${moon.house || 'casa desconocida'}\n\n`;
         md += `${moonSignDesc}\n\n`;
 
-        const moonAspects = aspects.filter((a: any) => 
+        const moonAspects = aspects.filter((a: any) =>
             (a.point1 === 'Luna' || a.point2 === 'Luna') && Math.abs(a.orb) < 8
         );
         if (moonAspects.length > 0) {
@@ -2105,7 +2106,7 @@ export function getLocalInterpretation(chartData: any, userInfo: any) {
     const ascSign = asc?.sign || firstHouse?.sign || 'Desconocido';
     const ascHouse = asc?.house || firstHouse?.name || 'Primera';
     const ascendantSignDesc = ASCENDANT_SIGN_EXPLANATIONS[ascSign] || '';
-    
+
     md += `**Posición:** ${ascSign} en la ${ascHouse}\n\n`;
     md += `${ascendantSignDesc}\n\n`;
 
@@ -2131,8 +2132,8 @@ export function getLocalInterpretation(chartData: any, userInfo: any) {
     if (mercury) {
         md += `**Posición:** ${mercury.sign} en la ${mercury.house || 'casa desconocida'}\n\n`;
         md += `${MERCURY_SIGN_INTERPRETATIONS[mercury.sign] || ''}\n\n`;
-        
-        const mercAspects = aspects.filter((a: any) => 
+
+        const mercAspects = aspects.filter((a: any) =>
             (a.point1 === 'Mercurio' || a.point2 === 'Mercurio') && Math.abs(a.orb) < 6
         );
         if (mercAspects.length > 0) {
@@ -2150,8 +2151,8 @@ export function getLocalInterpretation(chartData: any, userInfo: any) {
     if (venus) {
         md += `**Posición:** ${venus.sign} en la ${venus.house || 'casa desconocida'}\n\n`;
         md += `${VENUS_SIGN_INTERPRETATIONS[venus.sign] || ''}\n\n`;
-        
-        const venAspects = aspects.filter((a: any) => 
+
+        const venAspects = aspects.filter((a: any) =>
             (a.point1 === 'Venus' || a.point2 === 'Venus') && Math.abs(a.orb) < 6
         );
         if (venAspects.length > 0) {
@@ -2169,8 +2170,8 @@ export function getLocalInterpretation(chartData: any, userInfo: any) {
     if (mars) {
         md += `**Posición:** ${mars.sign} en la ${mars.house || 'casa desconocida'}\n\n`;
         md += `${MARS_SIGN_INTERPRETATIONS[mars.sign] || ''}\n\n`;
-        
-        const marsAspects = aspects.filter((a: any) => 
+
+        const marsAspects = aspects.filter((a: any) =>
             (a.point1 === 'Marte' || a.point2 === 'Marte') && Math.abs(a.orb) < 6
         );
         if (marsAspects.length > 0) {
@@ -2275,16 +2276,16 @@ export function getLocalInterpretation(chartData: any, userInfo: any) {
 
     if (aspects.length > 0) {
         // Aspectos principales (orbe < 8)
-        const majorAspects = aspects.filter((a: any) => 
+        const majorAspects = aspects.filter((a: any) =>
             ['Conjunción', 'Sextil', 'Cuadratura', 'Trígono', 'Oposición'].includes(a.aspect) && Math.abs(a.orb) < 8
         );
 
         // Clasificar por importancia
-        const pillarAspects = majorAspects.filter((a: any) => 
+        const pillarAspects = majorAspects.filter((a: any) =>
             ['Sol', 'Luna', 'Ascendente'].includes(a.point1) || ['Sol', 'Luna', 'Ascendente'].includes(a.point2)
         );
-        
-        const otherMajorAspects = majorAspects.filter((a: any) => 
+
+        const otherMajorAspects = majorAspects.filter((a: any) =>
             !pillarAspects.includes(a)
         );
 
@@ -2299,14 +2300,14 @@ export function getLocalInterpretation(chartData: any, userInfo: any) {
         if (keyAspects.length > 0) {
             md += `### 🔯 Patrones de Energía Relevantes\n`;
             md += `Estos son los aspectos más significativos de tu carta:\n\n`;
-            
+
             keyAspects.forEach((aspect: any) => {
                 const pairKey = `${aspect.point1}-${aspect.point2}`;
                 const pairKey2 = `${aspect.point2}-${aspect.point1}`;
                 const pairInterp = PLANET_PAIR_INTERPRETATIONS[pairKey]?.[aspect.aspect] || PLANET_PAIR_INTERPRETATIONS[pairKey2]?.[aspect.aspect] || '';
-                
+
                 const aspectEmoji = aspect.aspect === 'Conjunción' || aspect.aspect === 'Trígono' || aspect.aspect === 'Sextil' ? '✅' : '🌊'
-                
+
                 md += `${aspectEmoji} **${aspect.point1} ${aspect.aspect} ${aspect.point2}** (orbe ${Math.abs(aspect.orb).toFixed(1)}°)\n`;
                 if (pairInterp) {
                     md += `${pairInterp.substring(0, 180)}${pairInterp.length > 180 ? '...' : ''}\n\n`;
@@ -2337,7 +2338,7 @@ export function getLocalInterpretation(chartData: any, userInfo: any) {
     const personalPlanets = ['Sol', 'Luna', 'Mercurio', 'Venus', 'Marte', 'Júpiter', 'Saturno', 'Urano', 'Neptuno', 'Plutón'];
     const signCounts: Record<string, number> = {};
     const houseCounts: Record<string, number> = {};
-    
+
     personalPlanets.forEach(pName => {
         const planet = planets.find((p: any) => p.name === pName);
         if (planet) {
@@ -2351,7 +2352,7 @@ export function getLocalInterpretation(chartData: any, userInfo: any) {
 
     if (stelliums.length > 0 || houseStelliums.length > 0) {
         md += `## ⭐ Patrones Estructurales (Stellium)\n\n`;
-        
+
         stelliums.forEach(([sign, count]) => {
             const planetsInSign = personalPlanets.filter(pName => {
                 const p = planets.find((pl: any) => pl.name === pName);
@@ -2369,7 +2370,7 @@ export function getLocalInterpretation(chartData: any, userInfo: any) {
             if (house !== stelliums[0]?.[0]) {
                 md += `### Stellium en Casa ${house} (${count} planetas)\n`;
                 md += `Planetas: ${planetsInHouse.join(', ')}\n\n`;
-                
+
                 // Agregar interpretación del stellium en casa
                 const houseThemes: Record<string, string> = {
                     'Primera': 'Esta concentración en la Primera Casa indica que tu identidad y expresión personal son el foco principal de tu vida. Tu manera de presentarte al mundo define gran parte de tu experiencia.',
@@ -2393,7 +2394,7 @@ export function getLocalInterpretation(chartData: any, userInfo: any) {
     }
 
     // Conjunción Sol-Marte exacta
-    const sunMarsExact = aspects.find((a: any) => 
+    const sunMarsExact = aspects.find((a: any) =>
         ((a.point1 === 'Sol' && a.point2 === 'Marte') || (a.point1 === 'Marte' && a.point2 === 'Sol')) && Math.abs(a.orb) < 1.5
     );
     if (sunMarsExact) {
@@ -2403,9 +2404,9 @@ export function getLocalInterpretation(chartData: any, userInfo: any) {
     }
 
     // Júpiter conjunto Ascendente
-    const jupiterAsc = aspects.find((a: any) => 
-        ((a.point1 === 'Júpiter' && (a.point2 === 'Ascendente' || a.point2 === 'ASC')) || 
-         ((a.point1 === 'Ascendente' || a.point1 === 'ASC') && a.point2 === 'Júpiter')) && Math.abs(a.orb) < 8
+    const jupiterAsc = aspects.find((a: any) =>
+        ((a.point1 === 'Júpiter' && (a.point2 === 'Ascendente' || a.point2 === 'ASC')) ||
+            ((a.point1 === 'Ascendente' || a.point1 === 'ASC') && a.point2 === 'Júpiter')) && Math.abs(a.orb) < 8
     );
     if (jupiterAsc) {
         md += `### 🌟 Júpiter en el Ascendente\n`;
@@ -2432,8 +2433,8 @@ export function getLocalInterpretation(chartData: any, userInfo: any) {
     ];
 
     aspectPairs.forEach(pair => {
-        const aspect = aspects.find((a: any) => 
-            (a.point1 === pair.p1 && a.point2 === pair.p2) || 
+        const aspect = aspects.find((a: any) =>
+            (a.point1 === pair.p1 && a.point2 === pair.p2) ||
             (a.point1 === pair.p2 && a.point2 === pair.p1)
         );
         if (aspect) {
@@ -2542,7 +2543,7 @@ export function getLocalInterpretation(chartData: any, userInfo: any) {
     if (dominantModality[0] === 'Mutable') strengths.push('Flexibilidad y versatilidad');
     if (harmonyCount > tensionCount) strengths.push('Facilidad para atraer oportunidades');
     if (tensionCount > harmonyCount) strengths.push('Fuerza de carácter y determinación');
-    
+
     if (strengths.length > 0) {
         strengths.slice(0, 5).forEach(s => md += `- ${s}\n`);
     }
@@ -2557,7 +2558,7 @@ export function getLocalInterpretation(chartData: any, userInfo: any) {
     if (dominantElement[0] === 'Agua') challenges.push('Establecer límites');
     if (tensionCount > harmonyCount) challenges.push('Trabajar la frustración');
     if (northNode) challenges.push(`Desarrollar ${northNode.sign}`);
-    
+
     if (challenges.length > 0) {
         challenges.slice(0, 5).forEach(c => md += `- ${c}\n`);
     }
@@ -2579,7 +2580,7 @@ export function getLocalInterpretation(chartData: any, userInfo: any) {
 
     md += `---\n\n`;
     md += `---\n*Esta interpretación ha sido generada localmente para garantizar una explicación didáctica y directa. Recordá que la astrología es una herramienta de autoconocimiento, no un determinismo. Vos creás tu destino con cada elección.*`;
-    
+
     return md;
 }
 
@@ -3153,7 +3154,7 @@ export function generateInterpretation(chartData: any, userInfo: any) {
     md += `${metadata.birthDate || ''} – ${metadata.birthTime || ''} – ${metadata.birthLocation || ''}\n`;
     md += `Sistema ${metadata.houseSystem || 'Placidus'} – Zodíaco ${metadata.zodiacType || 'Tropical'}\n\n`;
     md += `---\n\n`;
-    
+
     // ===============================
     // TRÍADA DESCRIPTIVA
     // ===============================
@@ -3161,7 +3162,7 @@ export function generateInterpretation(chartData: any, userInfo: any) {
         const elementSun = SIGN_ELEMENTS[sun.sign] || ''
         const elementMoon = SIGN_ELEMENTS[moon.sign] || ''
         const elementAsc = SIGN_ELEMENTS[asc.sign] || ''
-        
+
         // Crear descripción de la tríada
         const elementDescriptions: Record<string, string> = {
             'Fuego': 'dinámica y apasionada',
@@ -3169,19 +3170,19 @@ export function generateInterpretation(chartData: any, userInfo: any) {
             'Aire': 'visionaria e independiente',
             'Agua': 'emocional e intuitiva'
         }
-        
+
         const triadDesc = [elementSun, elementMoon, elementAsc]
             .filter((v, i, a) => a.indexOf(v) === i)
             .map(el => elementDescriptions[el] || el.toLowerCase())
             .join(' – ')
-        
+
         md += `Tu arquitectura natal está dominada por tres pilares:\n\n`;
         md += `☀ **Sol en ${sun.sign}**\n`;
         md += `🌙 **Luna en ${moon.sign}**\n`;
         md += `⬆ **Ascendente en ${asc.sign}**\n\n`;
-        
+
         md += `Esta tríada ${elementSun}–${elementMoon}–${elementAsc} genera una personalidad ${triadDesc}.\n\n`;
-        
+
         // Descripción según la combinación
         const combinations: Record<string, string> = {
             'Fuego-Fuego-Aire': 'Sos alguien que no vino a repetir moldes. Viniste a abrir caminos.',
@@ -3195,10 +3196,10 @@ export function generateInterpretation(chartData: any, userInfo: any) {
             'Tierra-Fuego-Fuego': ' pies en la tierra pero corazón de fuego. Acción concreta con emoción.',
             'Fuego-Tierra-Fuego': 'Construís con pasión.Querés ver resultados tangibles de tu esfuerzo.'
         }
-        
+
         const key = [elementSun, elementMoon, elementAsc].sort().join('-')
         const defaultDesc = 'Sos una combinación única de energías que define tu manera de estar en el mundo.'
-        
+
         md += `${combinations[key] || defaultDesc}\n\n`;
         md += `---\n\n`;
     }
@@ -3208,7 +3209,7 @@ export function generateInterpretation(chartData: any, userInfo: any) {
     // ===============================
     md += `## 🧭 Panorama General de tu Carta\n\n`;
     md += `Tu carta combina:\n\n`;
-    
+
     if (sun) {
         md += `☀ **Sol en ${sun.sign}**\n`;
     }
@@ -3218,9 +3219,9 @@ export function generateInterpretation(chartData: any, userInfo: any) {
     if (asc) {
         md += `⬆ **Ascendente en ${asc.sign}**\n`;
     }
-    
+
     md += `\n`;
-    
+
     // Normalizar signos a la forma canónica en español
     if (sun) sun.sign = translateSign(sun.sign)
     if (moon) moon.sign = translateSign(moon.sign)
@@ -3230,13 +3231,13 @@ export function generateInterpretation(chartData: any, userInfo: any) {
     const sunElement = SIGN_ELEMENTS[sun?.sign || ''] || '';
     const moonElement = SIGN_ELEMENTS[moon?.sign || ''] || '';
     const ascElement = SIGN_ELEMENTS[asc?.sign || ''] || '';
-    
+
     const traits: string[] = [];
     const elementsForBlend = [sunElement, moonElement, ascElement].filter((e) => !!e);
-    
+
     // Analizar elementos de los tres pilares
     if (sunElement === 'Fuego' || moonElement === 'Fuego' || ascElement === 'Fuego') {
-        traits.push(`energía dinámica y Passion`);
+        traits.push(`energía dinámica y pasión`);
     }
     if (sunElement === 'Tierra' || moonElement === 'Tierra' || ascElement === 'Tierra') {
         traits.push(`enfoque práctico y estructura`);
@@ -3247,40 +3248,40 @@ export function generateInterpretation(chartData: any, userInfo: any) {
     if (sunElement === 'Agua' || moonElement === 'Agua' || ascElement === 'Agua') {
         traits.push(`profundidad emocional e intuición`);
     }
-    
+
     if (traits.length > 0) {
         md += `Esto genera una personalidad que mezcla: ${traits.join(', ')}.\n\n`;
     } else {
         const blendPreview = elementsForBlend.map((e) => e.toLowerCase()).join(', ');
         md += `Esto genera una personalidad compleja con múltiples dimensiones: combina ${blendPreview}.\n\n`;
     }
-    
+
     md += `**En palabras simples:**\n`;
-    
+
     const sunSign = sun?.sign || '';
     const moonSign = moon?.sign || '';
     const ascSign = asc?.sign || '';
-    
+
     // Generación de descripción simple basada en signos
     const simpleDescriptions: Record<string, string> = {
         'default': `Tu carta combina ${sunElement.toLowerCase()}, ${moonElement.toLowerCase()} y ${ascElement.toLowerCase()}. Esta mezcla define cómo experimentás el mundo.`,
     };
-    
+
     // Casos específicos para descripciones más personalizadas
-    if ((moonSign === 'Cancer' || moonSign === 'Escorpio' || moonSign === 'Piscis') && 
+    if ((moonSign === 'Cancer' || moonSign === 'Escorpio' || moonSign === 'Piscis') &&
         (ascSign === 'Capricornio' || ascSign === 'Tauro' || ascSign === 'Virgo')) {
         md += `Sos una persona sensible y emocional por dentro, pero hacia afuera proyectás firmeza y autocontrol.\n`;
-    } else if ((sunSign === 'Libra' || sunSign === 'Géminis' || sunSign === 'Acuario') && 
-               (moonSign === 'Cancer' || moonSign === 'Escorpio' || moonSign === 'Piscis')) {
+    } else if ((sunSign === 'Libra' || sunSign === 'Géminis' || sunSign === 'Acuario') &&
+        (moonSign === 'Cancer' || moonSign === 'Escorpio' || moonSign === 'Piscis')) {
         md += `Tu mente busca equilibrio mientras tu corazón siente profundamente.\n`;
-    } else if ((sunSign === 'Aries' || sunSign === 'Leo' || sunSign === 'Sagitario') && 
-               (moonSign === 'Aries' || moonSign === 'Leo' || moonSign === 'Sagitario')) {
+    } else if ((sunSign === 'Aries' || sunSign === 'Leo' || sunSign === 'Sagitario') &&
+        (moonSign === 'Aries' || moonSign === 'Leo' || moonSign === 'Sagitario')) {
         md += `Sos una persona llena de energía y pasión, que actúa con intensidad.\n`;
-    } else if ((sunSign === 'Tauro' || sunSign === 'Virgo' || sunSign === 'Capricornio') && 
-               (moonSign === 'Tauro' || moonSign === 'Virgo' || moonSign === 'Capricornio')) {
+    } else if ((sunSign === 'Tauro' || sunSign === 'Virgo' || sunSign === 'Capricornio') &&
+        (moonSign === 'Tauro' || moonSign === 'Virgo' || moonSign === 'Capricornio')) {
         md += `Sos alguien práctico y estable, con los pies bien puestos en la tierra.\n`;
-    } else if ((sunSign === 'Acuario' || sunSign === 'Géminis' || sunSign === 'Libra') && 
-               (ascSign === 'Escorpio' || ascSign === 'Cancer' || ascSign === 'Piscis')) {
+    } else if ((sunSign === 'Acuario' || sunSign === 'Géminis' || sunSign === 'Libra') &&
+        (ascSign === 'Escorpio' || ascSign === 'Cancer' || ascSign === 'Piscis')) {
         md += `Tu mente es brillante y original, pero tu mundo interior es intenso y profundo.\n`;
     } else if (ascSign === 'Aries' || ascSign === 'Leo' || ascSign === 'Sagitario') {
         md += `Proyectás energía, iniciativa y determinación. Las personas te perciben como alguien que no tiene miedo de actuar.\n`;
@@ -3293,7 +3294,7 @@ export function generateInterpretation(chartData: any, userInfo: any) {
     } else {
         md += `${simpleDescriptions['default']}\n`;
     }
-    
+
     md += `\n---\n\n`;
 
     // ===============================
@@ -3302,13 +3303,13 @@ export function generateInterpretation(chartData: any, userInfo: any) {
     if (sun) {
         md += `## ☀ Tu Identidad y Propósito – Sol en ${sun.sign}\n\n`;
         md += `El Sol representa quién sos en esencia, tu núcleo más profundo.\n\n`;
-        
+
         const sunDesc = getSimplePlanetDescription('Sol', sun.sign);
-        
+
         // Integración Sol + Ascendente
         if (asc) {
             const ascDesc = getSimplePlanetDescription('Ascendente', asc.sign);
-            
+
             // Mensaje integrativo según la combinación
             const integrationMessages: Record<string, Record<string, string>> = {
                 'Capricornio': {
@@ -3331,17 +3332,17 @@ export function generateInterpretation(chartData: any, userInfo: any) {
                     'default': `Tu Sol en ${sun.sign} indica que tu identidad se construye a través de ${sunDesc.meaning.toLowerCase()}.`
                 }
             };
-            
+
             const signKey = sun.sign;
             const ascKey = asc.sign;
             const message = integrationMessages[signKey]?.[ascKey] || integrationMessages[signKey]?.['default'] || integrationMessages['default']?.[ascKey] || integrationMessages['default']?.['default'];
-            
+
             md += `${message}\n\n`;
         } else {
             md += `${sun.sign} es ${sunDesc.signDescription}.\n\n`;
             md += `Tu identidad se construye a través de ${sunDesc.meaning.toLowerCase()}.\n\n`;
         }
-        
+
         md += `**Desafío central:** ${sunDesc.challenge}\n\n`;
         md += `---\n\n`;
     }
@@ -3352,15 +3353,15 @@ export function generateInterpretation(chartData: any, userInfo: any) {
     if (moon) {
         md += `## 🌙 Tu Mundo Emocional – Luna en ${moon.sign}\n\n`;
         md += `La Luna representa cómo procesás tus emociones y qué necesitás para sentirte seguro.\n\n`;
-        
+
         const moonDesc = getSimplePlanetDescription('Luna', moon.sign);
-        
+
         // Integración Luna + Sol + Venus (patrones emocionales)
         let emotionalPattern = '';
-        
+
         // Contar planetas en el signo de Luna
         const planetsInMoonSign = planets.filter((p: any) => p.sign === moon.sign).length;
-        
+
         if (sun && moon.sign === sun.sign) {
             emotionalPattern = `Tu Luna en ${moon.sign} refuerza tu Sol en ${sun.sign}. No diferenciás entre quién sos y cómo sentís: todo es parte de la misma experiencia intensa.`;
         } else if (planetsInMoonSign >= 3) {
@@ -3370,21 +3371,21 @@ export function generateInterpretation(chartData: any, userInfo: any) {
         } else {
             emotionalPattern = `En ${moon.sign}, ${moonDesc.signDescription.toLowerCase()}. ${moonDesc.simple}`;
         }
-        
+
         md += `${emotionalPattern}\n\n`;
-        
+
         // Conexión con Sol (tensión o armonía)
         if (sun && sun.sign !== moon.sign) {
             const elementSun = SIGN_ELEMENTS[sun.sign] || '';
             const elementMoon = SIGN_ELEMENTS[moon.sign] || '';
-            
+
             if (elementSun === elementMoon) {
-                md += `**Armonía внутренняя:** Tu signo solar y lunar comparten el elemento ${elementSun}, lo que genera coherencia entre tu identidad y tus emociones.\n\n`;
+                md += `**Armonía interna:** Tu signo solar y lunar comparten el elemento ${elementSun}, lo que genera coherencia entre tu identidad y tus emociones.\n\n`;
             } else {
                 md += `**Tensión creativa:** Tu Sol en ${sun.sign} y tu Luna en ${moon.sign} tienen elementos diferentes (${elementSun} vs ${elementMoon}). Esto genera un diálogo interno que impulsa tu crecimiento.\n\n`;
             }
         }
-        
+
         md += `---\n\n`;
     }
 
@@ -3394,14 +3395,14 @@ export function generateInterpretation(chartData: any, userInfo: any) {
     if (asc) {
         md += `## ⬆ Tu Forma de Mostrarte – Ascendente en ${asc.sign}\n\n`;
         md += `El Ascendente es la primera impresión que generás.\n\n`;
-        
+
         const ascDesc = getSimplePlanetDescription('Ascendente', asc.sign);
         md += `${asc.sign} da una imagen:\n`;
         md += `${ascDesc.meaning}\n\n`;
-        
+
         md += `Aunque por ${moon?.sign || 'dentro'}, no lo mostrás fácilmente.\n`;
         md += `Primero observás. Después confiás.\n\n`;
-        
+
         md += `---\n\n`;
     }
 
@@ -3409,32 +3410,32 @@ export function generateInterpretation(chartData: any, userInfo: any) {
     // MERCURIO - MENTE (INTEGRADO: SIGNO + CASA + ASPECTOS)
     // ===============================
     if (mercury) {
-        const mercuryAspects = aspects.filter((a: any) => 
+        const mercuryAspects = aspects.filter((a: any) =>
             a.point1 === 'Mercurio' || a.point2 === 'Mercurio'
         ).slice(0, 2);
-        
+
         const houseNum = parseInt(mercury.house?.replace(/[^0-9]/g, '') || '0');
         const houseArea = houseNum <= 3 ? 'personal' : houseNum <= 6 ? 'relacional' : houseNum <= 9 ? 'mental' : 'colectivo';
-        
+
         md += `## 🔎 Tu Mente – Mercurio en ${mercury.sign} (Casa ${mercury.house})\n\n`;
-        
+
         const mercurySignMessages: Record<string, string> = {
-            'Aries': 'Tu mente trabaja con velocidad y directitud. Pensás primero, pensás después. Tu fuerza está en la acción mental rápida, aunque podés ser impaciente con quienes thinks más lento.',
+            'Aries': 'Tu mente trabaja con velocidad y directitud. Piensas primero, piensas después. Tu fuerza está en la acción mental rápida, aunque puedes ser impaciente con quienes piensan más lento.',
             'Tauro': 'Tu mente es práctica y persistente. Una vez que captás algo, no lo soltás. Tu fortaleza está en la memoria y en la capacidad de ver valor donde otros no ven nada.',
             'Géminis': 'Tenés una mente versátil que procesa información de múltiples ángulos simultáneos. Tu desafío es profundizar: sabés de todo pero dominás poco.',
-            'Cancer': 'Tu mente está conectada con tus emociones. Pensás mejor en ambiente seguro y familiar. Tu intuición es tan fuerte como tu análisis, aunque a veces confundís uno con otro.',
+            'Cáncer': 'Tu mente está conectada con tus emociones. Pensás mejor en ambiente seguro y familiar. Tu intuición es tan fuerte como tu análisis, aunque a veces confundís uno con otro.',
             'Leo': 'Tu mente busca el reconocimiento. Pensás en grande y te gusta que tus ideas brillen. Tu desafío es escuchar otras perspectivas sin sentir que te disminuyen.',
             'Virgo': 'Tu mente es analítica y detallada. Ves el error que otros pasan por alto. Tu fortaleza es la precisión, aunque podés ser crítico hasta el exceso.',
             'Libra': 'Tu mente busca equilibrio y armonía. Considerás todos los ángulos antes de decidir. Tu desafío es tomar decisiones sin dudar demasiado.',
             'Escorpio': 'Tu mente es penetrante y profunda. No te conformás con la superficie: vas al fondo de todo. Tu fortaleza es la investigación, aunque podés ser obsesivo.',
-            'Sagitario': 'Tu mente es expansiva y filosófica. Buscás el significado detrás de los hechos. Tu desafío es concreta: sabés teoría pero a veces no sabés cómo.apply.',
+            'Sagitario': 'Tu mente es expansiva y filosófica. Buscás el significado detrás de los hechos. Tu desafío es concretar: sabés teoría pero a veces no sabés cómo aplicar.',
             'Capricornio': 'Tu mente es estratégica y disciplinada. Planificás a largo plazo y no te distraen las emociones. Tu fortaleza está en la persistencia mental.',
             'Acuario': 'Tu mente es original y revolucionaria. Pensás fuera de los esquemas establecidos. Tu desafío es integrate tus ideas con los demás sin parecer distante.',
             'Piscis': 'Tu mente es intuitiva y sensible. Sentís las cosas antes de pensarlas. Tu desafío es establecer límites mentales claros.'
         };
-        
+
         md += `${mercurySignMessages[mercury.sign] || `Tu mente opera según el signo ${mercury.sign}.`}\n\n`;
-        
+
         if (mercuryAspects.length > 0) {
             md += `**Cómo opera tu mente:**\n`;
             mercuryAspects.forEach((a: any) => {
@@ -3442,11 +3443,11 @@ export function generateInterpretation(chartData: any, userInfo: any) {
                 const aspectMessages: Record<string, Record<string, string>> = {
                     'Sol': { 'Conjunción': 'Tu identidad y mente están fusionadas. Pensás claramente y tus ideas reflejan quién sos.', 'Trígono': 'Tu mente brilla con facilidad. Tenés talento natural para comunicar.', 'Cuadratura': 'Hay tensión entre lo que pensás y quién sos. Tu mente puede ser autocrítica.' },
                     'Luna': { 'Conjunción': 'Tus emociones influyen profundamente en tu forma de pensar. Pensás con el corazón.', 'Trígono': 'Tu mente se complementa bien con tus emociones. Tenés intuición y lógica.', 'Cuadratura': 'Conflictos entre lógica y emoción. Podés sobrepensar lo que sentís.' },
-                    'Venus': { 'Conjunción': 'Tu mente valora la belleza y la armonía. Pensás mejor cuando te rodeás de belleza.', 'Trígono': 'Tenés facilidad para expresar ideas con gracia y الدبلومacia.' },
+                    'Venus': { 'Conjunción': 'Tu mente valora la belleza y la armonía. Pensás mejor cuando te rodeás de belleza.', 'Trígono': 'Tenés facilidad para expresar ideas con gracia y diplomacia.' },
                     'Marte': { 'Conjunción': 'Tu mente es combativa y directa. Pensás rápido y actuás más rápido aún.', 'Trígono': 'Tu mente y acción trabajan juntas. Tenés energía mental y física.', 'Cuadratura': 'Podés ser impulsivo mentalmente. Pensás y actuás antes de analizar.' },
                     'Júpiter': { 'Conjunción': 'Tu mente es expansiva y optimista. Pensás en grande y ves posibilidades.', 'Trígono': 'Tenés facilidad para aprender y enseñar. Tu mente es flexible y abierta.' },
                     'Saturno': { 'Conjunción': 'Tu mente es disciplinada y estructurada. Pensás a largo plazo.', 'Trígono': 'Tenés profundidad mental. Tu análisis es riguroso.', 'Cuadratura': 'Podés ser muy autocrítico. Tu mente establece estándares altos que otros no alcanzan.' },
-                    'Urano': { 'Conjunción': 'Tu mente es originaisima. Pensás diferente, a menudo revolucionario.', 'Trígono': 'Tenés facilidad para generar ideas innovadoras.' },
+                    'Urano': { 'Conjunción': 'Tu mente es originalísima. Pensás diferente, a menudo revolucionario.', 'Trígono': 'Tenés facilidad para generar ideas innovadoras.' },
                     'Neptuno': { 'Conjunción': 'Tu mente es intuitiva y sensible. Tenés imaginación poética.', 'Trígono': 'Tenés facilidad para la creatividad y la espiritualidad.' },
                     'Plutón': { 'Conjunción': 'Tu mente va al fondo de todo. Investigás sin descanso.', 'Trígono': 'Tenés capacidad de transformación a través del pensamiento.' }
                 };
@@ -3457,7 +3458,7 @@ export function generateInterpretation(chartData: any, userInfo: any) {
             });
             md += '\n';
         }
-        
+
         md += `---\n\n`;
     }
 
@@ -3465,29 +3466,29 @@ export function generateInterpretation(chartData: any, userInfo: any) {
     // MARTE - ENERGÍA (INTEGRADO: SIGNO + CASA + ASPECTOS)
     // ===============================
     if (mars) {
-        const marsAspects = aspects.filter((a: any) => 
+        const marsAspects = aspects.filter((a: any) =>
             a.point1 === 'Marte' || a.point2 === 'Marte'
         ).slice(0, 2);
-        
+
         md += `## 🔥 Tu Energía y Acción – Marte en ${mars.sign} (Casa ${mars.house})\n\n`;
-        
+
         const marsSignMessages: Record<string, string> = {
             'Aries': 'Tu energía es pionera y directa. Actúas sin hesitación. Tu desafío es aprender a esperar: no todo necesita respuesta inmediata. Cuando querés algo, lo vas a buscar sin importar qué.',
             'Tauro': 'Tu energía es persistente y terca. Una vez que empezás algo, no te rendís. Tu fortaleza está en la endurance, aunque podés ser lento para cambiar de dirección.',
-            'Géminis': 'Tu energía es versátil y mental. Haces muchas cosas a la vez. Tu desafío es terminar: iniziás con entusiasmo pero podés dispersarte.',
-            'Cancer': 'Tu energía es emocional y reactiva. Actúas según lo que sentís. Tu fuerza está en la protección, aunque podés ser susceptible a críticas.',
+            'Géminis': 'Tu energía es versátil y mental. Haces muchas cosas a la vez. Tu desafío es terminar: iniciás con entusiasmo pero podés dispersarte.',
+            'Cancer': 'Tu energía es emocional y reactiva. Actúas según lo que sentís. Tu fuerza está en la protección, aunque puedes ser susceptible a críticas.',
             'Leo': 'Tu energía es dramática y generosa. Te gusta ser el centro de atención. Tu desafío es compartir el protagonismo sin sentir que perdés poder.',
             'Virgo': 'Tu energía es analítica y detallista. Buscás la perfección en lo que hacés. Tu fortaleza está en el trabajo disciplinado, aunque podés ser crítico.',
             'Libra': 'Tu energía es diplomática y armónica. Buscás balance en todo. Tu desafío es tomar decisiones sin buscar siempre el acuerdo.',
             'Escorpio': 'Tu energía es intensa y transformadora. No te conformás con la superficie. Tu fortaleza está en la profundidad, aunque podés ser manipulativo.',
-            'Sagitario': 'Tu energía es aventurera y optimista. Buscás la libertad above todo. Tu desafío es comprometerte con una sola dirección.',
+            'Sagitario': 'Tu energía es aventurera y optimista. Buscás la libertad sobre todo. Tu desafío es comprometerte con una sola dirección.',
             'Capricornio': 'Tu energía es disciplinada y ambiciosa. Planificás a largo plazo. Tu fortaleza está en la persistencia, aunque podés ser frío emocionalmente.',
-            'Acuario': 'Tu energía es originaleindependiente. Actúas contra la corrente cuando es necesario. Tu desafío es connect con otros sin perder tu individualidad.',
+            'Acuario': 'Tu energía es original e independiente. Actúas contra la corriente cuando es necesario. Tu desafío es conectar con otros sin perder tu individualidad.',
             'Piscis': 'Tu energía es intuitiva y sensible. Actúas según corazonada. Tu desafío es establecer límites claros.'
         };
-        
+
         md += `${marsSignMessages[mars.sign] || `Tu energía opera según el signo ${mars.sign}.`}\n\n`;
-        
+
         if (marsAspects.length > 0) {
             md += `**Tu energía se manifiesta así:**\n`;
             marsAspects.forEach((a: any) => {
@@ -3510,7 +3511,7 @@ export function generateInterpretation(chartData: any, userInfo: any) {
             });
             md += '\n';
         }
-        
+
         md += `---\n\n`;
     }
 
@@ -3520,12 +3521,12 @@ export function generateInterpretation(chartData: any, userInfo: any) {
     // VENUS - AMOR (INTEGRADO: SIGNO + CASA + ASPECTOS)
     // ===============================
     if (venus) {
-        const venusAspects = aspects.filter((a: any) => 
+        const venusAspects = aspects.filter((a: any) =>
             a.point1 === 'Venus' || a.point2 === 'Venus'
         ).slice(0, 2);
-        
+
         md += `## 💕 Tu Manera de Amar – Venus en ${venus.sign} (Casa ${venus.house})\n\n`;
-        
+
         const venusSignMessages: Record<string, string> = {
             'Aries': 'Amás con intensidad y directitud. No andás con vueltas: si te gusta alguien, lo vas a decir. Tu desafío es aprender a ir más lento en el romance.',
             'Tauro': 'Amás con lealtad y ternura. Necesitás seguridad afectiva para abrirte. Tu fortaleza está en la devoción: cuando amás, es para siempre.',
@@ -3537,12 +3538,12 @@ export function generateInterpretation(chartData: any, userInfo: any) {
             'Escorpio': 'Amás con profundidad total. No hay medias tintas: amás intensamente o no amás. Tu desafío es confiar sin controlar.',
             'Sagitario': 'Amás con libertad y entusiasmo. Necesitás un compañero que te deje ser libre. Tu desafío es comprometerte sin perder tu independencia.',
             'Capricornio': 'Amás de manera seria y comprometida. No te entregás fácilmente pero cuando lo hacés, es para siempre. Tu desafío es show vulnerabilidad.',
-            'Acuario': 'Amás de manera original y distante. Valuás la amistad above todo. Tu desafío es connect emocionalmente: podés ser muy cerebral.',
+            'Acuario': 'Amás de manera original y distante. Valoras la amistad sobre todo. Tu desafío es conectar emocionalmente: puedes ser muy cerebral.',
             'Piscis': 'Amás con compasión y entrega total. Te entregás sin reservas. Tu desafío es establecer límites: amás tanto que podés perderte.'
         };
-        
+
         md += `${venusSignMessages[venus.sign] || `Tu forma de amar opera según el signo ${venus.sign}.`}\n\n`;
-        
+
         if (venusAspects.length > 0) {
             md += `**En tus relaciones:**\n`;
             venusAspects.forEach((a: any) => {
@@ -3565,7 +3566,7 @@ export function generateInterpretation(chartData: any, userInfo: any) {
             });
             md += '\n';
         }
-        
+
         md += `---\n\n`;
     }
 
@@ -3575,13 +3576,13 @@ export function generateInterpretation(chartData: any, userInfo: any) {
     // VOCACIÓN (INTEGRADO: MC + ASC + CASA + ASPECTOS)
     // ===============================
     if (mc) {
-        const mcAspects = aspects.filter((a: any) => 
+        const mcAspects = aspects.filter((a: any) =>
             a.point1 === 'Medio Cielo' || a.point2 === 'Medio Cielo' ||
             a.point1 === 'Saturno' || a.point2 === 'Saturno'
         ).slice(0, 2);
-        
+
         md += `## 💼 Vocación y Dirección Profesional\n\n`;
-        
+
         if (asc && mc) {
             const mcAscMessages: Record<string, Record<string, string>> = {
                 'Aries': {
@@ -3632,77 +3633,77 @@ export function generateInterpretation(chartData: any, userInfo: any) {
                     'default': 'Tu carrera implica sensibilidad y espiritualidad. Arte o sanación pueden llamarte.'
                 }
             };
-            
+
             const key = mc.sign;
             const message = mcAscMessages[key]?.[asc.sign] || mcAscMessages[key]?.['default'] || `Con Ascendente ${asc.sign} y Medio Cielo en ${mc.sign}, tu carrera se orienta hacia ${getVocationTraits(mc.sign, asc.sign)}.`;
-            
+
             md += `**Tu dirección profesional:**\n\n`;
             md += `${message}\n\n`;
-            
+
             if (mcAspects.length > 0) {
                 md += `**Factores que influyen:**\n`;
                 mcAspects.forEach((a: any) => {
                     const other = a.point1 === 'Medio Cielo' || a.point1 === 'Saturno' ? a.point2 : a.point1;
                     if (other !== 'Medio Cielo') {
                         const aspMsg = a.aspect === 'Conjunción' ? `Tu carrera está fuertemente influenciada por ${other}.` :
-                                       a.aspect === 'Trígono' ? `Tenés facilidad natural en tu carrera gracias a ${other}.` :
-                                       a.aspect === 'Cuadratura' ? `Tensión entre tu carrera y ${other}: debes trabajar para integrar ambas energías.` :
-                                       a.aspect === 'Oposición' ? `Balance entre tu carrera y ${other}: buscás integrar ambos aspectos.` :
-                                       '';
+                            a.aspect === 'Trígono' ? `Tenés facilidad natural en tu carrera gracias a ${other}.` :
+                                a.aspect === 'Cuadratura' ? `Tensión entre tu carrera y ${other}: debes trabajar para integrar ambas energías.` :
+                                    a.aspect === 'Oposición' ? `Balance entre tu carrera y ${other}: buscás integrar ambos aspectos.` :
+                                        '';
                         md += `- ${other} ${a.aspect}: ${aspMsg}\n`;
                     }
                 });
                 md += '\n';
             }
         }
-        
+
         md += `---\n\n`;
     }
-    
+
     // ===============================
     // ASPECTOS DESTACADOS (VERSIÓN PREMIUM)
     // ===============================
     md += `## 🔯 Patrones de Energía\n\n`;
-    
+
     if (aspects && aspects.length > 0) {
         // Aspectos importantes (orbe < 5 pero destacar los muy exactos)
         const importantAspects = aspects.filter((a: any) => a.orb <= 5)
-        
+
         // Separar personales de generacionales
         const personalPlanets = ['Sol', 'Luna', 'Mercurio', 'Venus', 'Marte', 'Júpiter', 'Saturno']
-        
-        const personalAspects = importantAspects.filter((a: any) =>  
+
+        const personalAspects = importantAspects.filter((a: any) =>
             personalPlanets.includes(a.point1) && personalPlanets.includes(a.point2)
         )
-        
+
         // Ordenar por orbe (más exacto primero)
         personalAspects.sort((a: any, b: any) => a.orb - b.orb)
-        
+
         // Aspectos dominantes (orbe < 2°) - muy precisos
         const dominantAspects = personalAspects.filter((a: any) => a.orb < 2)
-        
+
         // Aspectos secundarios (orbe 2-5°)
         const secondaryAspects = personalAspects.filter((a: any) => a.orb >= 2 && a.orb <= 5)
-        
+
         // Aspectos de tensión
-        const tenseAspects = personalAspects.filter((a: any) => 
+        const tenseAspects = personalAspects.filter((a: any) =>
             a.aspect === 'Cuadratura' || a.aspect === 'Oposición'
         )
-        
+
         // Armónicos
-        const harmonyAspects = personalAspects.filter((a: any) => 
+        const harmonyAspects = personalAspects.filter((a: any) =>
             a.aspect === 'Conjunción' || a.aspect === 'Trígono' || a.aspect === 'Sextil'
         )
-        
+
         // Asignar aspectos a UNA sola sección (evitar repetición)
         // Criterio: primero los más exactos, luego los demás
         const assignedAspects = new Set<string>()
-        
+
         // Sección de patrones dominantes (orbe < 2) - solo los más exactos
         const dominantPatterns: any[] = []
         if (dominantAspects.length > 0) {
             md += `### Tus Patrones Dominantes\n\n`;
-            
+
             dominantAspects.forEach((a: any) => {
                 const key = `${a.point1}-${a.point2}-${a.aspect}`
                 if (!assignedAspects.has(key)) {
@@ -3716,7 +3717,7 @@ export function generateInterpretation(chartData: any, userInfo: any) {
                 }
             });
         }
-        
+
         // Sección de tensiones (que no estén ya incluidos)
         const tenseToShow = tenseAspects.filter((a: any) => {
             const key = `${a.point1}-${a.point2}-${a.aspect}`
@@ -3724,7 +3725,7 @@ export function generateInterpretation(chartData: any, userInfo: any) {
         })
         if (tenseToShow.length > 0) {
             md += `### Donde Está Tu Desafío\n\n`;
-            
+
             tenseToShow.forEach((a: any) => {
                 const key = `${a.point1}-${a.point2}-${a.aspect}`
                 if (!assignedAspects.has(key)) {
@@ -3737,7 +3738,7 @@ export function generateInterpretation(chartData: any, userInfo: any) {
                 }
             });
         }
-        
+
         // Sección de fortalezas (armónicos que no estén repetidos)
         const harmonyToShow = harmonyAspects.filter((a: any) => {
             const key = `${a.point1}-${a.point2}-${a.aspect}`
@@ -3745,7 +3746,7 @@ export function generateInterpretation(chartData: any, userInfo: any) {
         })
         if (harmonyToShow.length > 0) {
             md += `### Tus Facilidades Naturales\n\n`;
-            
+
             harmonyToShow.forEach((a: any) => {
                 const key = `${a.point1}-${a.point2}-${a.aspect}`
                 if (!assignedAspects.has(key)) {
@@ -3758,53 +3759,53 @@ export function generateInterpretation(chartData: any, userInfo: any) {
                 }
             });
         }
-        
+
         // Resumen práctico
         if (assignedAspects.size > 0) {
             const totalShown = assignedAspects.size
             md += `### En Resumen\n\n`;
             md += `Tu carta tiene ${totalShown} patrones principales que definen tu dinámica interior. `;
-            
+
             if (tenseToShow.length > 0) {
                 md += `Tu desafío está en integrar ${tenseToShow.length} tensiones que impulsan tu crecimiento.`;
             }
-            
+
             md += `\n\n`;
         }
-        
+
     } else {
         md += `No se detectaron aspectos con orbe significativo.\n\n`;
     }
-    
+
     md += `---\n\n`;
-    
+
     // ===============================
     // BALANCE ELEMENTAL Y MODAL
     // ===============================
     md += `## ⚖️ Distribución Energética\n\n`;
-    
+
     // Elementos
     const elements: Record<string, number> = { 'Fuego': 0, 'Tierra': 0, 'Aire': 0, 'Agua': 0 }
     const modalities: Record<string, number> = { 'Cardinal': 0, 'Fijo': 0, 'Mutable': 0 }
-    
+
     const elementMap: Record<string, string> = {
         'Aries': 'Fuego', 'Leo': 'Fuego', 'Sagitario': 'Fuego', 'Sagittarius': 'Fuego',
         'Tauro': 'Tierra', 'Taurus': 'Tierra', 'Virgo': 'Tierra', 'Capricorn': 'Tierra', 'Capricornio': 'Tierra', 'Capricórnio': 'Tierra',
         'Geminis': 'Aire', 'Gémini': 'Aire', 'Gemini': 'Aire', 'Libra': 'Aire', 'Acuario': 'Aire', 'Aquarius': 'Aire',
         'Cancer': 'Agua', 'Cádiz': 'Agua', 'Cancé': 'Agua', 'Escorpio': 'Agua', 'Scorpio': 'Agua', 'Piscis': 'Agua', 'Pisces': 'Agua'
     }
-    
+
     const modalityMap: Record<string, string> = {
         'Aries': 'Cardinal', 'Cancer': 'Cardinal', 'Libra': 'Cardinal', 'Capricornio': 'Cardinal', 'Capricorn': 'Cardinal', 'Capricórnio': 'Cardinal',
         'Tauro': 'Fijo', 'Taurus': 'Fijo', 'Leo': 'Fijo', 'Escorpio': 'Fijo', 'Scorpio': 'Fijo', 'Acuario': 'Fijo', 'Aquarius': 'Fijo',
         'Geminis': 'Mutable', 'Gémini': 'Mutable', 'Gemini': 'Mutable', 'Virgo': 'Mutable', 'Sagitario': 'Mutable', 'Sagittarius': 'Mutable', 'Piscis': 'Mutable', 'Pisces': 'Mutable'
     }
-    
+
     // Contar SOLO planetas tradicionales (no asteroides)
     const traditionalPlanets = ['Sol', 'Luna', 'Mercurio', 'Venus', 'Marte', 'Júpiter', 'Saturno', 'Urano', 'Neptuno', 'Plutón']
     const angleNames = ['Ascendente', 'Medio Cielo', 'Descendente', 'Fondo del Cielo']
     const planetsToCount = planets.filter((p: any) => traditionalPlanets.includes(p.name) && !angleNames.includes(p.name))
-    
+
     planetsToCount.forEach((p: any) => {
         const signKey = p.sign
         const element = elementMap[signKey]
@@ -3816,7 +3817,7 @@ export function generateInterpretation(chartData: any, userInfo: any) {
             modalities[modality]++
         }
     })
-    
+
     const total = Object.values(elements).reduce((a, b) => a + b, 0)
     if (total > 0) {
         md += `**Elementos:**\n`
@@ -3824,7 +3825,7 @@ export function generateInterpretation(chartData: any, userInfo: any) {
             const pct = Math.round((count / total) * 100)
             md += `- ${el}: ${count} planetas (${pct}%)\n`
         })
-        
+
         // Analisis especial cuando falta un elemento (0%)
         const missingElement = Object.entries(elements).find(([el, count]) => count === 0)
         if (missingElement) {
@@ -3839,28 +3840,28 @@ export function generateInterpretation(chartData: any, userInfo: any) {
                 md += missingMessages[el]
             }
         }
-        
+
         // Verificar predominancia real (al menos 40% Y diferencia de al menos 2 planetas)
         const sortedElements = Object.entries(elements).sort((a: any, b: any) => b[1] - a[1])
         const dominantElement = sortedElements[0]
         const secondElement = sortedElements[1]
-        
+
         if (dominantElement && dominantElement[1] >= total * 0.4 && (dominantElement[1] - secondElement[1]) >= 2) {
             md += `\n*Tenés predominancia de elemento ${dominantElement[0]}.*\n`
         } else if (dominantElement && dominantElement[1] === secondElement[1]) {
             md += `\n*Tenés balance entre ${dominantElement[0]} y ${secondElement[0]}.*\n`
         }
-        
+
         md += `\n**Modalidades:**\n`
         Object.entries(modalities).sort((a: any, b: any) => b[1] - a[1]).forEach(([mod, count]) => {
             const pct = Math.round((count / total) * 100)
             md += `- ${mod}: ${count} planetas (${pct}%)\n`
         })
-        
+
         const sortedModalities = Object.entries(modalities).sort((a: any, b: any) => b[1] - a[1])
         const dominantModality = sortedModalities[0]
         const secondModality = sortedModalities[1]
-        
+
         if (dominantModality && dominantModality[1] >= total * 0.4 && (dominantModality[1] - secondModality[1]) >= 2) {
             const modalityDescription = getModalityDescription(dominantModality[0], dominantModality[1], total)
             md += `\n${modalityDescription}\n`
@@ -3868,27 +3869,27 @@ export function generateInterpretation(chartData: any, userInfo: any) {
             md += `\n*Tenés balance entre ${dominantModality[0]} y ${secondModality[0]}.*\n`
         }
     }
-    
+
     md += `\n---\n\n`;
-    
+
     // ===============================
     // RELACIONES
     // ===============================
     md += `## ❤️ Relaciones y Vínculos\n\n`;
-    
+
     if (sun?.sign === 'Libra' || venus?.sign === 'Libra') {
         md += `El Sol en Libra indica que las relaciones son centrales en tu desarrollo.\n\n`;
     }
-    
+
     if (asc?.sign === 'Capricornio' || asc?.sign === 'Escorpio' || asc?.sign === 'Virgo') {
         md += `Con Ascendente ${asc.sign}, no entregás confianza rápido.\n\n`;
     }
-    
+
     md += `Esto crea una combinación interesante:\n`;
     md += `- Necesitás vínculo\n`;
     md += `- Pero exigís compromiso\n`;
     md += `- Buscás equilibrio, no drama\n\n`;
-    
+
     md += `Cuando decidís comprometerte, lo hacés en serio.\n\n`;
     md += `---\n\n`;
 
@@ -3897,25 +3898,25 @@ export function generateInterpretation(chartData: any, userInfo: any) {
     // ===============================
     md += `## 🎯 Desafíos Evolutivos\n\n`;
     md += `Tu carta muestra tensiones naturales:\n\n`;
-    
+
     // Detectar tensiones basado en aspectos
     const squareAspects = aspects.filter((a: any) => a.aspect === 'Cuadratura');
     const oppositionAspects = aspects.filter((a: any) => a.aspect === 'Oposición');
-    
+
     if (moon && (moon.sign === 'Cáncer' || moon.sign === 'Escorpio' || moon.sign === 'Piscis')) {
         if (asc && (asc.sign === 'Capricornio' || asc.sign === 'Aries' || asc.sign === 'Virgo')) {
             md += `- **Emoción vs. Control:** Tu sensibilidad profunda versus tu necesidad de mantener el control.\n`;
         }
     }
-    
+
     if (squareAspects.length >= 2) {
         md += `- **Tensiones internas:** Tenés cuadraturas que generan fricción pero también crecimiento.\n`;
     }
-    
+
     if (oppositionAspects.length >= 1) {
         md += `- **Polaridades a integrar:** Hay oposiciones que te obligan a encontrar equilibrio.\n`;
     }
-    
+
     md += `\n**Aprendizaje clave:**\n`;
     md += `${getLearningKey(sun?.sign, moon?.sign, asc?.sign)}\n\n`;
     md += `---\n\n`;
@@ -3924,11 +3925,11 @@ export function generateInterpretation(chartData: any, userInfo: any) {
     // SÍNTESIS FINAL - VERSIÓN PREMIUM
     // ===============================
     md += `## 🌟 Síntesis Evolutiva\n\n`;
-    
+
     // Análisis de acumulación de signos (solo planetas reales, no ángulos)
     const angles = ['Ascendente', 'Medio Cielo', 'Descendente', 'Fondo del Cielo', 'Nodo Norte', 'Nodo Sur']
     const realPlanets = planets.filter((p: any) => !angles.includes(p.name))
-    
+
     const signCounts: Record<string, number> = {}
     const houseCounts: Record<string, number> = {}
     realPlanets.forEach((p: any) => {
@@ -3939,16 +3940,16 @@ export function generateInterpretation(chartData: any, userInfo: any) {
             houseCounts[p.house] = (houseCounts[p.house] || 0) + 1
         }
     })
-    
+
     // Encontrar patrones significativos
     const dominantSign = Object.entries(signCounts).sort((a: any, b: any) => b[1] - a[1])[0]
     const dominantHouse = Object.entries(houseCounts).sort((a: any, b: any) => b[1] - a[1])[0]
-    
+
     // ANÁLISIS DEL PATRÓN PRINCIPAL
     if (dominantSign && dominantSign[1] >= 3) {
         const planetNames = realPlanets.filter((p: any) => p.sign === dominantSign[0]).map((p: any) => p.name).join(', ')
         const signElement = SIGN_ELEMENTS[dominantSign[0]] || ''
-        
+
         // Mensajes según el signo dominante
         const patternMessages: Record<string, string> = {
             'Acuario': `La fuerte presencia de energía de ${dominantSign[0]} en tu carta (${planetNames}) revela algo fundamental: aunque externamente proyectás orden y método, tu mundo interior necesita libertad mental e innovación. No buscás cualquier relación: necesitás un vínculo que te permita ser vos mismo sin perder tu individualidad.`,
@@ -3956,22 +3957,22 @@ export function generateInterpretation(chartData: any, userInfo: any) {
             'Escorpio': `La concentración en ${dominantSign[0]} muestra una naturaleza que procesa todo con intensidad. Sentís profundamente y no te conformás con superficialidades. Tu desafío es confiar en el proceso de transformación.`,
             'default': `Tenés ${dominantSign[1]} planetas en ${dominantSign[0]} (${planetNames}), lo que forma una concentración notable de energía ${signElement.toLowerCase()} en tu carta.`
         }
-        
+
         md += `### Tu Patrón Principal\n\n`;
         md += `${patternMessages[dominantSign[0]] || patternMessages['default']}\n\n`;
     }
-    
+
     // ANÁLISIS DE TENSIÓN CENTRAL (Sol, Luna, Ascendente)
     if (sun && moon && asc) {
         const elementSun = SIGN_ELEMENTS[sun.sign] || ''
         const elementMoon = SIGN_ELEMENTS[moon.sign] || ''
         const elementAsc = SIGN_ELEMENTS[asc.sign] || ''
-        
+
         // Determinar los elementos únicos
         const elements = [elementSun, elementMoon, elementAsc].filter((v, i, a) => a.indexOf(v) === i)
-        
+
         md += `### 🎯 Tu Tensión Central a Integrar\n\n`;
-        
+
         // Describir qué necesita cada pilar
         const elementNeeds: Record<string, string> = {
             'Fuego': 'acción inmediata y pasión',
@@ -3979,11 +3980,11 @@ export function generateInterpretation(chartData: any, userInfo: any) {
             'Aire': 'libertad mental y comunicación',
             'Agua': 'profundidad emocional y conexión'
         }
-        
+
         md += `${sun.sign} necesita ${elementNeeds[elementSun] || 'desarrollo'}.\n`;
         md += `${moon.sign} necesita ${elementNeeds[elementMoon] || 'expansión'}.\n`;
         md += `${asc.sign} necesita ${elementNeeds[elementAsc] || 'iniciativa'}.\n\n`;
-        
+
         // Síntesis de integración
         if (elements.length === 2) {
             md += `Tu aprendizaje evolutivo es integrar ${elements[0].toLowerCase()} y ${elements[1].toLowerCase()}. `
@@ -3999,53 +4000,53 @@ export function generateInterpretation(chartData: any, userInfo: any) {
             md += `Tu misión es unir mente, emoción y acción sin que ninguna parte domine.\n\n`;
         }
     }
-    
+
     // TU MISIÓN PERSONAL
     md += `### Tu Misión Personal\n\n`;
     const mission = getPremiumMission(sun?.sign, moon?.sign, asc?.sign, dominantSign?.[0], Object.entries(signCounts));
     md += `${mission}\n\n`;
-    
+
     // ===============================
     // SÍNTESIS EVOLUTIVA PREMIUM
     // ===============================
     md += `## 🌟 Síntesis Evolutiva Premium\n\n`;
-    
+
     if (sun && moon && asc) {
         const elementSun = SIGN_ELEMENTS[sun.sign] || ''
-        
+
         // Síntesis según el signo solar
         const synthesisMessages: Record<string, string> = {
             'Acuario': `Tu carta revela un espíritu pionero con conciencia social. ${sun.sign} te da una visión diferente donde otros solo ven tradición.\n\nExternamente podés proyectar determinación, pero internamente necesitás libertad mental y expansión emocional.\n\nTu misión no es adaptarte al sistema. Es innovar dentro de él.\n\n**Tu clave evolutiva:** Integrarte sin diluirte. Comprometerte sin perder tu individualidad.`,
-            
+
             'Capricornio': `Tu carta revela una personalidad orientada a la construcción de legado. Naciste para construir algo que trascienda.\n\n**Tu clave evolutiva:** Disfrutá el proceso, no solo el resultado. Tu éxito está en construir con paciencia y persistencia.`,
-            
+
             'Leo': `Tu carta revela un espíritu brillante que busca inspirar. Tu luz está diseñada para que otros la vean.\n\n**Tu clave evolutiva:** Brillá sin eclipsar a otros. Compartí tu luz generosamente.`,
-            
+
             'Escorpio': `Tu carta revela una intensidad transformadora. Vas al fondo de todo.\n\n**Tu clave evolutiva:** Soltá el control. Confiá en el proceso de transformación. Tu poder está en la profundidad.`,
-            
+
             'Sagitario': `Tu carta revela un espíritu libre y expansivo. Buscás verdad y aventura.\n\n**Tu clave evolutiva:** Encontrá propósito en cada paso. Tu entusiasmo es contagioso cuando está alineado.`,
-            
+
             'Aries': `Tu carta revela un pionero natural. Llegaste para actuar y liderar.\n\n**Tu clave evolutiva:** Aprendé a sostener la acción. Tu coraje inspira, pero tu persistencia transforma.`,
-            
+
             'Libra': `Tu carta revela un buscador de equilibrio y armonía. Las relaciones son tuomotor de crecimiento.\n\n**Tu clave evolutiva:** Encontrá tu centro dentro de la relación. No te perdás en el otro.`,
-            
+
             'Tauro': `Tu carta revela una naturaleza estable y pragmática. Construís con paciencia.\n\n**Tu clave evolutiva:** Valorá lo que ya tenés. Tu seguridad está en vos mismo.`,
-            
+
             'Géminis': `Tu carta revela una mente ágil y comunicativa. Tu curiosidad no tiene límites.\n\n**Tu clave evolutiva:** Profundá en lugar de dispersarte. Tu mente es tu mayor herramienta.`,
-            
+
             'Cáncer': `Tu carta revela una naturaleza emocional y protectora. Tu hogar y familia son tu centro.\n\n**Tu clave evolutiva:** Abrí tu corazón sin perder tus límites. Tu sensibilidad es fortaleza.`,
-            
+
             'Virgo': `Tu carta revela un espíritu analítico y de servicio. Buscás la perfección en todo.\n\n**Tu clave evolutiva:** Aceptá la imperfección. Tu servicio comienza por vos mismo.`,
-            
+
             'Piscis': `Tu carta revela una naturaleza sensible y espiritual. Tu conexión con lo invisible es profunda.\n\n**Tu clave evolutiva:** Establecé límites saludables. Tu compasión es tu don más grande.`
         }
-        
+
         md += `${synthesisMessages[sun.sign] || 'Tu carta revela una combinación única de energías que define tu camino de evolución.'}\n\n`;
     }
-    
+
     // Resumen de fortalezas
     md += `---\n\n`;
-    
+
     md += `---\n*Esta interpretación te ayuda a conocerte mejor. La astrología es una guía, no un determinismo. Vos creás tu destino con cada elección.*\n`;
 
     return md;
@@ -4057,24 +4058,24 @@ export function generateInterpretation(chartData: any, userInfo: any) {
 
 function interpretAspect(point1: string, point2: string, aspect: string, orb: number = 10): string {
     const key = `${point1}-${point2}`;
-    
+
     // Interpretación especial para orbes muy exactos (< 1°)
     if (orb < 1) {
         const exactInterpretations: Record<string, string> = {
             'Luna-Marte': 'Este es uno de tus patrones más fuertes. Un orbe tan preciso indica que esta energía opera constantemente en tu vida. \n\n**Lo que pasa internamente:** Tenés una vida emocional muy intensa que muchas veces no sabés cómo canalizar. Podés sentir que tus emociones "explotan" o se "traban". \n\n**El patrón:** 1) Sentís profundamente (Luna) 2) Querés actuar pero algo frena (Marte en cuadratura) 3) La frustración crece. \n\n**Cómo se manifiesta:** Impaciencia interna que otros no ven. Dificultad para expresar enojo de forma calmada. O bien: explosiones emocionales que después regretás. O bien: control excesivo para evitar el conflicto. \n\n**El aprendizaje:** No se trata de reprimir ni de explotar. Se trata de encontrar un canal constructivo: deporte, arte, o simplemente aceptar que sentís más fuerte que la mayoría.',
-            
+
             'Venus-Saturno': 'Este es un patrón muy profundo en tu carta. Un orbe tan exacto indica que las dinámicas de vulnerabilidad y control operan constantemente en tus relaciones. \n\n**Lo que pasa internamente:** Hay un miedo profundo a ser lastimado o rechazado. Esto te lleva a construir muros emocionales. \n\n**El patrón:** 1) Querés amor 2) Pero mostrás vulnerabilidad da miedo 3) Entonces elegís seguridad sobre conexión. \n\n**Cómo se manifiesta:** Puede que postergues relaciones por miedo. O que exijas mucho compromiso antes de abrirte. Tus estándares pueden ser muy altos, incluso para vos mismo. \n\n**El aprendizaje:** Permitirte ser vulnerable no te hace débil. La verdadera fortaleza está en abrirse apesar del miedo.',
-            
+
             'Sol-Luna': 'Este es tu patrón central. Un orbe tan exacto indica que tu identidad y tus emociones están profundamente entrelazadas. \n\n**Lo que pasa internamente:** No diferenciás entre quién sos y cómo sentís. TuSelf-concept está linked a tu estado emocional. \n\n**El patrón:** Cuando tus emociones están bien, te sentís bien con vos mismo. Cuando fluctuán, tu sentido de identidad también lo hace. \n\n**Cómo se manifiesta:** Podés ser muy auténtico porque sentís y actúas desde el mismo lugar. Pero también podés lack objectividad sobre vos mismo. \n\n**El aprendizaje:** Encontrar un sentido de Self que no dependa exclusivamente de cómo te sentís en cada momento.',
-            
+
             'Sol-Mercurio': 'Este es un patrón mental muy fuerte. Un orbe tan preciso indica que tu forma de pensar está muy integrada con tu identidad. \n\n**Lo que pasa internamente:** Tu mente es tu herramienta principal. Pensás mucho, analizás todo, y tu self-worth está linked a tu capacidad intelectual. \n\n**El patrón:** Tu identidad se expresa a través de tus ideas. Necesitás sentir que pensás bien para sentirte bien. \n\n**Cómo se manifiesta:** Comunicación clara y estratégica. Pero también podés sobrepensar o intellectualizar emociones. \n\n**El aprendizaje:** Tu mente es una herramienta poderosa, pero no sos solo tu mente. También sentís, también necesitás conexión.'
         };
-        
+
         const reverseKey = `${point2}-${point1}`;
         if (exactInterpretations[key]) return exactInterpretations[key];
         if (exactInterpretations[reverseKey]) return exactInterpretations[reverseKey];
     }
-    
+
     const interpretations: Record<string, Record<string, string>> = {
         'Luna-Marte': {
             'Cuadratura': 'Existe una fricción entre lo que sentís y cómo actuás. Tu mundo emocional es intenso y reactivo. Podés tener emociones fuertes que no sabés expresar con calma. El aprendizaje es canalizar esa energía emocional hacia acción consciente, en lugar de reacción automática.',
@@ -4168,7 +4169,7 @@ function interpretAspect(point1: string, point2: string, aspect: string, orb: nu
     const reverseKey = `${point2}-${point1}`;
     const data = interpretations[key] || interpretations[reverseKey];
     if (!data) return '';
-    
+
     return data[aspect] || data['default'] || '';
 }
 
@@ -4178,15 +4179,15 @@ function interpretAspect(point1: string, point2: string, aspect: string, orb: nu
 
 function getModalityDescription(modality: string, count: number, total: number): string {
     const pct = Math.round((count / total) * 100)
-    
+
     const descriptions: Record<string, string> = {
         'Fijo': `**Tu modalidad: FIJO (${pct}%)**\n\nEsto define gran parte de tu personalidad. Las personas con tanta energía Fija funcionan así:\n\n• **Intensidad sostenida**: No necesitás estimulación externa. Tu energía viene de adentro.\n• **Lealtad inquebrantable**: Una vez que te comprometés, es para siempre. No medias palabras.\n• **Difícil de mudar**: Tus opiniones, emociones y hábitos tienen raíces profundas. Cambiás, pero lento y cuando vos querés.\n• **Emociones profundas**: Sentís mucho, pero no mostrás todo. Tu mundo interior es rico y privado.\n\n**Tu desafío:** Soltar cuando ya no sirve. Tu naturaleza es sostener, no abandonar.\n\n**Tu fortaleza:** Persistencia. Otros flaquean, vos seguís.`,
-        
+
         'Cardinal': `**Tu modalidad: CARDINAL (${pct}%)**\n\nEsto define gran parte de tu personalidad. Las personas con energía Cardinal funcionan así:\n\n• **Iniciativa natural**: No esperás que las cosas pasen, las hacés pasar.\n• **Liderazgo instintivo**: Asumís el control cuando nadie más lo hace.\n• **Impaciencia**: Querés resultados ya. La espera te frustra.\n• **Orientación a la acción**: Pensás haciendo. Aprendés actuando.\n\n**Tu desafío:** Detenerte a planificar antes de actuar. No todo necesita respuesta inmediata.\n\n**Tu fortaleza:** Capacidad de iniciar. Otros observan, vos actúas.`,
-        
+
         'Mutable': `**Tu modalidad: MUTABLE (${pct}%)**\n\nEsto define gran parte de tu personalidad. Las personas con energía Mutable funcionan así:\n\n• **Adaptación natural**: Podés fluir con cualquier situación. Sos un camaleón.\n• **Mente abierta**: Estas siempre abierto a nuevas perspectivas.\n• **Versatilidad**: Podés hacer muchas cosas a la vez.\n• **Dificultad con compromisos**: Todo puede cambiar, incluyendo vos.\n\n**Tu desafío:** Mantenerte firme en algo. Elegir un camino y seguirlo.\n\n**Tu fortaleza:** Flexibilidad. Cuando todo cambia, vos seguís funcionando.`
     }
-    
+
     return descriptions[modality] || `*Tenés predominancia de modalidad ${modality}.*`
 }
 
@@ -4235,7 +4236,7 @@ function getSimplePlanetDescription(planet: string, sign: string): { signDescrip
             'Piscis': { signDescription: 'sensible y intuitiva', meaning: 'Compasión, espiritualidad, sensibilidad', challenge: 'establecer límites', simple: 'Parecés alguien sensible y comprensivo.' }
         }
     };
-    
+
     return descriptions[planet]?.[sign] || { signDescription: 'única', meaning: 'energía única', challenge: 'descubrir tu camino', simple: 'Tenés una esencia única.' };
 }
 
@@ -4313,7 +4314,7 @@ function getActionTraits(sign: string): string {
 
 function getVenusDescription(sign: string): string {
     const descriptions: Record<string, string> = {
-        'Aries': 'Amás con passion y directamente. Te gustán las relaciones dinámicas.',
+        'Aries': 'Amás con pasión y de forma directa. Te gustan las relaciones dinámicas.',
         'Tauro': 'Amás con estabilidad y sensualidad. Valés la lealtad y el compromiso.',
         'Géminis': 'Amás con curiosidad y versatilidad. Buscás comunicación intelectual.',
         'Cáncer': 'Amás con intensidad emocional. Necesitás seguridad afectiva.',
@@ -4378,7 +4379,7 @@ function getMainTalent(sign: string, planet: string): string {
         'Acuario': 'Innovación y originalidad',
         'Piscis': 'Compasión e intuición'
     }
-    
+
     const moonTalents: Record<string, string> = {
         'Aries': 'Emociones directas',
         'Tauro': 'Necesidad de seguridad',
@@ -4393,7 +4394,7 @@ function getMainTalent(sign: string, planet: string): string {
         'Acuario': 'Independencia emocional',
         'Piscis': 'Sensibilidad empática'
     }
-    
+
     const marsTalents: Record<string, string> = {
         'Aries': 'Acción inmediata',
         'Tauro': 'Persistencia en la acción',
@@ -4408,7 +4409,7 @@ function getMainTalent(sign: string, planet: string): string {
         'Acuario': 'Acción innovadora',
         'Piscis': 'Acción intuitiva'
     }
-    
+
     const venusTalents: Record<string, string> = {
         'Aries': 'Romance apasionado',
         'Tauro': 'Amor estable y sensual',
@@ -4423,13 +4424,13 @@ function getMainTalent(sign: string, planet: string): string {
         'Acuario': 'Amor independiente',
         'Piscis': 'Amor romántico'
     }
-    
+
     if (planet === 'Sun' || planet === 'Moon' || planet === 'Mars' || planet === 'Venus') {
         if (planet === 'Moon') return moonTalents[sign] || 'Don emocional'
         if (planet === 'Mars') return marsTalents[sign] || 'Don de acción'
         if (planet === 'Venus') return venusTalents[sign] || 'Don amoroso'
     }
-    
+
     return sunTalents[sign] || 'Tu don único';
 }
 
@@ -4438,7 +4439,7 @@ function getPremiumMission(sun: string, moon: string, asc: string, dominantSign:
     const moonEl = SIGN_ELEMENTS[moon] || '';
     const ascEl = SIGN_ELEMENTS[asc] || '';
     const sunMod = SIGN_MODALITIES[sun] || '';
-    
+
     // Encontrar elemento dominante
     const elements: Record<string, number> = { 'Fuego': 0, 'Tierra': 0, 'Aire': 0, 'Agua': 0 };
     signCounts.forEach(([sign, count]) => {
@@ -4448,59 +4449,59 @@ function getPremiumMission(sun: string, moon: string, asc: string, dominantSign:
         }
     });
     const dominantElement = Object.entries(elements).sort((a, b) => b[1] - a[1])[0];
-    
+
     let mission = '';
-    
+
     // Según el signo solar específico
     const signMissions: Record<string, string> = {
         'Capricornio': `Tu Sol en Capricornio indica que tu camino es construir estructura duradera. No buscás popularidad, buscás resultados reales.\n\n**Tu desafio especifico:** Aprende a disfrutar el proceso, no solo el resultado.\n**Tu fortaleza:** Persistencia. Otros se rinden, vos seguis.\n**Tu mision:** Construir algo que trascienda. Puede ser una carrera, un legado, una familia.`,
-        
+
         'Acuario': `Tu Sol en Acuario indica que tu camino es aportar una perspectiva unica. No seguis reglas solo porque existen.\n\n**Tu desafio especifico:** Integrarte sin perder tu individualidad.\n**Tu fortaleza:** Vision diferente. Piensas fuera de la caja.\n**Tu mision:** Traer innovacion donde otros ven tradicion.`,
-        
+
         'Escorpio': `Tu Sol en Escorpio indica que tu camino es transformar. Vas al fondo de las cosas.\n\n**Tu desafio especifico:** Soltar el control. Confiar en el proceso.\n**Tu fortaleza:** Profundidad. No te conformas con la superficie.\n**Tu mision:** Sanar lo que otros evitan. Tu intensidad puede transformar.`,
-        
+
         'Leo': `Tu Sol en Leo indica que tu camino es brillar e inspirar.\n\n**Tu desafio especifico:** Compartir el protagonismo. No necesitas validacion constante.\n**Tu fortaleza:** Creatividad y carisma.\n**Tu mision:** Mostrar a otros como brillar desde su autenticidad.`,
-        
+
         'Virgo': `Tu Sol en Virgo indica que tu camino es perfeccionar y servir.\n\n**Tu desafio especifico:** Aceptar la imperfeccion, tuya y ajena.\n**Tu fortaleza:** Analisis y atencion al detalle.\n**Tu mision:** Hacer que las cosas funcionen mejor. Tu trabajo importa.`,
-        
+
         'Libra': `Tu Sol en Libra indica que tu camino es crear armonia y partenariats.\n\n**Tu desafio especifico:** Tomar decisiones sin dudar demasiado.\n**Tu fortaleza:** Diplomacia y sentido justo.\n**Tu mision:** Unir lo que esta separado.`,
-        
+
         'Sagitario': `Tu Sol en Sagitario indica que tu camino es expandir horizontes.\n\n**Tu desafio especifico:** Comprometerse con una sola direccion.\n**Tu fortaleza:** Optimismo y vision de largo plazo.\n**Tu mision:** Guiar hacia la libertad y la aventura.`,
-        
+
         'Tauro': `Tu Sol en Tauro indica que tu camino es crear belleza y seguridad.\n\n**Tu desafio especifico:** Soltar lo que no sirve, incluso si es comodo.\n**Tu fortaleza:** Persistencia y practicidad.\n**Tu mision:** Construir algo que dure.`,
-        
+
         'Aries': `Tu Sol en Aries indica que tu camino es iniciativa y liderazgo.\n\n**Tu desafio especifico:** Paciencia. No todo necesita accion inmediata.\n**Tu fortaleza:** Coraje y determinacion.\n**Tu mision:** Ser el que inicia las cosas.`,
-        
+
         'Geminis': `Tu Sol en Geminis indica que tu camino es conectar ideas y personas.\n\n**Tu desafio especifico:** Profundizar. Puedes dispersarte en muchas cosas.\n**Tu fortaleza:** Comunicacion y versatilidad.\n**Tu mision:** Explicar lo complejo de manera simple.`,
-        
+
         'Cancer': `Tu Sol en Cancer indica que tu camino es criar y proteger.\n\n**Tu desafio especifico:** Soltar. No puedes controlar todo.\n**Tu fortaleza:** Intuicion y cuidado.\n**Tu mision:** Crear seguridad para vos y los tuyos.`,
-        
+
         'Piscis': `Tu Sol en Piscis indica que tu camino es conectar con lo trascendental.\n\n**Tu desafio especifico:** Poner limites. No puedes salvar a todos.\n**Tu fortaleza:** Compasion y conexion espiritual.\n**Tu mision:** Traer lo sagrado al mundo material.`
     };
-    
+
     // Agregar mensaje segun elemento dominante
     const elementMessages: Record<string, string> = {
         'Aire': `\n\nCon tu elemento Aire dominante, tu mente es tu herramienta principal. Pero tambien necesitás conexión emocional. Usá tu capacidad mental para construir vinculos reales, no solo ideas abstractas.\n\n**En el trabajo:** Buscá roles donde puedas pensar y comunicarte.\n**En relaciones:** No te quedes solo en la conversación. Buscá profundidad emocional.`,
-        
+
         'Tierra': `\n\nCon tu elemento Tierra dominante, vos sabés construir. Tu misión no es sonar, sino hacer. Pero a veces el exceso de practicidad te hace perder la magia.\n\n**En el trabajo:** Tenés todo para construir cosas concretas y duraderas.\n**En relaciones:** Mostrá más sentimientos. No solo acciones, también palabras.`,
-        
+
         'Fuego': `\n\nCon tu elemento Fuego dominante, tu energía inspira. Pero también puede consumirse rápido.\n\n**En el trabajo:** Necesitás proyectos que te apasionen.\n**En relaciones:** Tu pasión es atractiva pero también puede asustar. Aprendé a dosificar.`,
-        
+
         'Agua': `\n\nCon tu elemento Agua dominante, sentís todo muy profundamente. Tu mundo interior es rico y complejo.\n\n**En el trabajo:** Necesitás sentir que lo que hacés tiene sentido emocional.\n**En relaciones:** Tu intuición es tu mayor don. Pero también podés absorber demasiada energía de otros.`
     };
-    
+
     // Combinar signo + elemento
     if (signMissions[sun]) {
         mission = signMissions[sun] + (elementMessages[dominantElement[0]] || '');
     } else {
         mission = (elementMessages[dominantElement[0]] || 'Tu misión es integrar todas tus voces internas en una sinfonía coherente.');
     }
-    
+
     // Agregar nota segun la tensión Sol-Luna
     if (sunEl !== moonEl) {
         mission += '\n\n**Tension central a integrar:** ' + sun + ' (' + sunEl + ') necesita coexistir con ' + moon + ' (' + moonEl + ').';
     }
-    
+
     return mission;
 }
 
