@@ -328,7 +328,7 @@ const PLUTO_SIGN_INTERPRETATIONS: Record<string, string> = {
     'Aries': 'Plutón en Aries indica transformación a través de la iniciativa personal. Tenés poder de renovación.',
     'Tauro': 'Plutón en Tauro genera transformación de valores y recursos. Podés transformar situaciones económicas.',
     'Géminis': 'Plutón en Géminis indica transformación del pensamiento. Tu mente puede influir profundamente.',
-    'Cáp': 'Plutón en Cancer intensifica las emociones. Tenés poder para transformar el ámbito familiar.',
+    'Cancer': 'Plutón en Cancer intensifica las emociones. Tenés poder para transformar el ámbito familiar.',
     'Leo': 'Plutón en Leo te da poder de transformación creativa. Buscás destacar y transformar a través del arte.',
     'Virgo': 'Plutón en Virgo genera transformación a través del servicio. Podés sanar a través del trabajo.',
     'Libra': 'Plutón en Libra indica transformación de relaciones. Tenés poder para transformar parejas y sociedades.',
@@ -337,6 +337,36 @@ const PLUTO_SIGN_INTERPRETATIONS: Record<string, string> = {
     'Capricornio': 'Plutón en Capricornio te da poder para transformar estructuras. Tenés ambición de construir legacies.',
     'Acuario': 'Plutón en Acuario indica transformación colectiva. Tenés poder para cambiar grupos y sociedades.',
     'Piscis': 'Plutón en Piscis aumenta tu poder espiritual. Tenés capacidad de sanación y transformación profunda.'
+};
+
+const CHIRON_SIGN_INTERPRETATIONS: Record<string, string> = {
+    'Aries': 'Quirón en Aries indica una herida relacionada con tu identidad individual. Tu desafío es desarrollar confianza en vos mismo y liderazgo sin agresividad. Tu don está en ayudar a otros a encontrar su voz.',
+    'Tauro': 'Quirón en Tauro señala una herida alrededor de la seguridad material y el valor propio. Tu desafío es confiar en que mereces abundancia. Tu don es ayudar a otros a encontrar estabilidad.',
+    'Géminis': 'Quirón en Géminis muestra una herida en la comunicación o con hermanos. Tu desafío es expresar tu verdad sin miedo. Tu don es comunicar con profundidad y autenticidad.',
+    'Cancer': 'Quirón en Cancer indica una herida emocional y familiar. Tu desafío es sanar las relaciones familiares. Tu don es la empatía y el cuidado hacia otros.',
+    'Leo': 'Quirón en Leo señala una herida relacionada con la creatividad y el reconocimiento. Tu desafío es amarte a vos mismo sin necesitar validación externa. Tu don está en inspirar creatividad en otros.',
+    'Virgo': 'Quirón en Virgo muestra una herida relacionada con el trabajo y la salud. Tu desafío es aceptarte tal cual eres. Tu don es el servicio sanador hacia otros.',
+    'Libra': 'Quirón en Libra indica una herida en las relaciones y la justicia. Tu desafío es encontrar tu centro sin depender del otro. Tu don es equilibrar relaciones y promover justicia.',
+    'Escorpio': 'Quirón en Escorpio señala una herida de transformación y poder. Tu desafío es confiar en el proceso de cambio. Tu don es la capacidad de sanación profunda y transformación.',
+    'Sagitario': 'Quirón en Sagitario muestra una herida relacionada con la fe y la filosofía. Tu desafío es encontrar tu propia verdad. Tu don es inspirar fe y propósito en otros.',
+    'Capricornio': 'Quirón en Capricornio indica una herida con la autoridad y el logro. Tu desafío es valorarte sin logros externos. Tu don es la sabiduría ganada con experiencia.',
+    'Acuario': 'Quirón en Acuario señala una herida relacionada con la individualidad y grupalidad. Tu desafío es belonger sin perder tu singularidad. Tu don es la innovación al servicio de la humanidad.',
+    'Piscis': 'Quirón en Piscis muestra una herida espiritual y emocional. Tu desafío es establecer límites saludables. Tu don es la compasión infinita y la sanación espiritual.'
+};
+
+const NORTH_NODE_INTERPRETATIONS: Record<string, string> = {
+    'Aries': 'Tu propósito es desarrollar tu individualidad y coraje. Venís de un lugar donde dependiste de otros. Tu desafío es tomar la iniciativa y ser tú mismo sin miedo.',
+    'Tauro': 'Tu propósito es encontrar seguridad y valor propio. Venís de un lugar de inseguridad material. Tu desafío es confiar en tu valor intrínseco.',
+    'Géminis': 'Tu propósito es desarrollar comunicación y pensamiento propio. Venís de un lugar de creencias absorbidas. Tu desafío es formar tus propias opiniones.',
+    'Cancer': 'Tu propósito es desarrollar emocionalidad y crear un hogar. Venís de un lugar de desconexión emocional. Tu desafío es abrirte a sentir y criar.',
+    'Leo': 'Tu propósito es expresar tu creatividad y shine. Venís de un lugar donde tu luz fue apagada. Tu desafío es brillar sin culpa.',
+    'Virgo': 'Tu propósito es desarrollar el servicio y la salud. Venís de un lugar de perfeccionismo excesivo. Tu desafío es servir sin criticismo.',
+    'Libra': 'Tu propósito es crear relaciones equilibradas. Venís de un lugar de dependencia o soledad. Tu desafío es ser tú mismo en relación.',
+    'Escorpio': 'Tu propósito es la transformación y el poder personal. Venís de un lugar de miedo al poder. Tu desafío es abrazar tu poder sin manipular.',
+    'Sagitario': 'Tu propósito es encontrar tu verdad y propósito. Venís de un lugar de dogma. Tu desafío es crear tu propia filosofía de vida.',
+    'Capricornio': 'Tu propósito es construir logro y estructura. Venís de un lugar de irresponsabilidad o perfeccionismo paralizante. Tu desafío es construir con paciencia.',
+    'Acuario': 'Tu propósito es aportar a la humanidad y ser vos mismo. Venís de un lugar de rebeldía sin causa. Tu desafío es canalizar tu individualidad al servicio colectivo.',
+    'Piscis': 'Tu propósito es la sanación espiritual y emocional. Venís de un lugar de escape o/addicciones. Tu desafío es usar tu sensibilidad como fortaleza.'
 };
 
 const MODALITY_DETAILED: Record<string, Record<string, { title: string, description: string, characteristics: { title: string, text: string }[], challenges: string, summary: string }>> = {
@@ -2418,6 +2448,7 @@ export function getLocalInterpretation(chartData: any, userInfo: any) {
         if (northNode) {
             md += `**Nodo Norte (Destino):** ${northNode.sign} en la ${northNode.house || 'casa desconocida'}\n\n`;
             md += `El Nodo Norte representa lo que viniste a aprender y desarrollar en esta vida. Está relacionado con tu propósito evolutivo.\n\n`;
+            md += `${NORTH_NODE_INTERPRETATIONS[northNode.sign] || 'Tu propósito está relacionado con el signo donde se encuentra el Nodo Norte.'}\n\n`;
         }
         if (southNode) {
             md += `**Nodo Sur (Karma):** ${southNode.sign} en la ${southNode.house || 'casa desconocida'}\n\n`;
@@ -2430,6 +2461,7 @@ export function getLocalInterpretation(chartData: any, userInfo: any) {
         md += `### 💚 Quirón (Sanación)\n`;
         md += `**Quirón:** ${chiron.sign} en la ${chiron.house || 'casa desconocida'}\n\n`;
         md += `Quirón representa tu herida profunda y simultáneamente tu don de sanación. La posición indica dónde experimentás vulnerabilidad y dónde podés ayudar a otros.\n\n`;
+        md += `${CHIRON_SIGN_INTERPRETATIONS[chiron.sign] || 'Quirón en este signo indica un proceso de sanación personal que puede beneficiar a otros.'}\n\n`;
     }
 
     // LILITH
