@@ -3221,6 +3221,11 @@ export function generateInterpretation(chartData: any, userInfo: any) {
     
     md += `\n`;
     
+    // Normalizar signos a la forma canónica en español
+    if (sun) sun.sign = translateSign(sun.sign)
+    if (moon) moon.sign = translateSign(moon.sign)
+    if (asc) asc.sign = translateSign(asc.sign)
+
     // Generar combinaciones simples basadas en elementos
     const sunElement = SIGN_ELEMENTS[sun?.sign || ''] || '';
     const moonElement = SIGN_ELEMENTS[moon?.sign || ''] || '';
