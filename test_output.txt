@@ -1,4 +1,26 @@
 1. Starting calculation...
-2. Chart Success! Planets count: 17
-3. Starting interpretation... data exists: true
-4. Interpretation Success! Length: 17182
+2. Chart Success! Planets count: 19
+4. Interpretation Success! Length: 3298
+
+--- PREVIEW ---
+# 🌌 CARTA NATAL DE GUSTAVO
+📅  | ⏰  | 📍 
+(Sistema Placidus, Zodíaco Tropical)
+
+## 🔑 TU ESENCIA EN 3 PALABRAS
+**Sensible • Compasiva • Espiritual**
+
+Tenés una personalidad sensible y espiritual, con una capacidad increíble para conectar con lo invisible y lo poético de la vida. Tu energía es compasiva: sentís el dolor ajeno como propio, aunque a veces te pierdas en tus propios sueños.
+
+---
+
+## 🌊 TU "FÓRMULA" EMOCIONAL
+
+☀ **Sol en Piscis (Casa Novena)**
+*Quién sos en el fondo:* Una persona con intuición y compasión. No te conformás con respuestas superficiales; buscás la verdad y la intensidad en todo lo que hacés.
+
+🌙 **Luna en Escorpio (Casa Quinta)**
+*Lo que necesitás para estar bien:* Profundidad y lealtad. Tu refugio es lo íntimo y lo conocido; si tu mundo emocional está en orden, podés enfrentar cualquier tormenta.
+
+⬆ **Ascendente en Cáncer**
+*Tu "traje" ante el mundo:* Proyectás una imagen de una presencia acogedora, protectora y empática. Es como tu vehículo para moverte en l...

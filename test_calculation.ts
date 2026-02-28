@@ -1,5 +1,5 @@
 import { calculateChart } from './lib/astrology';
-import { getLocalInterpretation } from './lib/localInterpretation';
+import { generateInterpretation } from './lib/localInterpretation';
 import * as fs from 'fs';
 
 async function main() {
@@ -14,10 +14,11 @@ async function main() {
         });
         log.push('2. Chart Success! Planets count: ' + data.planets.length);
 
-        log.push('3. Starting interpretation... data exists: ' + !!data);
         try {
-            const interpretation = getLocalInterpretation(data, { name: 'Gustavo' });
+            const interpretation = generateInterpretation(data, { name: 'Gustavo' });
             log.push('4. Interpretation Success! Length: ' + interpretation.length);
+            log.push('\n--- PREVIEW ---\n' + interpretation.substring(0, 1000) + '...');
+            fs.writeFileSync('full_interpretation.md', interpretation);
         } catch (e: any) {
             log.push('LOCAL INTERP ERROR: ' + e.message + '\n' + e.stack);
         }
