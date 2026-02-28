@@ -135,7 +135,7 @@ function calculateChartCelestine(dateStr: string, timeStr: string, latitude: num
                     point1: name1,
                     point2: name2,
                     aspect: aspectNames[asp.type] || asp.type,
-                    orb: Math.round(asp.deviation || 0)
+                    orb: parseFloat((asp.deviation || 0).toFixed(1))
                 })
             }
         })
