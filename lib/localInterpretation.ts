@@ -2288,37 +2288,30 @@ export function getLocalInterpretation(chartData: any, userInfo: any) {
             !pillarAspects.includes(a)
         );
 
-        md += `### 🔆 Aspectos de los Pilares Fundamentales\n`;
-        md += `Estos son los aspectos más importantes ya que involucran tu identidad, emociones y personalidad.\n\n`;
-        
-        if (pillarAspects.length > 0) {
-            pillarAspects.sort((a: any, b: any) => Math.abs(a.orb) - Math.abs(b.orb));
-            pillarAspects.forEach((aspect: any) => {
-                const pairKey = `${aspect.point1}-${aspect.point2}`;
-                const pairKey2 = `${aspect.point2}-${aspect.point1}`;
-                const pairInterp = PLANET_PAIR_INTERPRETATIONS[pairKey]?.[aspect.aspect] || PLANET_PAIR_INTERPRETATIONS[pairKey2]?.[aspect.aspect] || '';
-                
-                md += `**${aspect.point1} ${aspect.aspect} ${aspect.point2}** (orbe: ${Math.abs(aspect.orb).toFixed(1)}°)\n`;
-                if (pairInterp) md += `${pairInterp}\n`;
-                md += `\n`;
-            });
-        } else {
-            md += `No se detectaron aspectos principales con orbes significativos para Sol, Luna o Ascendente.\n\n`;
-        }
+        // Solo mostrar aspectos clave: orbe < 5° y que involucren planetas personales
+        const personalPlanets = ['Sol', 'Luna', 'Mercurio', 'Venus', 'Marte', 'Júpiter', 'Saturno']
+        const keyAspects = [...pillarAspects, ...otherMajorAspects]
+            .filter((a: any) => personalPlanets.includes(a.point1) || personalPlanets.includes(a.point2))
+            .filter((a: any) => Math.abs(a.orb) < 5)
+            .sort((a: any, b: any) => a.strength - b.strength || Math.abs(a.orb) - Math.abs(b.orb))
+            .slice(0, 4)
 
-        md += `### ✨ Otros Aspectos Importantes\n`;
-        if (otherMajorAspects.length > 0) {
-            otherMajorAspects.sort((a: any, b: any) => Math.abs(a.orb) - Math.abs(b.orb));
-            otherMajorAspects.slice(0, 6).forEach((aspect: any) => {
+        if (keyAspects.length > 0) {
+            md += `### 🔯 Patrones de Energía Relevantes\n`;
+            md += `Estos son los aspectos más significativos de tu carta:\n\n`;
+            
+            keyAspects.forEach((aspect: any) => {
                 const pairKey = `${aspect.point1}-${aspect.point2}`;
                 const pairKey2 = `${aspect.point2}-${aspect.point1}`;
                 const pairInterp = PLANET_PAIR_INTERPRETATIONS[pairKey]?.[aspect.aspect] || PLANET_PAIR_INTERPRETATIONS[pairKey2]?.[aspect.aspect] || '';
                 
-                md += `**${aspect.point1} ${aspect.aspect} ${aspect.point2}** (orbe: ${Math.abs(aspect.orb).toFixed(1)}°)\n`;
+                const aspectEmoji = aspect.aspect === 'Conjunción' || aspect.aspect === 'Trígono' || aspect.aspect === 'Sextil' ? '✅' : '🌊'
+                
+                md += `${aspectEmoji} **${aspect.point1} ${aspect.aspect} ${aspect.point2}** (orbe ${Math.abs(aspect.orb).toFixed(1)}°)\n`;
                 if (pairInterp) {
-                    md += `${pairInterp.substring(0, 200)}${pairInterp.length > 200 ? '...' : ''}\n\n`;
+                    md += `${pairInterp.substring(0, 180)}${pairInterp.length > 180 ? '...' : ''}\n\n`;
                 } else {
-                    md += `\n`;
+                    md += '\n';
                 }
             });
         }
