@@ -138,13 +138,23 @@ export default function BirthForm({ onSubmit, initialData }: { onSubmit: (data: 
           const res = await fetch(`/api/geocoding?q=${encodeURIComponent(query)}`)
           const data = await res.json()
           if (Array.isArray(data)) {
-            setSuggestions(data.map((item: any) => ({
-              name: item.address?.city || item.address?.town || item.address?.village || item.display_name.split(',')[0],
-              state: item.address?.state || item.address?.province || '',
-              lat: parseFloat(item.lat),
-              lng: parseFloat(item.lon),
-              country: item.address?.country || ''
-            })))
+            setSuggestions(data.map((item: any) => {
+              const street = item.address?.road || item.address?.street || ''
+              const houseNumber = item.address?.house_number || ''
+              const suburb = item.address?.suburb || item.address?.neighbourhood || ''
+              const city = item.address?.city || item.address?.town || item.address?.village || ''
+              const displayName = street && houseNumber 
+                ? `${street} ${houseNumber}${suburb ? ', ' + suburb : ''}${city ? ', ' + city : ''}`
+                : item.display_name.split(',').slice(0, 3).join(', ')
+              
+              return {
+                name: displayName,
+                state: item.address?.state || item.address?.province || '',
+                lat: parseFloat(item.lat),
+                lng: parseFloat(item.lon),
+                country: item.address?.country || ''
+              }
+            }))
           }
         } catch (error) {
           console.error('Error fetching locations:', error)
@@ -161,7 +171,11 @@ export default function BirthForm({ onSubmit, initialData }: { onSubmit: (data: 
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!selectedLocation) return
+    if (!selectedLocation) {
+      setLocationError(true)
+      return
+    }
+    setLocationError(false)
     const submitData = { ...formData, location: selectedLocation }
     onSubmit(submitData)
   }
@@ -175,6 +189,7 @@ export default function BirthForm({ onSubmit, initialData }: { onSubmit: (data: 
 
   const [dateError, setDateError] = useState(false)
   const [timeError, setTimeError] = useState(false)
+  const [locationError, setLocationError] = useState(false)
 
   const handleDateChange = (value: string) => {
     const normalized = normalizeDate(value)
@@ -332,13 +347,14 @@ export default function BirthForm({ onSubmit, initialData }: { onSubmit: (data: 
               id="birth-location"
               type="text"
               required
-              placeholder="Tu ciudad..."
+              placeholder="Ej: Av. Pueyrredon 2120, CABA, Argentina"
               className="input-elegant"
               value={selectedLocation ? `${selectedLocation.name}, ${selectedLocation.country}` : query}
               onChange={(e) => {
                 setQuery(e.target.value)
                 setSelectedLocation(null)
                 setShowSuggestions(true)
+                setLocationError(false)
               }}
               onFocus={() => query.length > 2 && setShowSuggestions(true)}
               onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
@@ -361,7 +377,7 @@ export default function BirthForm({ onSubmit, initialData }: { onSubmit: (data: 
               </div>
             )}
           </div>
-          <span id="location-hint" className="sr-only">Ciudad donde naciste</span>
+          <span id="location-hint" className="sr-only">Ciudad, dirección, hospital o clínica donde naciste</span>
 
           {/* Sugerencias */}
           <AnimatePresence>
@@ -393,6 +409,16 @@ export default function BirthForm({ onSubmit, initialData }: { onSubmit: (data: 
                   </button>
                 ))}
               </motion.div>
+            )}
+            {locationError && (
+              <motion.p
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto', marginTop: 8 }}
+                className="text-xs text-[var(--error)] flex items-center gap-1"
+              >
+                <AlertCircle className="w-3 h-3 flex-shrink-0" />
+                Seleccioná una ubicación de la lista
+              </motion.p>
             )}
           </AnimatePresence>
         </div>

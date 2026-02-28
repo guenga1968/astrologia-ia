@@ -47,3 +47,5 @@ opencode.json
 
 # vercel config (se necesita en repo)
 !vercel.json
+
+.vercel

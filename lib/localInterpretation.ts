@@ -44,7 +44,7 @@ const SIGN_TRANSLATIONS: Record<string, string> = {
     'Aries': 'Aries',
     'Taurus': 'Tauro',
     'Gemini': 'Géminis',
-    'Cancer': 'Cáncer',
+    'Cancer': 'Cancer',
     'Leo': 'Leo',
     'Virgo': 'Virgo',
     'Libra': 'Libra',
@@ -3219,44 +3219,54 @@ export function generateInterpretation(chartData: any, userInfo: any) {
         md += `⬆ **Ascendente en ${asc.sign}**\n`;
     }
     
-    md += `\nEsto genera una personalidad que mezcla:\n\n`;
+    md += `\n`;
     
     // Generar combinaciones simples basadas en elementos
     const sunElement = SIGN_ELEMENTS[sun?.sign || ''] || '';
     const moonElement = SIGN_ELEMENTS[moon?.sign || ''] || '';
     const ascElement = SIGN_ELEMENTS[asc?.sign || ''] || '';
     
-    if (sun?.sign === 'Libra' || sun?.sign === 'Acuario' || sun?.sign === 'Géminis') {
-        md += `✔ Búsqueda de armonía y equilibrio\n`;
+    const traits: string[] = [];
+    const elementsForBlend = [sunElement, moonElement, ascElement].filter((e) => !!e);
+    
+    // Analizar elementos de los tres pilares
+    if (sunElement === 'Fuego' || moonElement === 'Fuego' || ascElement === 'Fuego') {
+        traits.push(`energía dinámica y Passion`);
     }
-    if (moon?.sign === 'Cáncer' || moon?.sign === 'Escorpio' || moon?.sign === 'Piscis') {
-        md += `✔ Gran sensibilidad emocional\n`;
+    if (sunElement === 'Tierra' || moonElement === 'Tierra' || ascElement === 'Tierra') {
+        traits.push(`enfoque práctico y estructura`);
     }
-    if (asc?.sign === 'Capricornio' || asc?.sign === 'Tauro' || asc?.sign === 'Virgo') {
-        md += `✔ Imagen exterior seria y responsable\n`;
+    if (sunElement === 'Aire' || moonElement === 'Aire' || ascElement === 'Aire') {
+        traits.push(`perspectiva mental e innovación`);
     }
-    if (sun?.sign === 'Aries' || sun?.sign === 'Leo' || sun?.sign === 'Sagitario') {
-        md += `✔ Energía pioneera y directa\n`;
-    }
-    if (moon?.sign === 'Leo' || moon?.sign === 'Aries' || moon?.sign === 'Sagitario') {
-        md += `✔ Emociones intensas y expresivas\n`;
-    }
-    if (asc?.sign === 'Acuario' || asc?.sign === 'Géminis' || asc?.sign === 'Libra') {
-        md += `✔ Distancia emocional inicial\n`;
+    if (sunElement === 'Agua' || moonElement === 'Agua' || ascElement === 'Agua') {
+        traits.push(`profundidad emocional e intuición`);
     }
     
-    md += `\n**En palabras simples:**\n`;
+    if (traits.length > 0) {
+        md += `Esto genera una personalidad que mezcla: ${traits.join(', ')}.\n\n`;
+    } else {
+        const blendPreview = elementsForBlend.map((e) => e.toLowerCase()).join(', ');
+        md += `Esto genera una personalidad compleja con múltiples dimensiones: combina ${blendPreview}.\n\n`;
+    }
+    
+    md += `**En palabras simples:**\n`;
     
     const sunSign = sun?.sign || '';
     const moonSign = moon?.sign || '';
     const ascSign = asc?.sign || '';
     
     // Generación de descripción simple basada en signos
-    if ((moonSign === 'Cáncer' || moonSign === 'Escorpio' || moonSign === 'Piscis') && 
+    const simpleDescriptions: Record<string, string> = {
+        'default': `Tu carta combina ${sunElement.toLowerCase()}, ${moonElement.toLowerCase()} y ${ascElement.toLowerCase()}. Esta mezcla define cómo experimentás el mundo.`,
+    };
+    
+    // Casos específicos para descripciones más personalizadas
+    if ((moonSign === 'Cancer' || moonSign === 'Escorpio' || moonSign === 'Piscis') && 
         (ascSign === 'Capricornio' || ascSign === 'Tauro' || ascSign === 'Virgo')) {
         md += `Sos una persona sensible y emocional por dentro, pero hacia afuera proyectás firmeza y autocontrol.\n`;
     } else if ((sunSign === 'Libra' || sunSign === 'Géminis' || sunSign === 'Acuario') && 
-               (moonSign === 'Cáncer' || moonSign === 'Escorpio' || moonSign === 'Piscis')) {
+               (moonSign === 'Cancer' || moonSign === 'Escorpio' || moonSign === 'Piscis')) {
         md += `Tu mente busca equilibrio mientras tu corazón siente profundamente.\n`;
     } else if ((sunSign === 'Aries' || sunSign === 'Leo' || sunSign === 'Sagitario') && 
                (moonSign === 'Aries' || moonSign === 'Leo' || moonSign === 'Sagitario')) {
@@ -3264,8 +3274,19 @@ export function generateInterpretation(chartData: any, userInfo: any) {
     } else if ((sunSign === 'Tauro' || sunSign === 'Virgo' || sunSign === 'Capricornio') && 
                (moonSign === 'Tauro' || moonSign === 'Virgo' || moonSign === 'Capricornio')) {
         md += `Sos alguien práctico y estable, con los pies bien puestos en la tierra.\n`;
+    } else if ((sunSign === 'Acuario' || sunSign === 'Géminis' || sunSign === 'Libra') && 
+               (ascSign === 'Escorpio' || ascSign === 'Cancer' || ascSign === 'Piscis')) {
+        md += `Tu mente es brillante y original, pero tu mundo interior es intenso y profundo.\n`;
+    } else if (ascSign === 'Aries' || ascSign === 'Leo' || ascSign === 'Sagitario') {
+        md += `Proyectás energía, iniciativa y determinación. Las personas te perciben como alguien que no tiene miedo de actuar.\n`;
+    } else if (ascSign === 'Tauro' || ascSign === 'Virgo' || ascSign === 'Capricornio') {
+        md += `Proyectás estabilidad, practicidad y seriedad. Las personas confían en tu palabra y tu compromiso.\n`;
+    } else if (ascSign === 'Géminis' || ascSign === 'Libra' || ascSign === 'Acuario') {
+        md += `Proyectás versatilidad, curiosidad y distancia emocional. Las personas te perciben como alguien interesante pero difícil de conocer.\n`;
+    } else if (ascSign === 'Cancer' || ascSign === 'Escorpio' || ascSign === 'Piscis') {
+        md += `Proyectás profundidad emocional e intuición. Las personas sienten que entendés cosas que no se dicen.\n`;
     } else {
-        md += `Tu carta tiene una combinación única de energías que te hacen ser quien sos.\n`;
+        md += `${simpleDescriptions['default']}\n`;
     }
     
     md += `\n---\n\n`;
@@ -3380,31 +3401,110 @@ export function generateInterpretation(chartData: any, userInfo: any) {
     }
 
     // ===============================
-    // MERCURIO - MENTE
+    // MERCURIO - MENTE (INTEGRADO: SIGNO + CASA + ASPECTOS)
     // ===============================
     if (mercury) {
-        md += `## 🔎 Tu Mente – Mercurio en ${mercury.sign}\n\n`;
-        md += `Tu forma de pensar es ${getMindDescription(mercury.sign)}.\n\n`;
+        const mercuryAspects = aspects.filter((a: any) => 
+            a.point1 === 'Mercurio' || a.point2 === 'Mercurio'
+        ).slice(0, 2);
         
-        md += `No te quedás en lo superficial.\n`;
-        md += `Te interesa entender lo que está detrás de lo visible.\n\n`;
+        const houseNum = parseInt(mercury.house?.replace(/[^0-9]/g, '') || '0');
+        const houseArea = houseNum <= 3 ? 'personal' : houseNum <= 6 ? 'relacional' : houseNum <= 9 ? 'mental' : 'colectivo';
         
-        md += `**Podés ser:**\n`;
-        md += `- ${getMindTraits(mercury.sign)}\n\n`;
+        md += `## 🔎 Tu Mente – Mercurio en ${mercury.sign} (Casa ${mercury.house})\n\n`;
+        
+        const mercurySignMessages: Record<string, string> = {
+            'Aries': 'Tu mente trabaja con velocidad y directitud. Pensás primero, pensás después. Tu fuerza está en la acción mental rápida, aunque podés ser impaciente con quienes thinks más lento.',
+            'Tauro': 'Tu mente es práctica y persistente. Una vez que captás algo, no lo soltás. Tu fortaleza está en la memoria y en la capacidad de ver valor donde otros no ven nada.',
+            'Géminis': 'Tenés una mente versátil que procesa información de múltiples ángulos simultáneos. Tu desafío es profundizar: sabés de todo pero dominás poco.',
+            'Cancer': 'Tu mente está conectada con tus emociones. Pensás mejor en ambiente seguro y familiar. Tu intuición es tan fuerte como tu análisis, aunque a veces confundís uno con otro.',
+            'Leo': 'Tu mente busca el reconocimiento. Pensás en grande y te gusta que tus ideas brillen. Tu desafío es escuchar otras perspectivas sin sentir que te disminuyen.',
+            'Virgo': 'Tu mente es analítica y detallada. Ves el error que otros pasan por alto. Tu fortaleza es la precisión, aunque podés ser crítico hasta el exceso.',
+            'Libra': 'Tu mente busca equilibrio y armonía. Considerás todos los ángulos antes de decidir. Tu desafío es tomar decisiones sin dudar demasiado.',
+            'Escorpio': 'Tu mente es penetrante y profunda. No te conformás con la superficie: vas al fondo de todo. Tu fortaleza es la investigación, aunque podés ser obsesivo.',
+            'Sagitario': 'Tu mente es expansiva y filosófica. Buscás el significado detrás de los hechos. Tu desafío es concreta: sabés teoría pero a veces no sabés cómo.apply.',
+            'Capricornio': 'Tu mente es estratégica y disciplinada. Planificás a largo plazo y no te distraen las emociones. Tu fortaleza está en la persistencia mental.',
+            'Acuario': 'Tu mente es original y revolucionaria. Pensás fuera de los esquemas establecidos. Tu desafío es integrate tus ideas con los demás sin parecer distante.',
+            'Piscis': 'Tu mente es intuitiva y sensible. Sentís las cosas antes de pensarlas. Tu desafío es establecer límites mentales claros.'
+        };
+        
+        md += `${mercurySignMessages[mercury.sign] || `Tu mente opera según el signo ${mercury.sign}.`}\n\n`;
+        
+        if (mercuryAspects.length > 0) {
+            md += `**Cómo opera tu mente:**\n`;
+            mercuryAspects.forEach((a: any) => {
+                const other = a.point1 === 'Mercurio' ? a.point2 : a.point1;
+                const aspectMessages: Record<string, Record<string, string>> = {
+                    'Sol': { 'Conjunción': 'Tu identidad y mente están fusionadas. Pensás claramente y tus ideas reflejan quién sos.', 'Trígono': 'Tu mente brilla con facilidad. Tenés talento natural para comunicar.', 'Cuadratura': 'Hay tensión entre lo que pensás y quién sos. Tu mente puede ser autocrítica.' },
+                    'Luna': { 'Conjunción': 'Tus emociones influyen profundamente en tu forma de pensar. Pensás con el corazón.', 'Trígono': 'Tu mente se complementa bien con tus emociones. Tenés intuición y lógica.', 'Cuadratura': 'Conflictos entre lógica y emoción. Podés sobrepensar lo que sentís.' },
+                    'Venus': { 'Conjunción': 'Tu mente valora la belleza y la armonía. Pensás mejor cuando te rodeás de belleza.', 'Trígono': 'Tenés facilidad para expresar ideas con gracia y الدبلومacia.' },
+                    'Marte': { 'Conjunción': 'Tu mente es combativa y directa. Pensás rápido y actuás más rápido aún.', 'Trígono': 'Tu mente y acción trabajan juntas. Tenés energía mental y física.', 'Cuadratura': 'Podés ser impulsivo mentalmente. Pensás y actuás antes de analizar.' },
+                    'Júpiter': { 'Conjunción': 'Tu mente es expansiva y optimista. Pensás en grande y ves posibilidades.', 'Trígono': 'Tenés facilidad para aprender y enseñar. Tu mente es flexible y abierta.' },
+                    'Saturno': { 'Conjunción': 'Tu mente es disciplinada y estructurada. Pensás a largo plazo.', 'Trígono': 'Tenés profundidad mental. Tu análisis es riguroso.', 'Cuadratura': 'Podés ser muy autocrítico. Tu mente establece estándares altos que otros no alcanzan.' },
+                    'Urano': { 'Conjunción': 'Tu mente es originaisima. Pensás diferente, a menudo revolucionario.', 'Trígono': 'Tenés facilidad para generar ideas innovadoras.' },
+                    'Neptuno': { 'Conjunción': 'Tu mente es intuitiva y sensible. Tenés imaginación poética.', 'Trígono': 'Tenés facilidad para la creatividad y la espiritualidad.' },
+                    'Plutón': { 'Conjunción': 'Tu mente va al fondo de todo. Investigás sin descanso.', 'Trígono': 'Tenés capacidad de transformación a través del pensamiento.' }
+                };
+                const msg = aspectMessages[other]?.[a.aspect] || '';
+                if (msg) {
+                    md += `- ${other} ${a.aspect}: ${msg}\n`;
+                }
+            });
+            md += '\n';
+        }
         
         md += `---\n\n`;
     }
 
     // ===============================
-    // MARTE - ENERGÍA
+    // MARTE - ENERGÍA (INTEGRADO: SIGNO + CASA + ASPECTOS)
     // ===============================
     if (mars) {
-        md += `## 🔥 Tu Energía y Acción – Marte en ${mars.sign}\n\n`;
-        md += `Tu manera de actuar es ${getActionDescription(mars.sign)}.\n\n`;
+        const marsAspects = aspects.filter((a: any) => 
+            a.point1 === 'Marte' || a.point2 === 'Marte'
+        ).slice(0, 2);
         
-        md += `No improvisás impulsivamente.\n`;
-        md += `Preferís:\n`;
-        md += `- ${getActionTraits(mars.sign)}\n\n`;
+        md += `## 🔥 Tu Energía y Acción – Marte en ${mars.sign} (Casa ${mars.house})\n\n`;
+        
+        const marsSignMessages: Record<string, string> = {
+            'Aries': 'Tu energía es pionera y directa. Actúas sin hesitación. Tu desafío es aprender a esperar: no todo necesita respuesta inmediata. Cuando querés algo, lo vas a buscar sin importar qué.',
+            'Tauro': 'Tu energía es persistente y terca. Una vez que empezás algo, no te rendís. Tu fortaleza está en la endurance, aunque podés ser lento para cambiar de dirección.',
+            'Géminis': 'Tu energía es versátil y mental. Haces muchas cosas a la vez. Tu desafío es terminar: iniziás con entusiasmo pero podés dispersarte.',
+            'Cancer': 'Tu energía es emocional y reactiva. Actúas según lo que sentís. Tu fuerza está en la protección, aunque podés ser susceptible a críticas.',
+            'Leo': 'Tu energía es dramática y generosa. Te gusta ser el centro de atención. Tu desafío es compartir el protagonismo sin sentir que perdés poder.',
+            'Virgo': 'Tu energía es analítica y detallista. Buscás la perfección en lo que hacés. Tu fortaleza está en el trabajo disciplinado, aunque podés ser crítico.',
+            'Libra': 'Tu energía es diplomática y armónica. Buscás balance en todo. Tu desafío es tomar decisiones sin buscar siempre el acuerdo.',
+            'Escorpio': 'Tu energía es intensa y transformadora. No te conformás con la superficie. Tu fortaleza está en la profundidad, aunque podés ser manipulativo.',
+            'Sagitario': 'Tu energía es aventurera y optimista. Buscás la libertad above todo. Tu desafío es comprometerte con una sola dirección.',
+            'Capricornio': 'Tu energía es disciplinada y ambiciosa. Planificás a largo plazo. Tu fortaleza está en la persistencia, aunque podés ser frío emocionalmente.',
+            'Acuario': 'Tu energía es originaleindependiente. Actúas contra la corrente cuando es necesario. Tu desafío es connect con otros sin perder tu individualidad.',
+            'Piscis': 'Tu energía es intuitiva y sensible. Actúas según corazonada. Tu desafío es establecer límites claros.'
+        };
+        
+        md += `${marsSignMessages[mars.sign] || `Tu energía opera según el signo ${mars.sign}.`}\n\n`;
+        
+        if (marsAspects.length > 0) {
+            md += `**Tu energía se manifiesta así:**\n`;
+            marsAspects.forEach((a: any) => {
+                const other = a.point1 === 'Marte' ? a.point2 : a.point1;
+                const aspectMessages: Record<string, Record<string, string>> = {
+                    'Sol': { 'Conjunción': 'Tu identidad y energía están fusionadas. Actúas con determinación y tu voluntad es fuerte.', 'Trígono': 'Tu energía fluye naturalmente hacia el éxito. Tenés fuerza de voluntad.', 'Cuadratura': 'Tensión entre quién sos y cómo actuás. Podés frustrarte cuando las cosas no salen.' },
+                    'Luna': { 'Conjunción': 'Tus emociones disparan tu acción. Actúas según lo que sentís.', 'Trígono': 'Tu energía y emociones trabajan juntas. Tenés integridad entre feeling y doing.', 'Cuadratura': 'Conflicto entre emociones y acción. Podés explotar o reprimir según cómo te sentís.' },
+                    'Mercurio': { 'Conjunción': 'Tu mente y acción están alineadas. Pensás y actuás rápido.', 'Trígono': 'Tenés facilidad para ejecutar tus ideas. Tu mente impulsa tu acción.', 'Cuadratura': 'Podés actuar sin pensar. Tu mente va más rápido que tu cuerpo.' },
+                    'Venus': { 'Conjunción': 'Tu forma de amar y actuar son una sola cosa. Intensidad emocional en el acción.', 'Trígono': 'Tenés facilidad para conseguir lo que deseás. Tu encanto ayuda.' },
+                    'Júpiter': { 'Conjunción': 'Tu energía es expansiva y optimista. Actúas con confianza.', 'Trígono': 'Tenés facilidad para la acción exitosa. Tu suerte ayuda.' },
+                    'Saturno': { 'Conjunción': 'Tu energía está disciplinada. Sabés esperar para actuar.', 'Trígono': 'Tenés energía estable y sostenible. No te precipitás.', 'Cuadratura': 'Tensión entre lo que querés y lo que podés. La frustración te hace más fuerte.' },
+                    'Urano': { 'Conjunción': 'Tu energía es revolucionaria. Actúas de manera inesperada.', 'Trígono': 'Tenés facilidad para cambios positivos.' },
+                    'Neptuno': { 'Conjunción': 'Tu energía es idealista. Actúas según tus sueños.', 'Trígono': 'Tenés creatividad en la acción. Tu intuición guía tu fuerza.' },
+                    'Plutón': { 'Conjunción': 'Tu energía es transformadora. Pudís generar cambios profundos.', 'Trígono': 'Tenés poder para transformar situaciones.' }
+                };
+                const msg = aspectMessages[other]?.[a.aspect] || '';
+                if (msg) {
+                    md += `- ${other} ${a.aspect}: ${msg}\n`;
+                }
+            });
+            md += '\n';
+        }
         
         md += `---\n\n`;
     }
@@ -3412,26 +3512,145 @@ export function generateInterpretation(chartData: any, userInfo: any) {
     // ===============================
     // VENUS - AMOR
     // ===============================
+    // VENUS - AMOR (INTEGRADO: SIGNO + CASA + ASPECTOS)
+    // ===============================
     if (venus) {
-        md += `## 💕 Tu Manera de Amar – Venus en ${venus.sign}\n\n`;
-        md += `Venus representa cómo amás y qué valorás.\n\n`;
-        md += `${getVenusDescription(venus.sign)}\n\n`;
+        const venusAspects = aspects.filter((a: any) => 
+            a.point1 === 'Venus' || a.point2 === 'Venus'
+        ).slice(0, 2);
+        
+        md += `## 💕 Tu Manera de Amar – Venus en ${venus.sign} (Casa ${venus.house})\n\n`;
+        
+        const venusSignMessages: Record<string, string> = {
+            'Aries': 'Amás con intensidad y directitud. No andás con vueltas: si te gusta alguien, lo vas a decir. Tu desafío es aprender a ir más lento en el romance.',
+            'Tauro': 'Amás con lealtad y ternura. Necesitás seguridad afectiva para abrirte. Tu fortaleza está en la devoción: cuando amás, es para siempre.',
+            'Géminis': 'Amás con curiosidad y versatilidad. Te interesan muchas personas a la vez. Tu desafío es comprometerte: la variedad te fascina pero no te permite profundizar.',
+            'Cancer': 'Amás con intensidad emocional y protectividad. Tu corazón está guardado hasta que alguien lo merece. Cuando amás, cuidás condevotion.',
+            'Leo': 'Amás con generosidad y drama. Necesitás sentirte admirado. Tu fortaleza está en la lealtad: cuando amás, brillas para esa persona.',
+            'Virgo': 'Amás de manera práctica y detallada. Mostrás el amor a través de actos de servicio. Tu desafío es aceptar amor imperfecto.',
+            'Libra': 'Amás buscando armonía y parceria. Necesitás un socio que te complemente. Tu fortaleza está en la diplomática: sabés negociar.',
+            'Escorpio': 'Amás con profundidad total. No hay medias tintas: amás intensamente o no amás. Tu desafío es confiar sin controlar.',
+            'Sagitario': 'Amás con libertad y entusiasmo. Necesitás un compañero que te deje ser libre. Tu desafío es comprometerte sin perder tu independencia.',
+            'Capricornio': 'Amás de manera seria y comprometida. No te entregás fácilmente pero cuando lo hacés, es para siempre. Tu desafío es show vulnerabilidad.',
+            'Acuario': 'Amás de manera original y distante. Valuás la amistad above todo. Tu desafío es connect emocionalmente: podés ser muy cerebral.',
+            'Piscis': 'Amás con compasión y entrega total. Te entregás sin reservas. Tu desafío es establecer límites: amás tanto que podés perderte.'
+        };
+        
+        md += `${venusSignMessages[venus.sign] || `Tu forma de amar opera según el signo ${venus.sign}.`}\n\n`;
+        
+        if (venusAspects.length > 0) {
+            md += `**En tus relaciones:**\n`;
+            venusAspects.forEach((a: any) => {
+                const other = a.point1 === 'Venus' ? a.point2 : a.point1;
+                const aspectMessages: Record<string, Record<string, string>> = {
+                    'Sol': { 'Conjunción': 'Tu identidad y amor están fused. Amás intensamente y tu forma de ser se expresa en el amor.', 'Trígono': 'Tenés facilidad para el amor. Tu personalidad brilla en relaciones.', 'Cuadratura': 'Tensión entre quién sos y cómo amás. Podés pedir demasiado o muy poco.' },
+                    'Luna': { 'Conjunción': 'Tus emociones y amor están entrelazados. Amás con el corazón completo.', 'Trígono': 'Hay armonía entre tu mundo emocional y tus relaciones. Intuitivamente sabés cómo amar.', 'Cuadratura': 'Conflicto entre lo que sentís y lo que deseás. Podés sentir que no merecés amor.' },
+                    'Mercurio': { 'Conjunción': 'Comunicás amor fácilmente. Tu forma de amar incluye mucha conversación.', 'Trígono': 'Tenés facilidad para expresar amor con palabras.' },
+                    'Marte': { 'Conjunción': 'Amás con intensidad y pasión. Tu deseo y amor van juntos.', 'Trígono': 'Tenés energía natural para pursue el amor.', 'Cuadratura': 'Tensión entre deseo y amor. Podés tener conflictos entre lo que querés y lo que sentís.' },
+                    'Júpiter': { 'Conjunción': 'Tu amor es expansivo y optimista. Amás con generosidad.', 'Trígono': 'Tenés facilidad para el amor y las relaciones exitosas.' },
+                    'Saturno': { 'Conjunción': 'Tomás el amor en serio. Buscás relaciones largas y comprometidas.', 'Trígono': 'Tenés madurez en el amor. Sabés lo que querés.', 'Cuadratura': 'Temés el rechazo en el amor. Podés ser frío o exigir mucho.' },
+                    'Urano': { 'Conjunción': 'Tu amor es originaleindependiente. Buscás algo diferente.', 'Trígono': 'Tenés facilidad para atraer situaciones amorosas inesperadas.' },
+                    'Neptuno': { 'Conjunción': 'Tu amor es idealista y romántico. Buscás el amor perfecto.', 'Trígono': 'Tenés sensibilidad y compasión en el amor.' },
+                    'Plutón': { 'Conjunción': 'Amás intensamente con transformación. Buscás conexión profunda.', 'Trígono': 'Tenés poder para transformar relaciones.' }
+                };
+                const msg = aspectMessages[other]?.[a.aspect] || '';
+                if (msg) {
+                    md += `- ${other} ${a.aspect}: ${msg}\n`;
+                }
+            });
+            md += '\n';
+        }
+        
         md += `---\n\n`;
     }
 
     // ===============================
     // VOCACIÓN
     // ===============================
+    // VOCACIÓN (INTEGRADO: MC + ASC + CASA + ASPECTOS)
+    // ===============================
     if (mc) {
+        const mcAspects = aspects.filter((a: any) => 
+            a.point1 === 'Medio Cielo' || a.point2 === 'Medio Cielo' ||
+            a.point1 === 'Saturno' || a.point2 === 'Saturno'
+        ).slice(0, 2);
+        
         md += `## 💼 Vocación y Dirección Profesional\n\n`;
         
-        if (asc) {
-            md += `Con Ascendente ${asc.sign} y Medio Cielo en ${mc.sign},\n`;
-            md += `tu vida tiende a orientarse hacia:\n\n`;
-            md += `- ${getVocationTraits(mc.sign, asc.sign)}\n`;
+        if (asc && mc) {
+            const mcAscMessages: Record<string, Record<string, string>> = {
+                'Aries': {
+                    'Aries': 'Tu carrera es ser pionero. No esperás que te digan qué hacer: tomás la iniciativa y liderás desde adelante.',
+                    'Tauro': 'Tu camino profesional combina acción con persistencia. Liderás pero con determinación inquebrantable.',
+                    'Géminis': 'Tu carrera requiere variedad mental. Liderazgo con comunicación y adaptabilidad.',
+                    'Cancer': 'Liderás con instinto protector. Tu equipo se siente cuidado pero exigís resultados.',
+                    'Leo': 'Tu carrera brilla con luz propia. Naciste para liderar y que te reconozcan.',
+                    'Virgo': 'Liderazgo práctico y detallado. Tu fuerza está en el análisis y la eficiencia.',
+                    'Libra': 'Tu carrera busca armonía en el liderazgo. Negociás y equilibrás intereses.',
+                    'Escorpio': 'Liderazgo intenso y transformador. Vas al fondo de todo y generás cambios profundos.',
+                    'Sagitario': 'Carrera orientada a la expansión. Liderazgo que inspira y motiva.',
+                    'Capricornio': 'Liderazgo estratégico y disciplinado. Construís el éxito con paciencia.',
+                    'Acuario': 'Liderazgo innovador y diferente. Marcás tendencias antes de que existan.',
+                    'Piscis': 'Liderazgo intuitivo y sensible. Guiás con compasión y visión espiritual.'
+                },
+                'Tauro': {
+                    'default': 'Tu carrera requiere estabilidad y resultados tangibles. Construís con paciencia y persistencia.'
+                },
+                'Géminis': {
+                    'default': 'Tu carrera gira en torno a la comunicación e información. Múltiples proyectos te mantienen vivo.'
+                },
+                'Cancer': {
+                    'default': 'Tu carrera está liée al hogar, la familia o lo nurturante. Trabajás para proteger y cuidar.'
+                },
+                'Leo': {
+                    'default': 'Tu carrera requiere reconocimiento y expresión creativa. Necesitás brillar para estar satisfecho.'
+                },
+                'Virgo': {
+                    'default': 'Tu carrera se basa en el servicio y la eficiencia. Ayudás a que las cosas funcionen mejor.'
+                },
+                'Libra': {
+                    'default': 'Tu carrera requiere equilibrio y partnerships. Negociación y diplomacy son tus herramientas.'
+                },
+                'Escorpio': {
+                    'default': 'Tu carrera implica transformación. Vas a lo profundo y generás cambios intensos.'
+                },
+                'Sagitario': {
+                    'default': 'Tu carrera busca expansión y libertad. Viajes, filosofía o enseñanza son naturales.'
+                },
+                'Capricornio': {
+                    'default': 'Tu carrera es construir estructura. Ambición y disciplina te llevan a la cima.'
+                },
+                'Acuario': {
+                    'default': 'Tu carrera requiere innovación y libertad. Trabajas mejor cuando podés ser original.'
+                },
+                'Piscis': {
+                    'default': 'Tu carrera implica sensibilidad y espiritualidad. Arte o sanación pueden llamarte.'
+                }
+            };
+            
+            const key = mc.sign;
+            const message = mcAscMessages[key]?.[asc.sign] || mcAscMessages[key]?.['default'] || `Con Ascendente ${asc.sign} y Medio Cielo en ${mc.sign}, tu carrera se orienta hacia ${getVocationTraits(mc.sign, asc.sign)}.`;
+            
+            md += `**Tu dirección profesional:**\n\n`;
+            md += `${message}\n\n`;
+            
+            if (mcAspects.length > 0) {
+                md += `**Factores que influyen:**\n`;
+                mcAspects.forEach((a: any) => {
+                    const other = a.point1 === 'Medio Cielo' || a.point1 === 'Saturno' ? a.point2 : a.point1;
+                    if (other !== 'Medio Cielo') {
+                        const aspMsg = a.aspect === 'Conjunción' ? `Tu carrera está fuertemente influenciada por ${other}.` :
+                                       a.aspect === 'Trígono' ? `Tenés facilidad natural en tu carrera gracias a ${other}.` :
+                                       a.aspect === 'Cuadratura' ? `Tensión entre tu carrera y ${other}: debes trabajar para integrar ambas energías.` :
+                                       a.aspect === 'Oposición' ? `Balance entre tu carrera y ${other}: buscás integrar ambos aspectos.` :
+                                       '';
+                        md += `- ${other} ${a.aspect}: ${aspMsg}\n`;
+                    }
+                });
+                md += '\n';
+            }
         }
         
-        md += `\nNo buscás solo éxito. Buscás ${getVocationGoal(mc.sign)}.\n\n`;
         md += `---\n\n`;
     }
     
