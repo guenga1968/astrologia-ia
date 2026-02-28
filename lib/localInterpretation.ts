@@ -3484,7 +3484,7 @@ export function generateInterpretation(chartData: any, userInfo: any) {
     }
     
     // Contar SOLO planetas tradicionales (no asteroides)
-    const traditionalPlanets = ['Sol', 'Luna', 'Mercurio', 'Venus', 'Marte', 'Júpiter', 'Saturno', 'Urano', 'Neptuno', 'Plutón', 'Quirón']
+    const traditionalPlanets = ['Sol', 'Luna', 'Mercurio', 'Venus', 'Marte', 'Júpiter', 'Saturno', 'Urano', 'Neptuno', 'Plutón']
     const angleNames = ['Ascendente', 'Medio Cielo', 'Descendente', 'Fondo del Cielo']
     const planetsToCount = planets.filter((p: any) => traditionalPlanets.includes(p.name) && !angleNames.includes(p.name))
     
