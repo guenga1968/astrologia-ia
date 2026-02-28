@@ -18,7 +18,7 @@ Tenés una personalidad sensible y espiritual, con una capacidad increíble para
 *Lo que necesitás para estar bien:* Profundidad y lealtad. Tu refugio es lo íntimo y lo conocido; si tu mundo emocional está en orden, podés enfrentar cualquier tormenta.
 
 ⬆ **Ascendente en Cáncer**
-*Tu "traje" ante el mundo:* Proyectás una imagen de una presencia acogedora, protectora y empática. Es como tu vehículo para moverte en la vida: otros ven esta superficie antes de conocer tu profundidad.
+*Tu "traje" ante el mundo:* Proyectás una imagen de acogedora, protectora y empática. Es como tu vehículo para moverte en la vida: otros ven esta superficie antes de conocer tu profundidad.
 
 > **SÍNTESIS:** Tenés una combinación pura de agua: esto potencia enormemente tu naturaleza sensible e intuitiva. Sos una persona con una coherencia interna asombrosa, aunque el desafío sea no desequilibrarte por exceso de esa misma energía.
 
@@ -61,9 +61,8 @@ Viniste a esta vida para: **Aprender a maternar tus propias emociones y crear un
 
 ## 📝 RESUMEN PARA LLEVARTE
 *   **Lo mejor de vos:** Tu compasión sin límites, tu intuición y tu imaginación poética.
-*   **A cuidar:** La tendencia a cerrarte o actuar por impulso bajo estrés.
-*   **Paso a seguir:** Dedicá tiempo hoy a una actividad que te haga sentir en coherencia con tu propósito personal.
+*   **A cuidar:** La tendencia al escapismo y la dificultad para poner límites claros.
+*   **Paso a seguir:** Dedicá 15 minutos a meditar o a una actividad artística sin buscar resultados.
 
 ### 💌 MENSAJE FINAL
 *Recuerda que estas estrellas son una guía, no una sentencia. Tu libre albedrío es el que finalmente escribe la historia. ¡Confía en tu proceso!*
-

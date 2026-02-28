@@ -341,7 +341,6 @@ export function generateInterpretation(chartData: any, userInfo: any) {
     md += `## 📝 RESUMEN PARA LLEVARTE\n`;
     if (sun) {
         const talents: Record<string, string> = {
-            'Escorpio': 'Tu lealtad, tu profundidad y tu capacidad de regeneración.',
             'Aries': 'Tu valentía, tu iniciativa y tu honestidad brutal.',
             'Tauro': 'Tu paciencia, tu sentido práctico y tu lealtad a toda prueba.',
             'Géminis': 'Tu curiosidad, tu adaptabilidad y tu facilidad de palabra.',
@@ -349,15 +348,47 @@ export function generateInterpretation(chartData: any, userInfo: any) {
             'Leo': 'Tu generosidad, tu carisma y tu capacidad creativa.',
             'Virgo': 'Tu humildad, tu precisión y tu deseo de ser útil.',
             'Libra': 'Tu sentido estético, tu diplomacia y tu búsqueda de justicia.',
+            'Escorpio': 'Tu lealtad, tu profundidad y tu capacidad de regeneración.',
             'Sagitario': 'Tu optimismo, tu fe en la vida y tu sed de aventuras.',
             'Capricornio': 'Tu resiliencia, tu sentido de responsabilidad y tu ambición clara.',
             'Acuario': 'Tu originalidad, tu humanitarismo y tu visión de futuro.',
             'Piscis': 'Tu compasión sin límites, tu intuición y tu imaginación poética.'
         };
-        md += `*   **Lo mejor de vos:** ${talents[sun.sign] || 'Tu capacidad única de integrar diferentes energías.'}\n`;
+
+        const challenges: Record<string, string> = {
+            'Aries': 'La impulsividad y la tendencia a ser demasiado rudo bajo estrés.',
+            'Tauro': 'La terquedad y el miedo a salir de tu zona de confort.',
+            'Géminis': 'La dispersión mental y la dificultad para profundizar en un solo tema.',
+            'Cáncer': 'El exceso de autoprotección y los cambios de humor repentinos.',
+            'Leo': 'La necesidad constante de aprobación y la dificultad para ceder el foco.',
+            'Virgo': 'La autocrítica excesiva y el perfeccionismo que te paraliza.',
+            'Libra': 'La indecisión por miedo al conflicto y la dependencia de otros.',
+            'Escorpio': 'El deseo de control y la tendencia a guardarte los sentimientos.',
+            'Sagitario': 'La falta de límites y la tendencia a exagerar o prometer de más.',
+            'Capricornio': 'La rigidez excesiva y el miedo a mostrar tu vulnerabilidad.',
+            'Acuario': 'El desapego emocional excesivo y la rebeldía sin causa clara.',
+            'Piscis': 'La tendencia al escapismo y la dificultad para poner límites claros.'
+        };
+
+        const nextSteps: Record<string, string> = {
+            'Aries': 'Practicá una actividad física intensa para canalizar tu energía antes de decidir.',
+            'Tauro': 'Probá un cambio pequeño en tu rutina hoy para flexibilizar tu mente.',
+            'Géminis': 'Elegí un solo tema que te interese y dedicale una hora de lectura profunda.',
+            'Cáncer': 'Hacete un espacio de soledad en casa para reconectar con tus propias necesidades.',
+            'Leo': 'Realizá un acto de generosidad anónimo: deja que tu luz brille sin ser el centro.',
+            'Virgo': 'Escribí tres cosas que hiciste bien hoy sin buscarles ningún defecto.',
+            'Libra': 'Tomá una pequeña decisión hoy basándote solo en lo que VOS querés, no en los demás.',
+            'Escorpio': 'Compartí algo que te preocupe con alguien de confianza; deja entrar un poco de luz.',
+            'Sagitario': 'Bajá a tierra un plan concreto para esa gran idea que tenés en mente.',
+            'Capricornio': 'Permitite un momento de ocio total hoy, sin sentir que estás perdiendo el tiempo.',
+            'Acuario': 'Participá en una actividad grupal donde puedas aportar tu visión única al colectivo.',
+            'Piscis': 'Dedicá 15 minutos a meditar o a una actividad artística sin buscar resultados.'
+        };
+
+        md += `*   **Lo mejor de vos:** ${talents[sun.sign] || 'Tu capacidad única de integrar energías.'}\n`;
+        md += `*   **A cuidar:** ${challenges[sun.sign] || 'La tendencia a actuar por impulso bajo estrés.'}\n`;
+        md += `*   **Paso a seguir:** ${nextSteps[sun.sign] || 'Dedicá tiempo a una actividad que te dé coherencia.'}\n\n`;
     }
-    md += `*   **A cuidar:** La tendencia a cerrarte o actuar por impulso bajo estrés.\n`;
-    md += `*   **Paso a seguir:** Dedicá tiempo hoy a una actividad que te haga sentir en coherencia con tu propósito personal.\n\n`;
 
     // ===============================
     // 💌 MENSAJE FINAL
@@ -402,18 +433,18 @@ function getSimplePlanetDescription(planet: string, sign: string): { signDescrip
             'Piscis': { signDescription: 'emociones intuitivas', meaning: 'Compasión y entrega', challenge: 'poner límites', simple: 'Sentís a los demás.', need: 'magia y silencio' }
         },
         'Ascendente': {
-            'Aries': { signDescription: 'directa', meaning: 'Una presencia de acción directa e iniciativa', challenge: 'paciencia', simple: 'Vas al frente.', need: 'desafíos' },
-            'Tauro': { signDescription: 'estable', meaning: 'Una imagen de seguridad, calma y perseverancia', challenge: 'cambiar', simple: 'Transmitís paz.', need: 'concreción' },
-            'Géminis': { signDescription: 'comunicativa', meaning: 'Una personalidad curiosa, sociable y versátil', challenge: 'enfocarte', simple: 'Sos muy sociable.', need: 'intercambio' },
-            'Cáncer': { signDescription: 'sensible', meaning: 'Una presencia acogedora, protectora y empática', challenge: 'soltar', simple: 'Parecés muy cálido.', need: 'raíces' },
-            'Leo': { signDescription: 'magnética', meaning: 'Una imagen brillante, creativa y de liderazgo', challenge: 'compartir', simple: 'Te hacés notar.', need: 'visibilidad' },
-            'Virgo': { signDescription: 'prolija', meaning: 'Una personalidad eficiente, analítica y servicial', challenge: 'relajarte', simple: 'Parecés organizado.', need: 'orden' },
-            'Libra': { signDescription: 'diplomática', meaning: 'Una presencia armónica, bella y sociable', challenge: 'decidir', simple: 'Sos encantador.', need: 'vínculos' },
-            'Escorpio': { signDescription: 'misteriosa', meaning: 'Una imagen de profundidad, misterio y poder', challenge: 'confiar', simple: 'Parecés profundo.', need: 'verdad' },
-            'Sagitario': { signDescription: 'entusiasta', meaning: 'Una presencia optimista, libre y aventurera', challenge: 'frenar', simple: 'Parecés divertido.', need: 'expansión' },
-            'Capricornio': { signDescription: 'sólida', meaning: 'Una imagen de responsabilidad, éxito y seriedad', challenge: 'reírte más', simple: 'Parecés serio.', need: 'respeto' },
-            'Acuario': { signDescription: 'diferente', meaning: 'Una personalidad única, rebelde e innovadora', challenge: 'pertenecer', simple: 'Sos muy cool.', need: 'innovación' },
-            'Piscis': { signDescription: 'etérea', meaning: 'Una presencia sensible, mística y compasiva', challenge: 'limitarse', simple: 'Parecés soñador.', need: 'entrega' }
+            'Aries': { signDescription: 'directa', meaning: 'acción directa e iniciativa', challenge: 'paciencia', simple: 'Vas al frente.', need: 'desafíos' },
+            'Tauro': { signDescription: 'estable', meaning: 'seguridad, calma y perseverancia', challenge: 'cambiar', simple: 'Transmitís paz.', need: 'concreción' },
+            'Géminis': { signDescription: 'comunicativa', meaning: 'curiosidad, sociabilidad y versatilidad', challenge: 'enfocarte', simple: 'Sos muy sociable.', need: 'intercambio' },
+            'Cáncer': { signDescription: 'sensible', meaning: 'acogedora, protectora y empática', challenge: 'soltar', simple: 'Parecés muy cálido.', need: 'raíces' },
+            'Leo': { signDescription: 'magnética', meaning: 'brillante, creativa y de liderazgo', challenge: 'compartir', simple: 'Te hacés notar.', need: 'visibilidad' },
+            'Virgo': { signDescription: 'prolija', meaning: 'eficiencia, análisis y servicio', challenge: 'relajarte', simple: 'Parecés organizado.', need: 'orden' },
+            'Libra': { signDescription: 'diplomática', meaning: 'armónica, bella y sociable', challenge: 'decidir', simple: 'Sos encantador.', need: 'vínculos' },
+            'Escorpio': { signDescription: 'misteriosa', meaning: 'profundidad, misterio y poder', challenge: 'confiar', simple: 'Parecés profundo.', need: 'verdad' },
+            'Sagitario': { signDescription: 'entusiasta', meaning: 'optimismo, libertad y aventura', challenge: 'frenar', simple: 'Parecés divertido.', need: 'expansión' },
+            'Capricornio': { signDescription: 'sólida', meaning: 'responsabilidad, éxito y seriedad', challenge: 'reírte más', simple: 'Parecés serio.', need: 'respeto' },
+            'Acuario': { signDescription: 'diferente', meaning: 'única, rebelde e innovadora', challenge: 'pertenecer', simple: 'Sos muy cool.', need: 'innovación' },
+            'Piscis': { signDescription: 'etérea', meaning: 'sensibilidad, mística y compasión', challenge: 'limitarse', simple: 'Parecés soñador.', need: 'entrega' }
         }
     };
 
