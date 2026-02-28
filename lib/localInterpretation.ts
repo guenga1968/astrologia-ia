@@ -3695,20 +3695,42 @@ export function generateInterpretation(chartData: any, userInfo: any) {
         md += `${patternMessages[dominantSign[0]] || patternMessages['default']}\n\n`;
     }
     
-    // ANÁLISIS DE TENSIÓN CENTRAL (Sol vs Luna)
-    if (sun && moon) {
+    // ANÁLISIS DE TENSIÓN CENTRAL (Sol, Luna, Ascendente)
+    if (sun && moon && asc) {
         const elementSun = SIGN_ELEMENTS[sun.sign] || ''
         const elementMoon = SIGN_ELEMENTS[moon.sign] || ''
+        const elementAsc = SIGN_ELEMENTS[asc.sign] || ''
         
-        if (elementSun !== elementMoon) {
-            md += `### Tu Tensión Central\n\n`;
-            md += `Tu carta muestra un diálogo interno entre ${sun.sign} (${elementSun}) y ${moon.sign} (${elementMoon}). `;
-            
-            if ((elementSun === 'Fuego' || elementSun === 'Aire') && (elementMoon === 'Agua' || elementMoon === 'Tierra')) {
-                md += `Esto genera una personalidad donde tu identidad quiere acción y expansión, pero tus emociones requieren profundidad y estabilidad. No sos contradiction: sos complementariedad. Tu crecimiento viene de integrar ambas energías.\n\n`;
-            } else if ((elementSun === 'Tierra' || elementSun === 'Agua') && (elementMoon === 'Fuego' || elementMoon === 'Aire')) {
-                md += `Sos alguien con los pies en la tierra pero el corazón en el cielo. Tu mente estratégica se enfrenta a tu necesidad emocional de libertad. La integración de ambas es tu camino de evolución.\n\n`;
+        // Determinar los elementos únicos
+        const elements = [elementSun, elementMoon, elementAsc].filter((v, i, a) => a.indexOf(v) === i)
+        
+        md += `### 🎯 Tu Tensión Central a Integrar\n\n`;
+        
+        // Describir qué necesita cada pilar
+        const elementNeeds: Record<string, string> = {
+            'Fuego': 'acción inmediata y pasión',
+            'Tierra': 'estabilidad y concreción',
+            'Aire': 'libertad mental y comunicación',
+            'Agua': 'profundidad emocional y conexión'
+        }
+        
+        md += `${sun.sign} necesita ${elementNeeds[elementSun] || 'desarrollo'}.\n`;
+        md += `${moon.sign} necesita ${elementNeeds[elementMoon] || 'expansión'}.\n`;
+        md += `${asc.sign} necesita ${elementNeeds[elementAsc] || 'iniciativa'}.\n\n`;
+        
+        // Síntesis de integración
+        if (elements.length === 2) {
+            md += `Tu aprendizaje evolutivo es integrar ${elements[0].toLowerCase()} y ${elements[1].toLowerCase()}. `
+            if ((elements.includes('Fuego') && elements.includes('Aire')) || (elements.includes('Fuego') && elements.includes('Agua'))) {
+                md += `Tenés energía para actuar y visión para innovar. Tu desafío es sostener sin dispersarte.\n\n`;
+            } else if (elements.includes('Tierra') && elements.includes('Agua')) {
+                md += `Tenés profundidad emocional con capacidad de materializar. Tu desafío es no sabotearte con dudas.\n\n`;
+            } else {
+                md += `Tu desafío es que una parte no sabotee a la otra.\n\n`;
             }
+        } else if (elements.length === 3) {
+            md += `Con tres elementos diferentes, tu carta es rica y compleja. `
+            md += `Tu misión es unir mente, emoción y acción sin que ninguna parte domine.\n\n`;
         }
     }
     
