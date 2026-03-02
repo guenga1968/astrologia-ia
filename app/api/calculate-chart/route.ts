@@ -17,6 +17,46 @@ const PLANET_NAME_MAP: Record<string, string> = {
 
 const HOUSE_NAMES = ['Primera', 'Segunda', 'Tercera', 'Cuarta', 'Quinta', 'Sexta', 'Séptima', 'Octava', 'Novena', 'Décima', 'Undécima', 'Duodécima']
 
+function getTimezone(latitude: number, longitude: number, year: number): number {
+    // Argentina: UTC-3 (sin DST históricamente)
+    if (latitude < -24 && latitude > -55 && longitude > -75 && longitude < -53) {
+        return -3;
+    }
+    // España peninsular: UTC+1 (invierno) / UTC+2 (verano)
+    if (latitude > 36 && latitude < 44 && longitude > -10 && longitude < 5) {
+        // DST aproximadamente de marzo a octubre
+        const month = new Date().getMonth(); // Esto sería el mes actual, no el de nacimiento
+        // Por defecto usamos CET (UTC+1)
+        return 1;
+    }
+    // México: UTC-6 a UTC-8 dependiendo de la zona
+    if (latitude > 14 && latitude < 33 && longitude > -118 && longitude < -86) {
+        return -6;
+    }
+    // Chile: UTC-3/-4 (varía históricamente)
+    if (latitude > -56 && latitude < -17 && longitude > -76 && longitude < -66) {
+        return -4;
+    }
+    // Colombia, Ecuador, Perú: UTC-5
+    if (latitude > -5 && latitude < 13 && longitude > -82 && longitude < -66) {
+        return -5;
+    }
+    // Venezuela: UTC-4
+    if (latitude > 0 && latitude < 13 && longitude > -73 && longitude < -59) {
+        return -4;
+    }
+    // Uruguay: UTC-3
+    if (latitude > -35 && latitude < -30 && longitude > -58 && longitude < -53) {
+        return -3;
+    }
+    // Brasil: UTC-3 a UTC-5 dependiendo de la región
+    if (latitude > -34 && latitude < 6 && longitude > -74 && longitude < -32) {
+        return -3;
+    }
+    // Default: UTC-3 (Argentina default)
+    return -3;
+}
+
 function calculateChartCelestine(dateStr: string, timeStr: string, latitude: number, longitude: number) {
     // Parsear fecha
     let dateParts: number[]
@@ -32,6 +72,7 @@ function calculateChartCelestine(dateStr: string, timeStr: string, latitude: num
     }
     const [year, month, day] = dateParts
     const [hour, minute] = timeStr.split(':').map(Number)
+    const timezone = getTimezone(latitude, longitude, year)
     
     // Usar celestine para calcular la carta
     const chart = calculateChart({
@@ -42,7 +83,7 @@ function calculateChartCelestine(dateStr: string, timeStr: string, latitude: num
         minute,
         latitude,
         longitude,
-        timezone: -3
+        timezone
     } as any)
     
     // Convertir planetas al formato esperado

@@ -147,7 +147,7 @@ export function generateInterpretation(chartData: any, userInfo: any) {
     if (moon) {
         const moonMsg = getSimplePlanetDescription('Luna', moon.sign);
         md += `🌙 **Luna en ${moon.sign} (Casa ${moon.house})**\n`;
-        md += `*Lo que necesitás para estar bien:* ${moonMsg.need.replace(/^\w/, (c: string) => c.toUpperCase())}. Tu refugio es lo íntimo y lo conocido; si tu mundo emocional está en orden, podés enfrentar cualquier tormenta.\n\n`;
+        md += `*Lo que necesitás para estar bien:* ${moonMsg.need.replace(/^\w/, (c: string) => c.toUpperCase())}. Tu mundo emocional necesita este espacio para estar en equilibrio.\n\n`;
     }
 
     if (asc) {
@@ -167,7 +167,18 @@ export function generateInterpretation(chartData: any, userInfo: any) {
             const characteristic = element === 'Fuego' ? 'activa y apasionada' : element === 'Tierra' ? 'concreta y estable' : element === 'Aire' ? 'mental y comunicativa' : 'sensible e intuitiva';
             synthesisText = `Tenés una combinación pura de ${element.toLowerCase()}: esto potencia enormemente tu naturaleza ${characteristic}. Sos una persona con una coherencia interna asombrosa, aunque el desafío sea no desequilibrarte por exceso de esa misma energía.`;
         } else {
-            synthesisText = `Tenés una combinación de ${elements.join(', ').toLowerCase()}. Esto significa que sentís con mucha fuerza, pero sabés cómo canalizar esa energía para transformar tu realidad. Sos pura potencia emocional en acción.`;
+            const hasAir = elements.includes('Aire');
+            const hasFire = elements.includes('Fuego');
+            const hasWater = elements.includes('Agua');
+            const hasEarth = elements.includes('Tierra');
+            
+            let powerType = 'energética';
+            if (hasAir && !hasFire && !hasWater) powerType = 'visionaria y mental';
+            else if (hasWater && !hasFire) powerType = 'emocional e intuitiva';
+            else if (hasFire && !hasAir) powerType = 'emocional y apasionada';
+            else if (hasEarth) powerType = 'práctica y transformadora';
+            
+            synthesisText = `Tenés una combinación de ${elements.join(', ').toLowerCase()}. Esto significa que sentís con mucha fuerza, pero sabés cómo canalizar esa energía para transformar tu realidad. Sos pura potencia ${powerType} en acción.`;
         }
 
         md += `> **SÍNTESIS:** ${synthesisText}\n\n`;
@@ -298,20 +309,472 @@ export function generateInterpretation(chartData: any, userInfo: any) {
         md += `---\n\n`;
     }
 
-    // ===============================
-    // ⚠️ DESAFÍOS (y cómo superarlos)
-    // ===============================
-    md += `## ⚠️ DESAFÍOS (y cómo superarlos)\n`;
+    md += generateDesafios(planets, aspects);
 
-    const tenseAspects = aspects.filter((a: any) => (a.aspect === 'Cuadratura' || a.aspect === 'Oposición') && a.orb < 5);
-    if (tenseAspects.length > 0) {
-        const a = tenseAspects[0];
-        md += `*   **${a.point1} en tensión con ${a.point2}:** A veces sentís un tironeo entre lo que querés y lo que necesitás. La clave es no elegir un bando, sino aprender a negociar con ambas partes de vos.\n`;
-    } else {
-        md += `*   **Gestión de la intensidad:** Con tanta energía profunda, tu desafío es no desbordarte. La clave es encontrar válvulas de escape creativas o físicas.\n`;
+    /**
+ * Genera desafíos personalizados basados en la carta natal.
+ */
+function generateDesafios(planets: any[], aspects: any[]): string {
+    const DESAFIOS: string[] = [];
+    
+    const tenseAspects = aspects.filter((a: any) => 
+        (a.aspect === 'Cuadratura' || a.aspect === 'Oposición' || a.aspect === 'Quincuncio') && a.orb < 6
+    );
+    
+    const signDetrimentos: Record<string, string> = {
+        'Sol': 'Luna',
+        'Luna': 'Sol',
+        'Mercurio': 'Sol',
+        'Venus': 'Marte',
+        'Marte': 'Venus',
+        'Júpiter': 'Mercurio',
+        'Saturno': 'Luna',
+        'Urano': 'Luna',
+        'Neptuno': 'Mercurio',
+        'Plutón': 'Venus'
+    };
+    
+    const signCaidas: Record<string, string> = {
+        'Mercurio': 'Piscis',
+        'Venus': 'Virgo',
+        'Marte': 'Cáncer',
+        'Júpiter': 'Capricornio',
+        'Saturno': 'Acuario',
+        'Urano': 'Tauro',
+        'Neptuno': 'Piscis',
+        'Plutón': 'Tauro'
+    };
+    
+    const planetSignMap: Record<string, string> = {};
+    const planetDegreeMap: Record<string, number> = {};
+    planets.forEach((p: any) => {
+        if (p.name && p.sign && !['Ascendente', 'Medio Cielo', 'Descendente', 'Fondo del Cielo', 'Nodo Norte', 'Nodo Sur'].includes(p.name)) {
+            planetSignMap[p.name] = p.sign;
+            planetDegreeMap[p.name] = p.degree;
+        }
+    });
+    
+    const planetHouseMap: Record<string, string> = {};
+    planets.forEach((p: any) => {
+        if (p.name && p.house) {
+            planetHouseMap[p.name] = p.house;
+        }
+    });
+    
+    const houseCounts: Record<string, number> = {};
+    planets.forEach((p: any) => {
+        if (p.house) {
+            houseCounts[p.house] = (houseCounts[p.house] || 0) + 1;
+        }
+    });
+    
+    const PRINCIPAL_PLANETS = ['Sol', 'Luna', 'Mercurio', 'Venus', 'Marte', 'Júpiter', 'Saturno', 'Urano', 'Neptuno', 'Plutón'];
+    
+    const signsWithPlanets: Record<string, number> = {};
+    planets.forEach((p: any) => {
+        if (p.sign && PRINCIPAL_PLANETS.includes(p.name)) {
+            signsWithPlanets[p.sign] = (signsWithPlanets[p.sign] || 0) + 1;
+        }
+    });
+    
+    const tenseAspectsLimit = tenseAspects.slice(0, 3);
+    
+    for (const a of tenseAspectsLimit) {
+        const p1 = a.point1;
+        const p2 = a.point2;
+        const sign1 = planetSignMap[p1];
+        const sign2 = planetSignMap[p2];
+        const deg1 = planetDegreeMap[p1] ? Math.round(planetDegreeMap[p1]) : '';
+        const deg2 = planetDegreeMap[p2] ? Math.round(planetDegreeMap[p2]) : '';
+        const house1 = planetHouseMap[p1];
+        const house2 = planetHouseMap[p2];
+        const orbInfo = a.orb ? ' (orbe: ' + a.orb.toFixed(1) + '°)' : '';
+        
+        let titulo = '';
+        let desafio = '';
+        let oportunidad = '';
+        
+        if (p1 === 'Luna' && p2 === 'Marte') {
+            titulo = 'El tira y afloje entre emoción y acción (Luna cuadratura Marte)';
+            desafio = 'Tu Luna en ' + sign1 + ' busca seguridad emocional, pero tu Marte en ' + sign2 + ' impulsa a acción inmediata. Cuando sentís que tu mundo interior está amenazado, la ira emerge como mecanismo de defensa.';
+            oportunidad = 'Canalizá esta tensión en actividad física intensa. Tu capacidad de sentir profundamente Y actuar con determinación te hace un líder nato.';
+        } else if (p1 === 'Venus' && p2 === 'Saturno') {
+            titulo = 'El peso de las expectativas en el amor (Venus cuadratura Saturno)';
+            desafio = 'Tu Venus en ' + sign1 + ' quiere expresar amor libremente, pero Saturno en ' + sign2 + ' impone estructuras y miedo al rechazo. Podés sabotear tus relaciones por miedo a no ser suficiente.';
+            oportunidad = 'Esta tensión te enseña que el amor maduro requiere tiempo. Cuando superes el miedo, tus vínculos serán sólidos y duraderos.';
+        } else if (p1 === 'Marte' && p2 === 'Neptuno') {
+            titulo = 'Entre la acción directa y la confusión (Marte cuadratura Neptuno)';
+            desafio = 'Tu Marte en ' + house1 + ' quiere actuar con fuerza, pero Neptuno en ' + sign2 + ' difumina la claridad. Podés sentir que tus acciones no generan el impacto que esperás o que otros no reconocen tu esfuerzo.';
+            oportunidad = 'Aprendé a confiar más allá de lo visible. Tu intuición se vuelve tu mayor herramienta estratégica.';
+        } else if (p1 === 'Sol' && p2 === 'Saturno') {
+            titulo = 'La ambición chocando con estructuras (Sol cuadratura Saturno)';
+            desafio = 'Tu identidad (Sol en ' + sign1 + ') choca con Saturno en ' + sign2 + '. Podés sentir que tu creatividad está limitada por estructuras externas o que tus logros no son reconocidos.';
+            oportunidad = 'Esta tensión forja resiliencia extrema. Tu capacidad de construir con disciplina te lleva más lejos que el talento puro.';
+        } else if (p1 === 'Mercurio' && p2 === 'Saturno') {
+            titulo = 'La mente contenida (Mercurio cuadratura Saturno)';
+            desafio = 'Tu mente en ' + sign1 + ' quiere expresarse, pero Saturno en ' + sign2 + ' frena la palabra. Podés sentir que tus ideas no son valoradas o que debés probar constantemente tu valía.';
+            oportunidad = 'Tu comunicación gana credibilidad. Cuando hablás, la gente sabe que lo decís en serio.';
+        } else if (p1 === 'Luna' && p2 === 'Saturno') {
+            titulo = 'El dolor de no sentirse contenido (Luna cuadratura Saturno)';
+            desafio = 'Tu mundo emocional en ' + sign1 + ' choca con restricciones Saturninas en ' + house2 + '. La necesidad de seguridad emocional compite con responsabilidades que parecen sofocar tu naturaleza.';
+            oportunidad = 'Aprendés a darte vos mismo la seguridad que buscás. Tu independencia emocional se vuelve tu mayor fortaleza.';
+        } else if (p1 === 'Venus' && p2 === 'Marte') {
+            titulo = 'Deseo y vínculo en conflicto (Venus cuadratura Marte)';
+            desafio = 'Tu forma de amar (Venus en ' + sign1 + ') y tu forma de actuar (Marte en ' + sign2 + ') están en tensión. Podés sentir atracción por personas que no son buenas para vos o conflictos constantes en las relaciones.';
+            oportunidad = 'Esta tensión te enseña a integrar deseo y respeto propio. Cuando lo lográs, tu magnetismo es único.';
+        } else if (p1 === 'Ascendente' && p2 === 'Medio Cielo') {
+            titulo = 'La máscara y la vocación en fricción (Ascendente cuadratura Medio Cielo)';
+            desafio = 'Tu imagen pública (Medio Cielo en ' + sign2 + ') no encaja con cómo te percibís (Ascendente en ' + sign1 + '). Podés sentir que debés ser alguien que no sos para tener éxito.';
+            oportunidad = 'Tu camino es integrar ambas energías: autenticidad + visibilidad. Encontrarás tu espacio cuando dejes de elegir entre ser vos o destacar.';
+        } else if (p1 === 'Sol' && p2 === 'Luna') {
+            titulo = 'Identidad y emoción desalineadas (Sol oposición Luna)';
+            desafio = 'Tu esencia (Sol en ' + sign1 + ') y tu emocionalidad (Luna en ' + sign2 + ') operan en frecuencias distintas. Podés sentir que lo que hacés no te representa emocionalmente.';
+            oportunidad = 'Esta oposición te da dinamismo. Cuando integrás ambas energías, manejás tanto la acción como la sensibilidad.';
+        } else if (p1 === 'Marte' && p2 === 'Saturno') {
+            titulo = 'La frustración del pionero (Marte cuadratura Saturno)';
+            desafio = 'Tu energía en ' + sign1 + ' quiere acción inmediata, pero Saturno en ' + sign2 + ' impone obstáculos. Podés sentir que las cosas toman más tiempo de lo que querés y frustrarte.';
+            oportunidad = 'Aprendés estrategia y paciencia. Tu acción se vuelve más efectiva porque no gastás energía en lo que no podés controlar.';
+        } else if (p1 === 'Luna' && p2 === 'Urano') {
+            titulo = 'El caos emocional (Luna cuadratura Urano)';
+            desafio = 'Tu emocionalidad en ' + sign1 + ' choca con la energía disruptiva de Urano en ' + sign2 + '. Los cambios de humor pueden ser abruptos y unpredictables.';
+            oportunidad = 'Tu capacidad de adaptarte a cambios inesperados es extraordinaria. Abrís espacio para innovación en tu vida emocional.';
+        } else if (p1 === 'Mercurio' && p2 === 'Marte') {
+            titulo = 'Pensamiento y acción en guerra (Mercurio cuadratura Marte)';
+            desafio = 'Tu mente en ' + sign1 + ' y tu acción en ' + sign2 + ' no se llevan bien. Podés pensar demasiado y no actuar, o actuar sin pensar.';
+            oportunidad = 'El desafío es integrar ambos: pensá antes de actuar, pero sin paralizarte. Tu potencial está en la acción reflexiva.';
+        } else if (a.aspect === 'Oposición') {
+            titulo = 'Tensión entre ' + p1 + ' (' + deg1 + '° ' + sign1 + ') y ' + p2 + ' (' + deg2 + '° ' + sign2 + ')' + orbInfo;
+            desafio = 'Tu ' + p1 + ' en ' + sign1 + ' y ' + p2 + ' en ' + sign2 + ' operan como polos opuestos. Tirás entre dos mundos que parecen incompatibles.';
+            oportunidad = 'Esta oposición te da acceso a dos realidades. Tu tarea es encontrar el punto medio que integre ambas energías.';
+        } else {
+            titulo = 'Tensión entre ' + p1 + ' (' + deg1 + '° ' + sign1 + ') y ' + p2 + ' (' + deg2 + '° ' + sign2 + ')' + orbInfo;
+            desafio = 'Tu ' + p1 + ' en ' + sign1 + ' y ' + p2 + ' en ' + sign2 + ' generan fricción. Cuando ambos activos se manifiestan, surge conflicto.';
+            oportunidad = 'Esta tensión te enseña a negociar entre diferentes facetas de vos mismo.';
+        }
+
+        // Consejos específicos por combinación de planetas
+        let consejosEspecificos = '';
+        
+        const consejosPorAspecto: Record<string, { pasos: string[], oportunidad: string }> = {
+            'Luna-Marte': {
+                pasos: [
+                    'Cuando sientas frustración, esperá 10 minutos antes de actuar',
+                    'Canalizá la ira en ejercicio físico intenso',
+                    'Aprendé a distinguir entre impulso e intuición'
+                ],
+                oportunidad: 'Esta tensión te convierte en un líder que actúa con determinación e intensidad emocional.'
+            },
+            'Luna-Saturno': {
+                pasos: [
+                    'No esperes validación emocional externa para sentir que valés',
+                    'Construí tu propia seguridad interior',
+                    'Permitite ser vulnerable sin juzgarte'
+                ],
+                oportunidad: 'Tu fuerza emocional se vuelve inquebrantable cuando encontrás tu centro interior.'
+            },
+            'Luna-Urano': {
+                pasos: [
+                    'Aceptá que los cambios de humor son parte de tu creatividad',
+                    'Creá rituales emocionales flexibles',
+                    'No te juzgues por sentir cosas intensas'
+                ],
+                oportunidad: 'Tu capacidad de adaptarte a cambios inesperados es tu mayor don.'
+            },
+            'Luna-Neptuno': {
+                pasos: [
+                    'Llevá un diario para distinguir realidad de fantasía',
+                    'Verificá tus interpretaciones antes de actuar',
+                    'Aprendé a confiar en vos mismo'
+                ],
+                oportunidad: 'Tu intuición se vuelve precisa cuando entrenás la distinción entre verdad e ilusión.'
+            },
+            'Luna-Plutón': {
+                pasos: [
+                    'Transformá el dolor en poder personal',
+                    'No evités las emociones difíciles',
+                    'Buscá terapia para procesar profundidades'
+                ],
+                oportunidad: 'Tu capacidad de transformar Crisis en crecimiento es tu superpoder.'
+            },
+            'Venus-Marte': {
+                pasos: [
+                    'Evitá atraer personas que no son buenas para vos',
+                    'Integrá deseo y respeto propio',
+                    'Tu magnetismo es único cuando está balanceado'
+                ],
+                oportunidad: 'Tu capacidad de atraer y retener está fuera de serie cuando está integrada.'
+            },
+            'Venus-Saturno': {
+                pasos: [
+                    'No lasciés que el miedo al rechazo sabotee tus vínculos',
+                    'El amor maduro requiere tiempo y paciencia',
+                    'Vos mereces amor seguro y estable'
+                ],
+                oportunidad: 'Construís relaciones que duran porque valorás la profundidad sobre lo superficial.'
+            },
+            'Venus-Urano': {
+                pasos: [
+                    'Evitá comprometerte muy rápido en relaciones',
+                    'Buscá pareja que valore su independencia y la tuya',
+                    'Las relaciones innovadoras funcionan con comunicación clara'
+                ],
+                oportunidad: 'Tu libertad e intimidad pueden coexistir si encontrás el balance.'
+            },
+            'Venus-Neptuno': {
+                pasos: [
+                    'Distinguí entre amor idealizado y amor real',
+                    'No ignores banderas rojas por querer ver lo mejor',
+                    'El amor sano tiene pies en la tierra'
+                ],
+                oportunidad: 'Tu romanticismo te permite crear conexiones profundas y espirituales.'
+            },
+            'Mercurio-Marte': {
+                pasos: [
+                    'Pensá antes de hablar o actuar',
+                    'Creá un espacio de reflexión antes de decidir',
+                    'Tu potencial está en la acción reflexiva'
+                ],
+                oportunidad: 'Tu capacidad de actuar con pensamiento estratégico te diferencia de los demás.'
+            },
+            'Mercurio-Saturno': {
+                pasos: [
+                    'Tu comunicación tiene peso, usala sabiamente',
+                    'Prepará tus ideas antes de presentarlas',
+                    'La credibilidad se gana con consistencia'
+                ],
+                oportunidad: 'Cuando hablás, la gente escucha porque sabés de lo que decís.'
+            },
+            'Mercurio-Neptuno': {
+                pasos: [
+                    'Verificá tus ideas antes de actuar',
+                    'Tu imaginación es poderosa pero puede confundir',
+                    'Anotá las ideas y analizalas con calma'
+                ],
+                oportunidad: 'Tu intuición se vuelve tu mejor herramienta si la cultivás con discernimiento.'
+            },
+            'Sol-Saturno': {
+                pasos: [
+                    'Las estructuras que sentís como obstáculos son cimientos de tu éxito',
+                    'La disciplina genera logros duraderos',
+                    'No te compares con otros, cada uno tiene su tiempo'
+                ],
+                oportunidad: 'Tu capacidad de construir con disciplina te lleva más lejos que el talento puro.'
+            },
+            'Sol-Luna': {
+                pasos: [
+                    'Integrá lo que hacés con lo que sentís',
+                    'Tu identidad y emocionalidad pueden trabajar juntas',
+                    'Encontrá un propósito que te emocione'
+                ],
+                oportunidad: 'Cuando tu ser y tu sentir están alineados, irradiás autenticidad.'
+            },
+            'Marte-Saturno': {
+                pasos: [
+                    'La paciencia es tu estrategia más efectiva',
+                    'Planificá antes de actuar',
+                    'Los obstáculos son oportunidades de crecer'
+                ],
+                oportunidad: 'Tu acción disciplinada genera resultados que perduran.'
+            },
+            'Marte-Urano': {
+                pasos: [
+                    'Canalizá la impaciencia en innovación',
+                    'Tomá riesgos calculados',
+                    'Tu energía disruptiva puede crear cosas nuevas'
+                ],
+                oportunidad: 'Tu capacidad de inovar y actuar rápidamente es tu ventaja competitiva.'
+            },
+            'Marte-Neptuno': {
+                pasos: [
+                    'Verificá la realidad antes de actuar',
+                    'Tu intuición es fuerte, pero complementala con datos',
+                    'No te disperses en muchos proyectos a la vez'
+                ],
+                oportunidad: 'Tu intuición guiada por la razón se vuelve imparable.'
+            },
+            'Marte-Plutón': {
+                pasos: [
+                    'Transformá la ira en poder constructivo',
+                    'Usá tu intensidad para causar cambios positivos',
+                    'No te reprimas, canalizá'
+                ],
+                oportunidad: 'Tu capacidad de transformar realidades con tu energía es extraordinaria.'
+            },
+            'Júpiter-Saturno': {
+                pasos: [
+                    'Encontrá balance entre expandir y estructurar',
+                    'Los límites son necesarios para crecer',
+                    'Soñá pero con pies en la tierra'
+                ],
+                oportunidad: 'Tu visión amplia estructurada con acciones concretas genera éxito sostenible.'
+            },
+            'Júpiter-Urano': {
+                pasos: [
+                    'Canalizá tus visiones en planes concretos',
+                    'No disperses tu energía en demasiadas direcciones',
+                    'Tu visión de futuro es valiosa, compartila'
+                ],
+                oportunidad: 'Tu capacidad de ver el futuro y hacerlo realidad es tu mayor talento.'
+            },
+            'Saturno-Urano': {
+                pasos: [
+                    'Innová dentro de estructuras existentes',
+                    'El cambio no tiene que ser radical para ser efectivo',
+                    'Respetá la tradición pero también cuestioná lo obsoleto'
+                ],
+                oportunidad: 'Tu capacidad de modernizar lo existente sin destruirlo es invaluable.'
+            },
+            'Saturno-Neptuno': {
+                pasos: [
+                    'Encontrá el balance entre idealismo y pragmatismo',
+                    'Tus sueños necesitan un plan para realizarse',
+                    'No sacrifices tus valores por lo práctico'
+                ],
+                oportunidad: 'Podés hacer que los sueños se concreten con estructura y persistencia.'
+            },
+            'Ascendente-Medio Cielo': {
+                pasos: [
+                    'Integrá quién sos con qué aportás al mundo',
+                    'No elegías entre autenticidad y éxito',
+                    'Tu camino único es tu mayor regalo'
+                ],
+                oportunidad: 'Tu autenticidad y tu éxito pueden ir de la mano cuando los integrás.'
+            },
+            'Sol-Plutón': {
+                pasos: [
+                    'Transformá tu identidad a través de crisis',
+                    'Tu poder está en tu capacidad de renacer',
+                    'No temas los cambios profundos'
+                ],
+                oportunidad: 'Tu capacidad de reinventarte constantemente es tu mayor fortaleza.'
+            }
+        };
+
+        const claveAspecto = p1 + '-' + p2;
+        const claveInversa = p2 + '-' + p1;
+        const consejos = consejosPorAspecto[claveAspecto] || consejosPorAspecto[claveInversa];
+        let oportunidadFinal = oportunidad;
+
+        if (consejos) {
+            consejosEspecificos = '\n*Cómo superarlo:*\n' + consejos.pasos.map(p => '- ' + p).join('\n');
+            if (consejos.oportunidad) {
+                oportunidadFinal = consejos.oportunidad;
+            }
+        } else {
+            consejosEspecificos = '\n*Cómo superarlo:*\n- Identificá los disparadores específicos donde esta tensión emerge\n- Creá una estrategia diferente para cada contexto\n- Buscá mentor o terapia para trabajar la integración';
+        }
+        
+        DESAFIOS.push('**' + titulo + '**\n\n*Desafío:* ' + desafio + consejosEspecificos + '\n\n*Oportunidad oculta:* ' + oportunidadFinal);
     }
-    md += `*   **Aceptación de la vulnerabilidad:** Aprender que mostrar tus grietas no te hace débil, sino humano y conectable.\n\n`;
-    md += `---\n\n`;
+    
+    for (const [planet, detrimento] of Object.entries(signDetrimentos)) {
+        if (planetSignMap[planet] === detrimento) {
+            DESAFIOS.push('**' + planet + ' en signo de detrimento (' + detrimento + ')**\n\n*Desafío:* Tu ' + planet + ' está en ' + detrimento + ', su signo de detrimento. Esto significa que la energía natural del planeta opera en un territorio incómodo para vos. Podés sentir frustración al expresar esta energía.\n\n*Cómo superarlo:*\n- Aceptá que ciertas cosas no van a ser fáciles con este planeta\n- Buscá formas alternativas de expresar esta energía\n- No te compares con otros que tienen este planeta en signos fuertes\n\n*Oportunidad oculta:* Dominar un planeta en detrimento te da una perspectiva única y una fortaleza que otros no tienen.');
+        }
+    }
+    
+    for (const [planet, cada] of Object.entries(signCaidas)) {
+        if (planetSignMap[planet] === cada) {
+            DESAFIOS.push('**' + planet + ' en signo de caída (' + cada + ')**\n\n*Desafío:* Tu ' + planet + ' está en ' + cada + ', su signo de caída. Esta posición representa un territorio donde la energía del planeta pierde su fuerza natural. Podés sentir que no sabés cómo manejar este aspecto de tu vida.\n\n*Cómo superarlo:*\n- No forcés la expresión directa de esta energía\n- Encontrá simbolismos y prácticas que te permitan expresar esta energía de formas no convencionales\n- Aceptá que este es un área de aprendizaje de por vida\n\n*Oportunidad oculta:* Trabajar con un planeta caído te da una humildad y perspicacia que se convierte en sabiduría profunda.');
+        }
+    }
+    
+    for (const [sign, count] of Object.entries(signsWithPlanets)) {
+        if (count >= 3) {
+            const elementBySign: Record<string, string> = {
+                'Aries': 'Fuego',
+                'Leo': 'Fuego',
+                'Sagitario': 'Fuego',
+                'Tauro': 'Tierra',
+                'Virgo': 'Tierra',
+                'Capricornio': 'Tierra',
+                'Géminis': 'Aire',
+                'Libra': 'Aire',
+                'Acuario': 'Aire',
+                'Cáncer': 'Agua',
+                'Escorpio': 'Agua',
+                'Piscis': 'Agua'
+            };
+
+            const stelliumPorElemento: Record<string, { desafio: string, pasos: string[], oportunidad: string }> = {
+                'Fuego': {
+                    desafio: 'Tu energía es explosiva y pionera. Tenés una capacidad única para iniciar proyectos y motivar a otros, pero puede resultar abrumadora para quienes te rodean.',
+                    pasos: [
+                        'Canalizá tu intensidad en liderazgo y proyectos propios',
+                        'Aprendé a modular tu energía según el contexto',
+                        'Permití que otros te sigan sin forzarlos'
+                    ],
+                    oportunidad: 'Tu carisma inspirador puede mover montañas. Las personas se sienten atraídas por tu pasión.'
+                },
+                'Tierra': {
+                    desafio: 'Tu energía es práctica y constructiva. Tenés una capacidad única para crear valor tangible, pero podés caer en rigidez o obsesión con lo material.',
+                    pasos: [
+                        'Manifestá tu energía en trabajo tangible y útil',
+                        'Permitite flexibilidad cuando las cosas no salen como esperás',
+                        'No te pierdas en detalles, mirá el panorama general'
+                    ],
+                    oportunidad: 'Tu capacidad de construir cosas que duran es extraordinaria. Dejá tu huella en el mundo.'
+                },
+                'Aire': {
+                    desafio: 'Tu energía es mental y comunicativa. Tenés una capacidad única para conectar ideas y personas, pero podés dispersarte o tornar superficial.',
+                    pasos: [
+                        'Expresá tus ideas con acciones concretas',
+                        'Conectá con otros pero también profundizá en vos mismo',
+                        'Evitá hablar mucho sin hacer'
+                    ],
+                    oportunidad: 'Tu mente brillante puede innovar y crear conexiones valiosas. Sos el puente entre mundos.'
+                },
+                'Agua': {
+                    desafio: 'Tu energía es emocional e intuitiva. Sentís todo profundamente y tenés una capacidad única de transformación, pero podés perderte en tus emociones.',
+                    pasos: [
+                        'Expresá tus emociones de forma saludable',
+                        'Cuidá tu intuición pero verificá con la razón',
+                        'Aprendé a poner límites sin cerrarte'
+                    ],
+                    oportunidad: 'Tu profundidad emocional te permite conectar genuinamente con otros y transformar realidades.'
+                }
+            };
+
+            const elemento = elementBySign[sign] || 'Fuego';
+            const info = stelliumPorElemento[elemento];
+
+            DESAFIOS.push('**Stellium en ' + sign + ' (' + count + ' planetas)** - Energía de ' + elemento + '\n\n*Desafío:* Tenés ' + count + ' planetas concentrados en ' + sign + '. ' + info.desafio + '\n\n*Cómo superarlo:*\n' + info.pasos.map(p => '- ' + p).join('\n') + '\n\n*Oportunidad oculta:* ' + info.oportunidad);
+        }
+    }
+    
+    const emptyHouses = [];
+    const allHouses = ['Primera', 'Segunda', 'Tercera', 'Cuarta', 'Quinta', 'Sexta', 'Séptima', 'Octava', 'Novena', 'Décima', 'Undécima', 'Duodécima'];
+    for (const house of allHouses) {
+        if (!houseCounts[house]) {
+            emptyHouses.push(house);
+        }
+    }
+    
+    if (emptyHouses.length >= 3) {
+        DESAFIOS.push('**' + emptyHouses.length + ' casas vacías: ' + emptyHouses.slice(0, 3).join(', ') + '**\n\n*Desafío:* Tenés ' + emptyHouses.length + ' casas sin planetas (' + emptyHouses.join(', ') + '). Estas áreas de vida pueden parecer menos desarrolladas o requerir más esfuerzo consciente para cultivar.\n\n*Cómo superarlo:*\n- No ignores estas áreas porque "no vienen naturalmente"\n- Son espacios en blanco donde PODÉS elegir quién ser\n- Buscá modelos o mentores que te inspiren en estas áreas\n\n*Oportunidad oculta:* Las casas vacías son territorios de libre albedrío. No estás condicionado por patrones planetarios, podés crear tu propio camino.');
+    }
+    
+    const heavyHouses = Object.entries(houseCounts).filter(([_, count]) => count >= 3);
+    for (const [house, count] of heavyHouses) {
+        DESAFIOS.push('**Casa ' + house + ' sobrecargada (' + count + ' planetas)**\n\n*Desafío:* Tenés ' + count + ' planetas en la Casa ' + house + '. Esta área de tu vida recibe energía constante y puede dominar tu atención, a veces en exceso.\n\n*Cómo superarlo:*\n- Sé consciente de cuándo estás sobre-enfocando en esta área\n- Buscá equilibrar la distribución de tu energía hacia otras casas\n- Esta energía es fuerte: usala sabiamente\n\n*Oportunidad oculta:* Esta casa es tu zona de máximo impacto. Cuando la dominés, se convierte en tu mayor contribución al mundo.');
+    }
+    
+    const limit = Math.min(5, DESAFIOS.length);
+    let result = '## ⚠️ DESAFÍOS (y cómo superarlos)\n\n';
+    
+    if (DESAFIOS.length === 0) {
+        result += 'No se detectaron tensiones astrológicas significativas en esta carta natal. Vos igual seguís siendo un ser complejo con áreas de crecimiento, pero las configuraciones planetarias actuales no presentan desafíos destacados.\n\n';
+        result += '*   **Integración de energías:** Tu carta tiene una distribución equilibrada. Tu desafío es encontrar cómo integrar las distintas energías que manejás sin que una predomune completamente.\n\n';
+        result += '*   **Autodescubrimiento continuo:** Aunque no hay tensiones obvias, seguís evolucionando. Explorá nuevas formas de expresarte y crecer.\n\n';
+    } else {
+        for (let i = 0; i < limit; i++) {
+            result += DESAFIOS[i] + '\n\n';
+        }
+    }
+    
+    result += '---\n\n';
+    return result;
+}
 
     // ===============================
     // ✨ MISIÓN PERSONAL
@@ -395,6 +858,21 @@ export function generateInterpretation(chartData: any, userInfo: any) {
     // ===============================
     md += `### 💌 MENSAJE FINAL\n`;
     md += `*Recuerda que estas estrellas son una guía, no una sentencia. Tu libre albedrío es el que finalmente escribe la historia. ¡Confía en tu proceso!*\n\n`;
+
+    // ===============================
+    // 📖 GLOSARIO
+    // ===============================
+    md += `### 📖 GLOSARIO\n`;
+    md += `*Entendé los términos usados en tu interpretación*\n\n`;
+    md += `**Stellium:** Concentración de 3 o más planetas en un mismo signo. Intensifica enormemente esa energía en tu personalidad.\n\n`;
+    md += `**Cuadratura:** Aspecto de tensión entre dos planetas. Genera aprendizaje y crecimiento a través de superar desafíos.\n\n`;
+    md += `**Oposición:** Dos planetas en lados opuestos del zodíaco. Representa un área de vida donde necesitás integrar energías opuestas.\n\n`;
+    md += `**Conjunción:** Dos planetas juntos en el mismo punto. Une sus energías de manera intensa.\n\n`;
+    md += `**Trígono:** Aspecto armonioso entre planetas. Indica talentos naturales y facilidad en esa área.\n\n`;
+    md += `**Sextil:** Aspecto suave que presenta oportunidades. Potencial que podés desarrollar con esfuerzo.\n\n`;
+    md += `**Casa:** Área específica de tu vida (trabajo, amor, familia, etc.). Las casas muestran dónde se expresan los planetas.\n\n`;
+    md += `**Signo de detrimento:** Planeta en territorio incómodo. Debe encontrar formas alternativas de expresarse.\n\n`;
+    md += `**Signo de caída:** Planeta sin fuerza natural en ese signo. Área de aprendizaje donde debés desarrollar fortaleza.\n\n`;
 
     return md;
 }

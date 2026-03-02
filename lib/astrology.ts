@@ -85,7 +85,8 @@ export async function calculateChart(birthData: {
     date: string,
     time: string,
     latitude: number,
-    longitude: number
+    longitude: number,
+    timezone?: number
 }) {
     let dateParts: string[];
     if (birthData.date.includes('/')) {
@@ -96,6 +97,20 @@ export async function calculateChart(birthData: {
     }
     const [year, month, day] = dateParts.map(Number)
     const [hour, minute] = birthData.time.split(':').map(Number)
+    
+    function getTimezone(latitude: number, longitude: number, year: number): number {
+        if (latitude < -24 && latitude > -55 && longitude > -75 && longitude < -53) return -3;
+        if (latitude > 36 && latitude < 44 && longitude > -10 && longitude < 5) return 1;
+        if (latitude > 14 && latitude < 33 && longitude > -118 && longitude < -86) return -6;
+        if (latitude > -56 && latitude < -17 && longitude > -76 && longitude < -66) return -4;
+        if (latitude > -5 && latitude < 13 && longitude > -82 && longitude < -66) return -5;
+        if (latitude > 0 && latitude < 13 && longitude > -73 && longitude < -59) return -4;
+        if (latitude > -35 && latitude < -30 && longitude > -58 && longitude < -53) return -3;
+        if (latitude > -34 && latitude < 6 && longitude > -74 && longitude < -32) return -3;
+        return birthData.timezone || -3;
+    }
+    
+    const timezone = birthData.timezone || getTimezone(birthData.latitude, birthData.longitude, year);
 
     try {
         const chart = calcChart({
@@ -105,7 +120,7 @@ export async function calculateChart(birthData: {
             hour,
             minute,
             second: 0,
-            timezone: -3,
+            timezone,
             latitude: birthData.latitude,
             longitude: birthData.longitude
         })
